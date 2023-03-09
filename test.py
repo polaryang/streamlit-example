@@ -1,3 +1,3 @@
 import streamlit as st
-import yfin
+import yfinance as yf
 st.write("hello world")
