@@ -1,7 +1,7 @@
 import streamlit as st
 import yfinance as yf
 import datetime
-st.write("hello world")
+st.write("hello world!!")
 today = datetime.date.today()
 stock_ticker='2330.TW'
 data_h = yf.download(stock_ticker, start="2018-05-18", end=today, interval="1d")
