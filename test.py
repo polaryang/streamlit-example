@@ -11,7 +11,7 @@ option = st.selectbox(
 
 st.write('You selected:', option)
 d = st.date_input(
-     'When's your birthday',
+     'your birthday',
      datetime.date(2019, 7, 6))
 st.write('Your birthday is:', d)
 
