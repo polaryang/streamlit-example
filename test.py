@@ -9,12 +9,12 @@ print(data_h.Close)
 import matplotlib.pyplot as plt
 
 #create figure
-plt.figure()
+fig=plt.figure()
 y=data_h.Close
 x=data_h.index
 plt.plot(x,y,linestyle=':',color='b',marker='*')
 plt.title('Stock Price')
 #rotate x-axis tick labels
 plt.xticks(rotation=45, ha='right')
-
+st.pyplot(fig)
 plt.show()
