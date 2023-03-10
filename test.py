@@ -3,13 +3,23 @@ import yfinance as yf
 import datetime
 import mpld3
 import streamlit.components.v1 as components
+import matplotlib.pyplot as plt
 
-st.write("hello world!!")
+option = st.selectbox(
+     'How would you like to be contacted?',
+     ('Email', 'Home phone', 'Mobile phone'))
+
+st.write('You selected:', option)
+d = st.date_input(
+     'When's your birthday',
+     datetime.date(2019, 7, 6))
+st.write('Your birthday is:', d)
+
 today = datetime.date.today()
 stock_ticker='2330.TW'
 data_h = yf.download(stock_ticker, start="2018-05-18", end=today, interval="1d")
 print(data_h.Close)
-import matplotlib.pyplot as plt
+st.dataframe(data_h)
 
 #create figure
 fig=plt.figure()
