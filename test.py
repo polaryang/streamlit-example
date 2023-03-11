@@ -8,11 +8,10 @@ import matplotlib.pyplot as plt
 option = st.selectbox(
      'How would you like to be contacted?',
      ('Email', 'Home phone', 'Mobile phone'))
-
 st.write('You selected:', option)
 d = st.date_input(
-     'your birthday',
-     datetime.date(2019, 7, 6))
+     'Starting Date:',
+     datetime.date(2018, 1, 1))
 st.write('Your birthday is:', d)
 
 today = datetime.date.today()
