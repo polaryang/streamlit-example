@@ -27,8 +27,9 @@ y=data_h.Close
 x=data_h.index
 plt.plot(x,y,linestyle=':',color='b')
 plt.title('Stock Price')
-#rotate x-axis tick labels
+rotate x-axis tick labels
 plt.xticks(rotation=45, ha='right')
 #st.pyplot(fig)
 fig_html = mpld3.fig_to_html(fig)
 components.html(fig_html, height=600)
+
