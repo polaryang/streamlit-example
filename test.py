@@ -16,7 +16,7 @@ d = st.date_input(
 st.write('Your birthday is:', d)
 
 today = datetime.date.today()
-stock_ticker='2330.TW'
+stock_ticker=st.text_input('Input Ticker')
 data_h = yf.download(stock_ticker, start="2018-05-18", end=today, interval="1d")
 print(data_h.Close)
 st.dataframe(data_h)
