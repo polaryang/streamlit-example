@@ -21,7 +21,7 @@ st.write('You selected:', option)
 
 y=data_r.Close
 x=data_r.index
-if option='Return(%)':
+if option == 'Return(%)':
      data_r = data_h.pct_change()
 
 #create figure
