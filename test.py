@@ -19,8 +19,8 @@ option = st.selectbox(
      ('Stock Price', 'Return(%)'))
 st.write('You selected:', option)
 
-y=data_r.Close
-x=data_r.index
+y=data_h.Close
+x=data_h.index
 if option == 'Return(%)':
      data_r = data_h.pct_change()
 
