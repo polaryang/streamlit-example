@@ -23,6 +23,8 @@ y=data_h.Close
 x=data_h.index
 if option == 'Return(%)':
      data_r = data_h.pct_change()
+     y=data_r.Close*100
+     x=data_r.index
 
 #create figure
 fig=plt.figure()
