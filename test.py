@@ -12,18 +12,16 @@ st.write('You selected:', option)
 d = st.date_input(
      'Starting Date:',
      datetime.date(2018, 1, 1))
-st.write('Your birthday is:', d)
+st.write('Starting Date:', d)
 
 today = datetime.date.today()
 stock_ticker=st.text_input('Input Ticker','2330.TW')
 data_h = yf.download(stock_ticker, start=d, end=today, interval="1d")
-print(data_h.Close)
-st.dataframe(data_h)
-
+data_r = data_h.pct_change()
 #create figure
 fig=plt.figure()
-y=data_h.Close
-x=data_h.index
+y=data_r.Close
+x=data_r.index
 plt.plot(x,y,linestyle='-',color='b')
 plt.title('Stock Price')
 #rotate x-axis tick labels
@@ -32,3 +30,5 @@ plt.xticks(rotation=45, ha='right')
 fig_html = mpld3.fig_to_html(fig)
 components.html(fig_html, height=600)
 
+print(data_h.Close)
+st.dataframe(data_h)
