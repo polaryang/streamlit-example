@@ -22,7 +22,7 @@ with col1:
   st.write('Starting Date:', d)
   today = datetime.date.today()
   ticker=st.text_input('Input Ticker','2330.TW')
-  benchmark=st.text_input('Input Ticker','0050.TW')
+  benchmark=st.text_input('Input Benchmark','0050.TW')
   
   df = yf.download(ticker, start=d, end=today, interval="1d")
   df_ret=df.pct_change()
@@ -54,7 +54,9 @@ with col2:
     components.html(fig_html, height=500)
     
   with tab2:
+    st.write(ticker)
     st.dataframe(df)
+    st.write(benchmark)
     st.dataframe(bmk)
     
   with tab3:
