@@ -24,7 +24,7 @@ with col1:
   df_ret=df.pct_change()
   bmk = yf.download(benchmark, start=d, end=today, interval="1d")
   bmk_ret=bmk.pct_change()
-  #data=pd.Series(data=bmk, index=bmk_ret.index).fillna(0)
+  data_bmk_ret=pd.Series(data=bmk_ret, index=bmk_ret.index).fillna(0)
   
   option = st.selectbox(
        'What information you want to see?',
@@ -32,6 +32,9 @@ with col1:
   st.write('You selected:', option)
   
 qs.extend_pandas()
+
+qs.reports.html(df_ret, data_bmk_ret, output="report.html",
+                download_filename="report.html")
 
 y=df.Close
 x=df.index
