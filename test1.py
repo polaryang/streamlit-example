@@ -57,8 +57,8 @@ with col2:
     st.dataframe(df)
     
   with tab3:
-    fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance',savefig='sdfs.png')
-    matrix = qs.reports.metrics(df_ret.Close,benchmark=bmk_ret.Close,mode='full', display=False)
+    #fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance',savefig='sdfs.png')
+    matrix = qs.reports.metrics(df_ret.Close,benchmark=bmk_ret.Close,mode='full', display=True)
     st.dataframe(matrix)
     #st.plotly_chart(fig,use_container_width=True)
   
