@@ -52,14 +52,19 @@ with col2:
     fig, ax1 = plt.subplots()
     ax1.set_xlabel('日期') 
     ax1.set_ylabel('Return %', color = 'red') 
-    ax1.plot(x, y, color = 'red') 
-    ax1.tick_params(axis ='y', labelcolor = 'red') 
+    plot_1 = ax1.plot(x, y, color = 'red', label=ticker) 
+    
+    #ax1.plot(x, y, color = 'red') 
+    
     # Adding Twin Axes
     ax2 = ax1.twinx() 
     #ax2.set_ylabel('Y2-axis', color = 'blue') 
-    ax2.plot(x_b, y_b, color = 'blue') 
+    plot_2 = ax2.plot(x_b, y_b, color = 'blue', label = benchmark) 
+    #ax2.plot(x_b, y_b, color = 'blue') 
     ax2.tick_params(axis ='y', labelcolor = 'blue') 
-    
+    fig = plot_1 + plot_2
+    labels = [l.get_label() for l in fig]
+    plt.legend(fig, labels, loc=0)
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
     #plt.title('Stock '+ticker+' '+option)
