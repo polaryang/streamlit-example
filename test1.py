@@ -37,6 +37,8 @@ with col1:
   
 y=df.Close
 x=df.index
+y_b=bmk.Close
+x_b=bmk.index
 if option == 'Return(%)':
     y=df_ret.Close*100
     x=df_ret.index
