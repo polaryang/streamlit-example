@@ -57,7 +57,7 @@ with col2:
 
     c = alt.layer(a, b)
 
-    st.altair_chart(c, use_container_width=True)
+    st.altair_chart(c)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
