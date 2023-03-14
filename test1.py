@@ -24,7 +24,7 @@ with col1:
   df_ret=df.pct_change()
   bmk = yf.download(benchmark, start=d, end=today, interval="1d")
   bmk_ret=bmk.pct_change()
-  #data=pd.Series(data=bmk_ret, index=bmk_ret.index).fillna(0)
+  data=pd.Series(data=bmk_ret, index=bmk_ret.index).fillna(0)
   
   option = st.selectbox(
        'What information you want to see?',
@@ -32,14 +32,13 @@ with col1:
   st.write('You selected:', option)
   
 qs.extend_pandas()
-st.qs.plots.snapshot(df_ret, title='Stock')
+qs.plots.snapshot(df_ret, title='Stock')
 
 y=df.Close
 x=df.index
 if option == 'Return(%)':
-     data_r = data_h.pct_change()
-     y=df_ret.Close*100
-     x=df_ret.index
+    y=df_ret.Close*100
+    x=df_ret.index
 with col2:
   tab1, tab2 = st.tabs(["Plot", "Data"])
   with tab1:
