@@ -33,9 +33,8 @@ with col1:
   st.write('You selected:', option)
   
 qs.extend_pandas()
+df_ret.plot_snapshot(title='Performance')
 
-qs.reports.html(df_ret, data_bmk_ret, output="report.html",
-                download_filename="report.html")
 
 y=df.Close
 x=df.index
