@@ -60,6 +60,5 @@ with col2:
     
   with tab3:
     fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance',savefig='sdfs.png')
-    fig.write_image('my_plot.png', width=1920, height=1080)
     #st.plotly_chart(fig,use_container_width=True)
   
