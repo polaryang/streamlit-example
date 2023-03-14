@@ -26,12 +26,10 @@ with col1:
   df = yf.download(ticker, start=d, end=today, interval="1d")
   df_ret=df.pct_change()
   bmk = yf.download(benchmark, start=d, end=today, interval="1d")
-  
   bmk_ret=bmk.pct_change()
   data_bmk_ret=bmk_ret.fillna(0,inplace=True)
   #data_bmk_ret=pd.Series(bmk_ret.Close, index=bmk_ret.index)
-  qs.plots.snapshot(df_ret.Close, title='Facebook Performance')
-  
+
   option = st.selectbox(
        'What information you want to see?',
        ('Stock Price', 'Return(%)'))
@@ -58,3 +56,7 @@ with col2:
     components.html(fig_html, height=600)
   with tab2:
     st.dataframe(df)
+    fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance')
+    fig.show()
+    st.write (fig)
+  
