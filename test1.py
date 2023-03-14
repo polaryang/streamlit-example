@@ -8,6 +8,8 @@ import os
 import quantstats as qs
 #import webbrowser as web
 import pandas as pd
+import plotly.express as px
+import plotly.tools
 
 # extend pandas functionality with metrics, etc.
 qs.extend_pandas()
