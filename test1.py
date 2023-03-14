@@ -57,6 +57,5 @@ with col2:
   with tab2:
     st.dataframe(df)
     fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance')
-    fig.show()
     st.write (fig)
   
