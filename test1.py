@@ -62,9 +62,7 @@ with col2:
     plot_2 = ax2.plot(x_b, y_b, color = 'blue', label = benchmark) 
     #ax2.plot(x_b, y_b, color = 'blue') 
     ax2.tick_params(axis ='y', labelcolor = 'blue') 
-    fig = plot_1 + plot_2
-    labels = [l.get_label() for l in fig]
-    plt.legend(fig, labels, loc=0)
+
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
     #plt.title('Stock '+ticker+' '+option)
