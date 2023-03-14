@@ -18,7 +18,7 @@ with col1:
   data_h = yf.download(stock_ticker, start=d, end=today, interval="1d")
 
   option = st.selectbox(
-       'What kind of information you want to see?',
+       'What information you want to see?',
        ('Stock Price', 'Return(%)'))
   st.write('You selected:', option)
 
