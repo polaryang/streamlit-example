@@ -20,6 +20,7 @@ qs.stats.sharpe(stock)
 
 # or using extend_pandas() :)
 st.write(stock.sharpe())
+qs.plots.snapshot(stock, title='Facebook Performance')
 
 st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
 col1, col2 = st.columns([2,6])
