@@ -60,5 +60,5 @@ with col2:
     st.write (fig)
   with tab3:
     fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance')
-    st.write (fig)
+    st.pyplot(fig)
   
