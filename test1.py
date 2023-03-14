@@ -22,7 +22,7 @@ stock = qs.utils.download_returns('FB')
 qs.stats.sharpe(stock)
 
 # or using extend_pandas() :)
-stock.sharpe()
+st.write(stock.sharpe())
 
 st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
 col1, col2 = st.columns([2,6])
