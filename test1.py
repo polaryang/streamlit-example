@@ -9,6 +9,21 @@ import quantstats as qs
 #import webbrowser as web
 import pandas as pd
 
+%matplotlib inline
+import quantstats as qs
+
+# extend pandas functionality with metrics, etc.
+qs.extend_pandas()
+
+# fetch the daily returns for a stock
+stock = qs.utils.download_returns('FB')
+
+# show sharpe ratio
+qs.stats.sharpe(stock)
+
+# or using extend_pandas() :)
+stock.sharpe()
+
 st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
 col1, col2 = st.columns([2,6])
 with col1:
@@ -32,8 +47,7 @@ with col1:
        ('Stock Price', 'Return(%)'))
   st.write('You selected:', option)
   
-matrix = qs.reports.metrics(df_ret,display=False)
-st.markdown(matrix, unsafe_allow_html=True)
+
 
 y=df.Close
 x=df.index
