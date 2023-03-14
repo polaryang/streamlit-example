@@ -5,6 +5,7 @@ import mpld3
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 
+st.title('Stock Information _italics_ :blue[colors] :sunglasses:')
 col1, col2 = st.columns([1,3])
 with col1:
   d = st.date_input(
@@ -30,7 +31,6 @@ if option == 'Return(%)':
      y=data_r.Close*100
      x=data_r.index
 with col2:
-  st.header("Information Dashboard")
   tab1, tab2 = st.tabs(["Plot", "Data"])
   with tab1:
     #create figure
