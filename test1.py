@@ -5,7 +5,7 @@ import mpld3
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 
-col1, col2, col3 = st.columns([1,3])
+col1, col2 = st.columns([1,3])
 with col1:
   d = st.date_input(
        'Starting Date:',
