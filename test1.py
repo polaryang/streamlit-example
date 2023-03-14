@@ -5,7 +5,7 @@ import mpld3
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
 
-st.title('_Chung-Jen Yang_  Stock Information  :sunglasses:')
+st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
 col1, col2 = st.columns([2,5])
 with col1:
   d = st.date_input(
