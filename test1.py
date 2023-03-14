@@ -12,16 +12,6 @@ import pandas as pd
 # extend pandas functionality with metrics, etc.
 qs.extend_pandas()
 
-# fetch the daily returns for a stock
-stock = qs.utils.download_returns('FB')
-
-# show sharpe ratio
-qs.stats.sharpe(stock)
-
-# or using extend_pandas() :)
-st.write(stock.sharpe())
-qs.plots.snapshot(stock, title='Facebook Performance')
-
 st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
 col1, col2 = st.columns([2,6])
 with col1:
@@ -39,6 +29,7 @@ with col1:
   bmk_ret=bmk.pct_change()
   data_bmk_ret=bmk_ret.fillna(0,inplace=True)
   #data_bmk_ret=pd.Series(bmk_ret, index=bmk_ret.index)
+  qs.plots.snapshot(df_ret, title='Facebook Performance')
   
   option = st.selectbox(
        'What information you want to see?',
