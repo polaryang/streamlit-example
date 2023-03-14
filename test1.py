@@ -32,8 +32,6 @@ with col1:
   st.write('You selected:', option)
   
 qs.extend_pandas()
-#qs.plots.snapshot(df_ret, title='Stock')
-#df_ret.plot_snapshot(title='tttt')
 
 y=df.Close
 x=df.index
