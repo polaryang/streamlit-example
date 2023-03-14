@@ -51,10 +51,11 @@ with col2:
     plt.xticks(rotation=45, ha='right')
     #st.pyplot(fig)
     fig_html = mpld3.fig_to_html(fig)
-    components.html(fig_html, height=600)
+    components.html(fig_html, height=500)
     
   with tab2:
     st.dataframe(df)
+    st.dataframe(bmk)
     
   with tab3:
     #fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance',savefig='sdfs.png')
