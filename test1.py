@@ -68,9 +68,9 @@ with col2:
     #plt.title('Stock '+ticker+' '+option)
     #rotate x-axis tick labels
     #plt.xticks(rotation=45, ha='right')
-    st.pyplot(fig)
-    #fig_html = mpld3.fig_to_html(fig)
-    #components.html(fig_html, height=1000, width=1000)
+    #st.pyplot(fig)
+    fig_html = mpld3.fig_to_html(fig)
+    components.html(fig_html, height=1000, width=1000)
     
   with tab2:
     st.write(ticker)
