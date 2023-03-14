@@ -28,7 +28,7 @@ with col1:
   df_ret=df.pct_change()
   bmk = yf.download(benchmark, start=d, end=today, interval="1d")
   bmk_ret=bmk.pct_change()
-  bmk_ret=bmk_ret.fillna(0,inplace=True)
+  #bmk_ret=bmk_ret.fillna(0,inplace=True)
   
   option = st.selectbox(
        'What information you want to see?',
@@ -58,7 +58,7 @@ with col2:
     
   with tab3:
     #fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance',savefig='sdfs.png')
-    matrix = qs.reports.metrics(df_ret.Close,benchmark=bmk_ret.Close,mode='full', display=True)
+    matrix = qs.reports.metrics(df_ret.Close,bmk_ret.Close,mode='full', display=True)
     st.dataframe(matrix)
     #st.plotly_chart(fig,use_container_width=True)
   
