@@ -33,7 +33,7 @@ with col1:
   st.write('You selected:', option)
   
 qs.extend_pandas()
-df_ret.plot_snapshot(title='Performance')
+df_ret.plot_snapshot()
 
 
 y=df.Close
