@@ -32,7 +32,7 @@ with col1:
   st.write('You selected:', option)
   
 qs.extend_pandas()
-qs.plots.snapshot(df_ret, title='Stock')
+st.qs.plots.snapshot(df_ret, title='Stock')
 
 y=df.Close
 x=df.index
