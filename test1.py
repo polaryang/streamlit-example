@@ -40,15 +40,29 @@ x=df.index
 if option == 'Return(%)':
     y=df_ret.Close*100
     x=df_ret.index
+    y_b=bmk_ret.Close*100
+    x_b=bmk_ret.index
 with col2:
   tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
   with tab1:
     #create figure
-    fig=plt.figure()
-    plt.plot(x,y,linestyle='-',color='b')
-    plt.title('Stock '+ticker+' '+option)
+    
+    fig, ax1 = plt.subplots()
+    ax1.set_xlabel('日期') 
+    ax1.set_ylabel('Return %', color = 'red') 
+    ax1.plot(x, y, color = 'red') 
+    ax1.tick_params(axis ='y', labelcolor = 'red') 
+    # Adding Twin Axes
+    ax2 = ax1.twinx() 
+    #ax2.set_ylabel('Y2-axis', color = 'blue') 
+    ax2.plot(x, y_b, color = 'blue') 
+    ax2.tick_params(axis ='y', labelcolor = 'blue') 
+    
+    #fig=plt.figure()
+    #plt.plot(x,y,linestyle='-',color='b')
+    #plt.title('Stock '+ticker+' '+option)
     #rotate x-axis tick labels
-    plt.xticks(rotation=45, ha='right')
+    #plt.xticks(rotation=45, ha='right')
     #st.pyplot(fig)
     fig_html = mpld3.fig_to_html(fig)
     components.html(fig_html, height=1000, width=1000)
