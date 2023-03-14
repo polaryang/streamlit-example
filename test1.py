@@ -10,7 +10,7 @@ import quantstats as qs
 import pandas as pd
 
 st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
-col1, col2 = st.columns([2,5])
+col1, col2 = st.columns([2,6])
 with col1:
   d = st.date_input(
        'Starting Date:',
