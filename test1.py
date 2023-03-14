@@ -32,9 +32,8 @@ with col1:
        ('Stock Price', 'Return(%)'))
   st.write('You selected:', option)
   
-qs.extend_pandas()
-df_ret.plot_snapshot()
-
+matrix = qs.reports.metrics(df_ret,display=False)
+st.markdown(matrix, unsafe_allow_html=True)
 
 y=df.Close
 x=df.index
