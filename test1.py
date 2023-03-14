@@ -55,7 +55,7 @@ with col2:
     # Adding Twin Axes
     ax2 = ax1.twinx() 
     #ax2.set_ylabel('Y2-axis', color = 'blue') 
-    ax2.plot(x, y_b, color = 'blue') 
+    ax2.plot(x_b, y_b, color = 'blue') 
     ax2.tick_params(axis ='y', labelcolor = 'blue') 
     
     #fig=plt.figure()
