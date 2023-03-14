@@ -43,7 +43,7 @@ if option == 'Return(%)':
     y=df_ret.Close*100
     x=df_ret.index
 with col2:
-  tab1, tab2 = st.tabs(["Plot", "Data"])
+  tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Performance"])
   with tab1:
     #create figure
     fig=plt.figure()
@@ -56,6 +56,9 @@ with col2:
     components.html(fig_html, height=600)
   with tab2:
     st.dataframe(df)
+    fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance')
+    st.write (fig)
+  with tab3:
     fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance')
     st.write (fig)
   
