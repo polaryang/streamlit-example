@@ -8,6 +8,7 @@ import os
 import quantstats as qs
 #import webbrowser as web
 import pandas as pd
+import plotly
 
 # extend pandas functionality with metrics, etc.
 qs.extend_pandas()
@@ -59,6 +60,6 @@ with col2:
     
   with tab3:
     fig = qs.plots.snapshot(df_ret.Close, title='Facebook Performance')
-    fig.savefig('my_plot.png') 
+    fig.write_image("name.eps", width=1920, height=1080)'my_plot.png') 
     #st.plotly_chart(fig,use_container_width=True)
   
