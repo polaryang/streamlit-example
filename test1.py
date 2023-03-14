@@ -8,7 +8,7 @@ import os
 import quantstats as qs
 #import webbrowser as web
 import pandas as pd
-import plotly
+import altair as alt
 
 # extend pandas functionality with metrics, etc.
 qs.extend_pandas()
@@ -49,19 +49,15 @@ with col2:
   with tab1:
     #create figure
     
-    fig, ax1 = plt.subplots()
-    ax1.set_xlabel('日期') 
-    ax1.set_ylabel('Return %', color = 'red') 
-    ax1.plot(x, y, color = 'red') 
-    
-    #ax1.plot(x, y, color = 'red') 
-    
-    # Adding Twin Axes
-    ax2 = ax1.twinx() 
-    #ax2.set_ylabel('Y2-axis', color = 'blue') 
-    ax2.plot(x_b, y_b, color = 'blue') 
-    #ax2.plot(x_b, y_b, color = 'blue') 
-    ax2.tick_params(axis ='y', labelcolor = 'blue') 
+    a = alt.Chart(df).mark_area(opacity=1).encode(
+        x='index', y='Close')
+
+    b = alt.Chart(bmk).mark_area(opacity=0.6).encode(
+        x='index', y='Close')
+
+    c = alt.layer(a, b)
+
+    st.altair_chart(c, use_container_width=True)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
