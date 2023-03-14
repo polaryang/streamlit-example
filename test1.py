@@ -25,7 +25,7 @@ with col1:
   bmk = yf.download(benchmark, start=d, end=today, interval="1d")
   bmk_ret=bmk.pct_change()
   data_bmk_ret=bmk_ret.fillna(0,inplace=True)
-  data_bmk_ret=pd.Series(bmk_ret, index=bmk_ret.index)
+  #data_bmk_ret=pd.Series(bmk_ret, index=bmk_ret.index)
   
   option = st.selectbox(
        'What information you want to see?',
