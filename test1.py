@@ -30,15 +30,18 @@ if option == 'Return(%)':
      y=data_r.Close*100
      x=data_r.index
 with col2:
-  #create figure
-  fig=plt.figure()
-  plt.plot(x,y,linestyle='-',color='b')
-  plt.title('Stock '+stock_ticker+' '+option)
-  #rotate x-axis tick labels
-  plt.xticks(rotation=45, ha='right')
-  #st.pyplot(fig)
-  fig_html = mpld3.fig_to_html(fig)
-  components.html(fig_html, height=600)
-
-  print(data_h.Close)
-  st.dataframe(data_h)
+  st.header("Information Dashboard")
+  tab1, tab2 = st.tabs(["Plot", "Data"])
+  with tab1:
+    #create figure
+    fig=plt.figure()
+    plt.plot(x,y,linestyle='-',color='b')
+    plt.title('Stock '+stock_ticker+' '+option)
+    #rotate x-axis tick labels
+    plt.xticks(rotation=45, ha='right')
+    #st.pyplot(fig)
+    fig_html = mpld3.fig_to_html(fig)
+    components.html(fig_html, height=600)
+  with tab2:
+    print(data_h.Close)
+    st.dataframe(data_h)
