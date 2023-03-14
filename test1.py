@@ -9,9 +9,6 @@ import quantstats as qs
 #import webbrowser as web
 import pandas as pd
 
-#matplotlib inline
-import quantstats as qs
-
 # extend pandas functionality with metrics, etc.
 qs.extend_pandas()
 
