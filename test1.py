@@ -35,8 +35,6 @@ with col1:
        ('Stock Price', 'Return(%)'))
   st.write('You selected:', option)
   
-
-
 y=df.Close
 x=df.index
 if option == 'Return(%)':
