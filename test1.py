@@ -31,6 +31,8 @@ with col1:
   #bmk_ret=bmk_ret.fillna(0,inplace=True)
   df_all = pd.merge(df_ret, bmk_ret, left_index=True, right_index=True)
   st.dataframe(df_all)
+  df_all.date=df_all.index
+  st.dataframe(df_all)
   option = st.selectbox(
        'What information you want to see?',
        ('Stock Price', 'Return(%)'))
@@ -49,10 +51,18 @@ with col2:
   tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
   with tab1:
     #create figure
-    c = alt.Chart(df_all).mark_area().encode(
-    x='index', y=['Close_x', 'Close_y'])
-    st.altair_chart(alt.Chart(df_all).mark_area().encode(
-    x='index', y=['Close_x', 'Close_y']), use_container_width=True)
+    #c = alt.Chart(df_all).mark_area().encode(
+    #x='index', y=['Close_x', 'Close_y'])
+    
+    #st.altair_chart(alt.Chart(df_all).mark_area().encode(
+    #x='index', y=['Close_x', 'Close_y']), use_container_width=True)
+    
+    a = alt.Chart(_df_all).mark_area(opacity=1).encode(
+    x='index', y='Close_x')
+    b = alt.Chart(df_all).mark_area(opacity=0.6).encode(
+    x='index', y='Close_y')
+    c = alt.layer(a, b)
+
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
