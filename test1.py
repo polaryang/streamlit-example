@@ -52,9 +52,9 @@ with col2:
     #create figure
     #c = alt.Chart(df_all).mark_area().encode(x='date', y=['Close_x', 'Close_y'])
     #st.altair_chart(c, use_container_width=True)
-
-    a = alt.Chart(df_all).mark_line(color="steelblue").encode(x='date', y='Close_x')
-    b = alt.Chart(df_all).mark_line(color="red").encode(x='date', y='Close_y')
+    title = alt.TitleParams('Historical Stock Price', anchor='middle')
+    a = alt.Chart(df_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x')
+    b = alt.Chart(df_all, title=title).mark_line(color="red").encode(x='date', y='Close_y')
     #c = alt.layer(a, b)
     #c=alt.vconcat(a,b)
     #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
