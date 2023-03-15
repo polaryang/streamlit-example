@@ -30,8 +30,7 @@ with col1:
   bmk_ret=bmk.pct_change()
   #bmk_ret=bmk_ret.fillna(0,inplace=True)
   df_all = pd.merge(df_ret, bmk_ret, left_index=True, right_index=True)
-  st.dataframe(df_all)
-  df_all.date=df_all.index
+  df_all['date']=df_all.index
   st.dataframe(df_all)
   option = st.selectbox(
        'What information you want to see?',
