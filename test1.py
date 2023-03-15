@@ -56,14 +56,14 @@ with col2:
     a = alt.Chart(df_all).mark_area(opacity=1).encode(x='date', y='Close_x')
     b = alt.Chart(df_all).mark_area(opacity=0.6).encode(x='date', y='Close_y')
     c = alt.layer(a, b)
-    fig=st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
+    st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
     #plt.title('Stock '+ticker+' '+option)
     #rotate x-axis tick labels
     #plt.xticks(rotation=45, ha='right')
-    st.pyplot(fig)
+    #st.pyplot(fig)
     #fig_html = mpld3.fig_to_html(fig)
     #components.html(fig_html, height=1000, width=1000)
     
