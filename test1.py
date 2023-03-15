@@ -58,7 +58,7 @@ with col2:
     #c = alt.layer(a, b)
     #c=alt.vconcat(a,b)
     #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
-    st.altair_chart((a+b).resolve_scale(), use_container_width=True)
+    st.altair_chart((a+b).resolve_scale(y='independent'), use_container_width=True)
     st.dataframe(df_all)
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
