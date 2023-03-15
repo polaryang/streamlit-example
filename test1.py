@@ -29,7 +29,7 @@ with col1:
   bmk = yf.download(benchmark, start=d, end=today, interval="1d")
   bmk_ret=bmk.pct_change()
   #bmk_ret=bmk_ret.fillna(0,inplace=True)
-  df_all = pd.merge(df_ret, bmk_ret, left_index=True, right_index=True)
+  df_all = pd.merge(df, bmk, left_index=True, right_index=True)
   df_all['date']=df_all.index
 
   option = st.selectbox(
@@ -56,9 +56,8 @@ with col2:
     a = alt.Chart(df_all).mark_area().encode(x='date', y='Close_x')
     b = alt.Chart(df_all).mark_area().encode(x='date', y='Close_y')
     #c = alt.layer(a, b)
-    #c=alt.vconcat(a,b)
     #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
-    st.altair_chart(a|b.resolve_scale(), use_container_width=True)
+    st.altair_chart(c.resolve_scale(), use_container_width=True)
     st.dataframe(df_all)
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
