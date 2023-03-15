@@ -29,7 +29,8 @@ with col1:
   bmk = yf.download(benchmark, start=d, end=today, interval="1d")
   bmk_ret=bmk.pct_change()
   #bmk_ret=bmk_ret.fillna(0,inplace=True)
-  
+  df_all = pd.merge(df_ret, bmk_ret, left_index=True, right_index=True)
+  st.dataframe(df_all)
   option = st.selectbox(
        'What information you want to see?',
        ('Stock Price', 'Return(%)'))
@@ -48,17 +49,7 @@ with col2:
   tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
   with tab1:
     #create figure
-    
-    a = alt.Chart(df).mark_area(opacity=1).encode(
-        x='index', y='Close')
 
-    b = alt.Chart(bmk).mark_area(opacity=0.6).encode(
-        x='index', y='Close')
-
-    c = alt.layer(a, b)
-
-    st.altair_chart(a | b)
-    #st.altair_chart(c)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
