@@ -51,7 +51,8 @@ with col2:
     #create figure
     c = alt.Chart(df_all).mark_area().encode(
     x='index', y=['Close_x', 'Close_y'])
-    st.altair_chart(c, use_container_width=True)
+    st.altair_chart(alt.Chart(df_all).mark_area().encode(
+    x='index', y=['Close_x', 'Close_y']), use_container_width=True)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
