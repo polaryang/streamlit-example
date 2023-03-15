@@ -57,11 +57,11 @@ with col2:
     #x='index', y=['Close_x', 'Close_y']), use_container_width=True)
     
     a = alt.Chart(_df_all).mark_area(opacity=1).encode(
-    x='index', y='Close_x')
+    x='date', y='Close_x')
     b = alt.Chart(df_all).mark_area(opacity=0.6).encode(
-    x='index', y='Close_y')
+    x='date', y='Close_y')
     c = alt.layer(a, b)
-
+    st.altair_chart(c, use_container_width=True)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
