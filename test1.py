@@ -55,9 +55,11 @@ with col2:
 
     a = alt.Chart(df_all).mark_area().encode(x='date', y='Close_x')
     b = alt.Chart(df_all).mark_area().encode(x='date', y='Close_y')
-    c = alt.layer(a, b)
+    #c = alt.layer(a, b)
+    c=alt.vconcat(a,b)
+    #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
     st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
-
+    
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
     #plt.title('Stock '+ticker+' '+option)
