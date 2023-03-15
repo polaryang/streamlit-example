@@ -50,16 +50,13 @@ with col2:
   tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
   with tab1:
     #create figure
-    #c = alt.Chart(df_all).mark_area().encode(
-    #x='index', y=['Close_x', 'Close_y'])
-    
-    #st.altair_chart(alt.Chart(df_all).mark_area().encode(
-    #x='index', y=['Close_x', 'Close_y']), use_container_width=True)
-    
-    a = alt.Chart(df_all).mark_area(opacity=1).encode(x='date', y='Close_x')
-    b = alt.Chart(df_all).mark_area(opacity=0.6).encode(x='date', y='Close_y')
-    c = alt.layer(a, b)
+    c = alt.Chart(df_all).mark_area().encode(x='date', y=['Close_x', 'Close_y'])
     st.altair_chart(c, use_container_width=True)
+    
+    #a = alt.Chart(df_all).mark_area(opacity=1).encode(x='date', y='Close_x')
+    #b = alt.Chart(df_all).mark_area(opacity=0.6).encode(x='date', y='Close_y')
+    #c = alt.layer(a, b)
+    #st.altair_chart(c, use_container_width=True)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
