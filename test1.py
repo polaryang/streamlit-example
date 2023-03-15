@@ -56,10 +56,8 @@ with col2:
     #st.altair_chart(alt.Chart(df_all).mark_area().encode(
     #x='index', y=['Close_x', 'Close_y']), use_container_width=True)
     
-    a = alt.Chart(_df_all).mark_area(opacity=1).encode(
-    x='date', y='Close_x')
-    b = alt.Chart(df_all).mark_area(opacity=0.6).encode(
-    x='date', y='Close_y')
+    a = alt.Chart(_df_all).mark_area(opacity=1).encode(x='date', y='Close_x')
+    b = alt.Chart(df_all).mark_area(opacity=0.6).encode(x='date', y='Close_y')
     c = alt.layer(a, b)
     st.altair_chart(c, use_container_width=True)
 
