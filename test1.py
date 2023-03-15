@@ -31,7 +31,7 @@ with col1:
   #bmk_ret=bmk_ret.fillna(0,inplace=True)
   df_all = pd.merge(df_ret, bmk_ret, left_index=True, right_index=True)
   df_all['date']=df_all.index
-  st.dataframe(df_all)
+
   option = st.selectbox(
        'What information you want to see?',
        ('Stock Price', 'Return(%)'))
@@ -56,16 +56,16 @@ with col2:
     a = alt.Chart(df_all).mark_area(opacity=1).encode(x='date', y='Close_x')
     b = alt.Chart(df_all).mark_area(opacity=0.6).encode(x='date', y='Close_y')
     c = alt.layer(a, b)
-    st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
+    fig=st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
     #plt.title('Stock '+ticker+' '+option)
     #rotate x-axis tick labels
     #plt.xticks(rotation=45, ha='right')
-    #st.pyplot(fig)
-    fig_html = mpld3.fig_to_html(fig)
-    components.html(fig_html, height=1000, width=1000)
+    st.pyplot(fig)
+    #fig_html = mpld3.fig_to_html(fig)
+    #components.html(fig_html, height=1000, width=1000)
     
   with tab2:
     st.write(ticker)
