@@ -57,7 +57,7 @@ with col2:
     b = alt.Chart(df_all).mark_area().encode(x='date', y='Close_y')
     #c = alt.layer(a, b)
     #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
-    st.altair_chart(c.resolve_scale(), use_container_width=True)
+    st.altair_chart(a|b.resolve_scale(), use_container_width=True)
     st.dataframe(df_all)
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
