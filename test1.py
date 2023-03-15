@@ -49,7 +49,9 @@ with col2:
   tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
   with tab1:
     #create figure
-
+    c = alt.Chart(df_all).mark_area().encode(
+    x='index', y=['Close_x', 'Close_y'])
+    st.altair_chart(c, use_container_width=True)
 
     #fig=plt.figure()
     #plt.plot(x,y,linestyle='-',color='b')
