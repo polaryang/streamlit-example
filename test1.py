@@ -16,7 +16,7 @@ qs.extend_pandas()
 st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
 import pandas as pd
 url = 'https://github.com/polaryang/streamlit-example/blob/master/import_data.csv'
-df_t = pd.read_csv(url, index_col=0)
+df_t = pd.read_csv(url)
 st.dataframe(df_t)
 
 col1, col2 = st.columns([2,6])
