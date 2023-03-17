@@ -56,7 +56,7 @@ with col2:
     #c = alt.Chart(df_all).mark_area().encode(x='date', y=['Close_x', 'Close_y'])
     #st.altair_chart(c, use_container_width=True)
     title = alt.TitleParams('Historical Stock Price', anchor='middle')
-    a = alt.Chart(df_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x',color="black").interactive()
+    a = alt.Chart(df_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x',legend="black").interactive()
     b = alt.Chart(df_all, title=title).mark_line(color="red").encode(x='date', y='Close_y').interactive()
     if option == 'Return(%)':
       a = alt.Chart(df_ret_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x').interactive()
