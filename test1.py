@@ -14,10 +14,6 @@ import altair as alt
 qs.extend_pandas()
 
 st.subheader('_Chung-Jen Yang_  Stock Information Dashboard :sunglasses:')
-import pandas as pd
-url = 'https://github.com/polaryang/streamlit-example/blob/master/import_data.csv'
-df_t = pd.read_csv(url)
-st.dataframe(df_t)
 
 col1, col2 = st.columns([2,6])
 with col1:
@@ -60,11 +56,11 @@ with col2:
     #c = alt.Chart(df_all).mark_area().encode(x='date', y=['Close_x', 'Close_y'])
     #st.altair_chart(c, use_container_width=True)
     title = alt.TitleParams('Historical Stock Price', anchor='middle')
-    a = alt.Chart(df_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x')
-    b = alt.Chart(df_all, title=title).mark_line(color="red").encode(x='date', y='Close_y')
+    a = alt.Chart(df_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x').interactive()
+    b = alt.Chart(df_all, title=title).mark_line(color="red").encode(x='date', y='Close_y').interactive()
     if option == 'Return(%)':
-      a = alt.Chart(df_ret_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x')
-      b = alt.Chart(df_ret_all, title=title).mark_line(color="red").encode(x='date', y='Close_y')
+      a = alt.Chart(df_ret_all, title=title).mark_line(color="steelblue").encode(x='date', y='Close_x').interactive()
+      b = alt.Chart(df_ret_all, title=title).mark_line(color="red").encode(x='date', y='Close_y').interactive()
     #c = alt.layer(a, b)
     #c=alt.vconcat(a,b)
     #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
