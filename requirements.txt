@@ -9,4 +9,3 @@ plotly
 datetime
 requests
 bs4
-BeautifulSoup
