@@ -8,7 +8,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
 col1, col2 = st.columns([2,6])
-  with col1:
+with col1:
   # Basic Parameters
   # 「Discretionary Income」（可調用所得／可運用所得／可花費所得／可花用所得／可調動所得）
   today = datetime.date.today()
