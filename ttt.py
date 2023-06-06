@@ -100,6 +100,25 @@ avg_divid=divid_yr['divid'].max()
 print(divid_yr)
 print(splits)
 last_close=data.history()['Close'].tail().mean() # 5日平均收盤價
+with col2:
+  tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
+  with tab1:
+    #create figure
+    title = alt.TitleParams('Historical Stock Price', anchor='middle')
+    a = alt.Chart(data.history()['Close'], title=title).mark_line(color="steelblue").encode(x='date', y='Close_x').interactive()
+    #c = alt.layer(a, b)
+    #c=alt.vconcat(a,b)
+    #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
+    st.altair_chart((a).resolve_scale(y='independent'), use_container_width=True)
+    #st.dataframe(df_all)
+    #fig=plt.figure()
+    #plt.plot(x,y,linestyle='-',color='b')
+    #plt.title('Stock '+ticker+' '+option)
+    #rotate x-axis tick labels
+    #plt.xticks(rotation=45, ha='right')
+    #st.pyplot(fig)
+    #fig_html = mpld3.fig_to_html(fig)
+    #components.html(fig_html, height=1000, width=1000)
 
 def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt):
