@@ -4,26 +4,31 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
-
-# Basic Parameters
-# 「Discretionary Income」（可調用所得／可運用所得／可花費所得／可花用所得／可調動所得）
-today = datetime.date.today()
-start='2010-01-01'
-end=today
-income=60000
-income_g=0.03
-income_bonus=2 #單位 月
-expense=25000
-inflation=0.05
-idir=0.8 # invest dispo income ratio
-age=30
-invest_p=30 # 複利投資期間
-divid_live_p=15 # 財富自由期間
-#ticker
-ID='IBM'
-redempt=1
-safety_valt=1
-print(ID)
+import streamlit as st
+import streamlit.components.v1 as components
+import altair as alt
+col1, col2 = st.columns([2,6])
+  with col1:
+  # Basic Parameters
+  # 「Discretionary Income」（可調用所得／可運用所得／可花費所得／可花用所得／可調動所得）
+  today = datetime.date.today()
+  start='2010-01-01'
+  end=today
+  income=st.text_input('Input monthly income','60000')
+  income_g=st.text_input('Input income growth','0.03')
+  income_bonus=st.text_input('Input bonus (month)','2')
+  expense=st.text_input('Input monthly expense','25000')
+  inflation=st.text_input('Input inflation rate','0.05')
+  idir=st.text_input('Input ratio of income to invest','0.8')
+  # invest dispo income ratio
+  age=st.text_input('Input your age','30')
+  invest_p=st.text_input('Input investment periods (year)','20') # 複利投資期間
+  divid_live_p=st.text_input('Input live on dividends (year)','30') # 財富自由期間
+  #ticker
+  ID=st.text_input('Input Ticker','2330')
+  redempt=st.text_input('Input whether redempt (1/0)','0')1
+  #safety_valt=1
+  #print(ID)
 
 #證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
 if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
