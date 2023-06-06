@@ -6,3 +6,7 @@ matplotlib
 mpld3
 quantstats
 plotly
+datetime
+requests
+bs4
+BeautifulSoup
