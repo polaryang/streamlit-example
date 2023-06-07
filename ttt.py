@@ -182,7 +182,7 @@ with col2:
   with tab1:
     st.write(ID_name+' : '+stock_ticker)
     c = alt.Chart(divid_yr0, title='Dividends over time').mark_line().encode(
-     x='date', y='dividends', color='parameter')
+     x='date', y='dividends')
     st.altair_chart(c, use_container_width=True)
     #create figure
     st.bar_chart(divid_yr0)
