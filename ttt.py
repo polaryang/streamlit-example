@@ -203,7 +203,42 @@ with col2:
     st.altair_chart(c, use_container_width=True)
     
     st.dataframe(df)
-
+  with tab3:
+    divid_rate=avg_divid
+    df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
+          divid_rate,last_close,invest_p,divid_live_p,redempt)
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
+    x='Age', y='Income')
+    e = alt.Chart(df).mark_line(color='green').encode(
+    x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(color="red").encode(
+    x='Age', y='Cash_All')
+    all = alt.layer(i, e)
+    st.altair_chart((i+e+c), use_container_width=True)
+    
+    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
+    x='Age', y='Shares')
+    st.altair_chart(c, use_container_width=True)
+    
+    st.dataframe(df)
+  with tab4:
+    divid_rate=min_divid
+    df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
+          divid_rate,last_close,invest_p,divid_live_p,redempt)
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
+    x='Age', y='Income')
+    e = alt.Chart(df).mark_line(color='green').encode(
+    x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(color="red").encode(
+    x='Age', y='Cash_All')
+    all = alt.layer(i, e)
+    st.altair_chart((i+e+c), use_container_width=True)
+    
+    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
+    x='Age', y='Shares')
+    st.altair_chart(c, use_container_width=True)
+    
+    st.dataframe(df)
     
 plt.bar(df['Age'],df['Shares'])
 plt.xlabel('Age')
