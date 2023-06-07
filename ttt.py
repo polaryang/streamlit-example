@@ -191,7 +191,7 @@ with col2:
     x='Age', y='Expense',color='g')
     c = alt.Chart(df).mark_line().encode(
     x='Age', y='Cash_All',color='r')
-    all = alt.layer(i, e, c)
+    all = alt.layer(i, e)
     st.altair_chart(all, use_container_width=True)
     
     c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
