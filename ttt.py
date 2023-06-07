@@ -55,7 +55,7 @@ def Checking_ID(ID):
                   ID_type=stories[i+5].text #type
                   return ID_code, ID_name, ID_mkt, ID_type
                   break
-  except:
+  except TypeError:
     no_found=1
     return '','','',''
 # ------------------------------------------------------------------
