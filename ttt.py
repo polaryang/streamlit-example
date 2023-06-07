@@ -8,6 +8,11 @@ import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
 def Checking_ID(ID):
+  ID_code=''
+  ID_name=''
+  ID_mkt=''
+  ID_type=''
+  no_found=0
   #證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
   if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
     r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
