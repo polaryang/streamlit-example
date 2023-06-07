@@ -54,7 +54,7 @@ def Checking_ID(ID):
     no_found=1
     return 0,0,0,0
 # ------------------------------------------------------------------
-  def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
+def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt):
   age_list=[]
   income_list=[]
