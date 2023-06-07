@@ -155,12 +155,7 @@ with col1:
     
   #ticker
   ID=st.text_input('Input Ticker','2330')
-  ID_code='0'
-  ID_name='0'
-  ID_mkt='0'
-  ID_type='0'
   ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID) 
-  st.write(ID_code)
   if ID_code=='':
     stock_ticker=ID
   else:
@@ -229,7 +224,7 @@ with col2:
     all = alt.layer(i, e)
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
+    c = alt.Chart(df, title='Shares holded over time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
@@ -247,7 +242,7 @@ with col2:
     all = alt.layer(i, e)
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
+    c = alt.Chart(df, title='Shares holded over time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
