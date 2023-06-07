@@ -176,24 +176,24 @@ print(divid_yr)
 print(splits)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 with col2:
-  df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
-          avg_divid,last_close,invest_p,divid_live_p,redempt)
   tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best", "Average", "Worst"])
   with tab1:
-    st.write(ID_name+' : '+stock_ticker)
-    #create figure
+    st.write(ID_name+' : '+stock_ticker+' dividends in the past')
     st.bar_chart(divid_yr0)
+    st.write(ID_name+' : '+stock_ticker+' close price')
     st.line_chart(data.history()['Close'])
   with tab2:
-    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
-    x='Age', y='Shares')
-    st.altair_chart(c, use_container_width=True)
+    df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
+          avg_divid,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Dividends holding over time').mark_line().encode(
     x='Age', y='Income')
     e = alt.Chart(df).mark_line().encode(
     x='Age', y='Expense')
     c = alt.Chart(df).mark_line().encode(
     x='Age', y='Cash_All')
+    st.altair_chart(i+e+c, use_container_width=True)
+    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
+    x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
 
     
