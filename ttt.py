@@ -126,13 +126,13 @@ with col1:
   today = datetime.date.today()
   start='2010-01-01'
   end=today
-  age = st.slider('How old are you?', 0, 100, 30)
+  age = st.slider('How old are you?', 0, 120, 30)
   income=st.number_input('Input monthly income',value=60000)
   income_g=st.number_input('Input income growth',value=0.02)
   income_bonus=st.number_input('Input bonus (month)',value=2)
   expense=st.number_input('Input monthly expense',value=20000)
   inflation=st.number_input('Input inflation rate',value=0.03)
-  idir = st.slider('Ratio to invest of income ', 0, 1, 0.8)  # invest dispo income ratio
+  idir = st.slider('Ratio to invest of income (%)', 0, 100, 80)  # invest dispo income ratio
   invest_p = st.slider('Investment periods (years)', 0, 100, 20)  # 複利投資期間
   divid_live_p = st.slider('Live on dividends periods (years)', 0, 100, 20)  # 財富自由期間
   #redempt=st.number_input('Input whether redempt (1/0)',value=1)
