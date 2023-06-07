@@ -185,14 +185,14 @@ with col2:
   with tab2:
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt)
-    i = alt.Chart(df, title='Cash Flow Simulation').mark_line().encode(
-    x='Age', y='Income',color='b')
-    e = alt.Chart(df).mark_line().encode(
-    x='Age', y='Expense',color='g')
-    c = alt.Chart(df).mark_line().encode(
-    x='Age', y='Cash_All',color='r')
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color='b').encode(
+    x='Age', y='Income')
+    e = alt.Chart(df).mark_line(color='g').encode(
+    x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(color='r').encode(
+    x='Age', y='Cash_All')
     all = alt.layer(i, e)
-    st.altair_chart(i+e, use_container_width=True)
+    st.altair_chart((i+e), use_container_width=True)
     
     c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
     x='Age', y='Shares')
