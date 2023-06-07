@@ -206,7 +206,7 @@ with col2:
     all = alt.layer(i, e)
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
+    c = alt.Chart(df, title='Shares holded over time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
