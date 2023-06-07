@@ -12,7 +12,6 @@ def Checking_ID(ID):
   ID_name='0'
   ID_mkt='0'
   ID_type='0'
-  no_found=0
   #證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
   if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
     r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
@@ -35,7 +34,6 @@ def Checking_ID(ID):
       ID_name='0'
       ID_mkt='0'
       ID_type='0'
-      no_found=0
       for i in range(0,len(stories),10) :   #((stories[i+5].text == '股票') or (stories[i+5].text == 'ETF'))
           if ((stories[i+5].text == '股票') ):
               ID_code=stories[i+2].text #code
@@ -57,7 +55,12 @@ def Checking_ID(ID):
                   break
   except:
     no_found=1
-    return '0','0','0','0'
+    ID_code='0'
+    ID_name='0'
+    ID_mkt='0'
+    ID_type='0'
+    return ID_code, ID_name, ID_mkt, ID_type
+    #return '0','0','0','0'
 # ------------------------------------------------------------------
 def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt):
