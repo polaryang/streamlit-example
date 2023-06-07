@@ -55,7 +55,7 @@ def Checking_ID(ID):
     return 0,0,0,0
 # ------------------------------------------------------------------
 def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
-          avg_divid,last_close,invest_p,divid_live_p,redempt):
+          divid_rate,last_close,invest_p,divid_live_p,redempt):
   age_list=[]
   income_list=[]
   expense_list=[]
@@ -81,11 +81,11 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
       shares_list1.append(d_income*idir/last_close) # 年初存入股票
       if i==0:
           shares_list.append(d_income*idir/last_close) #第1期年初存入股票 
-          divid_list.append(shares_list[i]*avg_divid) # 通常6月配息 單位:股
+          divid_list.append(shares_list[i]*divid_rate) # 通常6月配息 單位:股
 
       else:
           shares_list.append(d_income*idir/last_close+shares_list[i-1]) # 年初存入股票+累進資產    
-          divid_list.append(shares_all_list[-1]*avg_divid) # 通常6月配息 單位:股
+          divid_list.append(shares_all_list[-1]*divid_rate) # 通常6月配息 單位:股
       
       if i <=invest_p: # 複利投資期間
           
@@ -96,7 +96,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
 
       else:            # 財富自由期間
           shares_all_list.append(shares_all_list[-1])  # 股數轉入累進資產
-          cash_divid_list.append(shares_all_list[i]*avg_divid) # 開始現金領
+          cash_divid_list.append(shares_all_list[i]*divid_rate) # 開始現金領
           divid_share_list.append(0) # 股息領出，就不再換算股票股數
           cash_redempt_list.append(0) # 股票贖回產生的現金
           
@@ -106,7 +106,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
               share_redempt=min((income_shortage*-1.01),shares_value_list[-1])/last_close # 股票贖回的股數
               cash_redempt_list[-1]=share_redempt*last_close  # 股票贖回產生的現金
               shares_all_list[-1]=shares_all_list[-1]-share_redempt # 股數轉出 累進資產減少
-              cash_divid_list[-1]=shares_all_list[i]*avg_divid # 開始現金領
+              cash_divid_list[-1]=shares_all_list[i]*divid_rate # 開始現金領
               
       cash_all_list.append(cash_divid_list[-1]+cash_redempt_list[-1])
       shares_value_list.append(shares_all_list[-1]*last_close)
@@ -172,7 +172,9 @@ divid_yr=divid.groupby('year').sum()
 divid_l=len(divid_yr)
 divid_yr=divid_yr[divid_yr.index<today.year]
 divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,5)]
-avg_divid=divid_yr['divid'].max()
+avg_divid=divid_yr['divid'].mean()
+max_divid=divid_yr['divid'].max()
+min_divid=divid_yr['divid'].min()
 print(divid_yr)
 print(splits)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
@@ -184,8 +186,9 @@ with col2:
     st.write(ID_name+' : '+stock_ticker+' close price')
     st.line_chart(data.history()['Close'])
   with tab2:
+    divid_rate=max_divid
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
-          avg_divid,last_close,invest_p,divid_live_p,redempt)
+          divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
     x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(
@@ -193,7 +196,7 @@ with col2:
     c = alt.Chart(df).mark_line(color="red").encode(
     x='Age', y='Cash_All')
     all = alt.layer(i, e)
-    st.altair_chart((i+e), use_container_width=True)
+    st.altair_chart((i+e+c), use_container_width=True)
     
     c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
     x='Age', y='Shares')
