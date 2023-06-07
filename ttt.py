@@ -166,6 +166,7 @@ income_a=income*(12+income_bonus)
 expense_a=expense*12
 years=pd.Series(data.dividends.index.year)
 divid = pd.DataFrame({'divid':divid.values, 'year':years})
+divid_yr0=divid.groupby('year').sum()
 divid_yr=divid.groupby('year').sum()
 divid_l=len(divid_yr)
 divid_yr=divid_yr[divid_yr.index<today.year]
@@ -173,14 +174,18 @@ divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,5)]
 avg_divid=divid_yr['divid'].max()
 print(divid_yr)
 print(splits)
-last_close=data.history()['Close'].tail().mean() # 5日平均收盤價
+last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 with col2:
   df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt)
   tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best", "Average", "Worst"])
   with tab1:
+    st.write(ID_name+' : '+stock_ticker)
+    c = alt.Chart(divid_yr0, title='Dividends over time').mark_line().encode(
+     x='date', y='dividends', color='parameter')
+    st.altair_chart(c, use_container_width=True)
     #create figure
-    st.bar_chart(divid_yr)
+    st.bar_chart(divid_yr0)
     st.line_chart(data.history()['Close'])
   with tab2:
     st.bar_chart(df['Age'],df['Shares'])
