@@ -53,76 +53,8 @@ def Checking_ID(ID):
   except:
     no_found=1
     return 0,0,0,0
-  
-col1, col2 = st.columns([2,6])
-with col1:
-  # Basic Parameters
-  # 「Discretionary Income」（可調用所得／可運用所得／可花費所得／可花用所得／可調動所得）
-  today = datetime.date.today()
-  start='2010-01-01'
-  end=today
-  income=st.number_input('Input monthly income')
-  income_g=st.number_input('Input income growth')
-  income_bonus=st.number_input('Input bonus (month)')
-  expense=st.number_input('Input monthly expense')
-  inflation=st.number_input('Input inflation rate')
-  idir=st.number_input('Input ratio of income to invest')
-  # invest dispo income ratio
-  age=st.number_input('Input your age')
-  invest_p=st.number_input('Input investment periods (year)') # 複利投資期間
-  divid_live_p=st.number_input('Input live on dividends (year)') # 財富自由期間
-  redempt=st.number_input('Input whether redempt (1/0)')
-  #ticker
-  ID=st.text_input('Input Ticker','2330')
-  ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID)           
-  if ID_code=='':
-    stock_ticker=ID
-  else:
-    stock_ticker=ID_code+'.TW'
-  if ID_mkt=='上市 ':
-    stock_ticker=ID_code+'.TW'
-  if ID_mkt=='上櫃 ':
-    stock_ticker=ID_code+'.TWO'
-  st.write('Reading Stock:'+stock_ticker+': '+ID_name)
-
-data = yf.Ticker(stock_ticker)
-divid=data.dividends
-divid=data.dividends
-splits=data.splits
-
-income_a=income*(12+income_bonus)
-expense_a=expense*12
-years=pd.Series(data.dividends.index.year)
-divid = pd.DataFrame({'divid':divid.values, 'year':years})
-divid_yr=divid.groupby('year').sum()
-divid_l=len(divid_yr)
-divid_yr=divid_yr[divid_yr.index<today.year]
-divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,5)]
-avg_divid=divid_yr['divid'].max()
-print(divid_yr)
-print(splits)
-last_close=data.history()['Close'].tail().mean() # 5日平均收盤價
-with col2:
-  tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
-  with tab1:
-    #create figure
-    title = alt.TitleParams('Historical Stock Price', anchor='middle')
-    a = alt.Chart(data.history()['Close'], title=title).mark_line(color="steelblue").encode(x='date', y='Close_x').interactive()
-    #c = alt.layer(a, b)
-    #c=alt.vconcat(a,b)
-    #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
-    st.altair_chart((a).resolve_scale(y='independent'), use_container_width=True)
-    #st.dataframe(df_all)
-    #fig=plt.figure()
-    #plt.plot(x,y,linestyle='-',color='b')
-    #plt.title('Stock '+ticker+' '+option)
-    #rotate x-axis tick labels
-    #plt.xticks(rotation=45, ha='right')
-    #st.pyplot(fig)
-    #fig_html = mpld3.fig_to_html(fig)
-    #components.html(fig_html, height=1000, width=1000)
-
-def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
+# ------------------------------------------------------------------
+  def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt):
   age_list=[]
   income_list=[]
@@ -186,6 +118,75 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   # Create DataFrame
   df = pd.DataFrame(data)   
   return df
+# ------------------------------------------------------------------  
+col1, col2 = st.columns([2,6])
+with col1:
+  # Basic Parameters
+  # 「Discretionary Income」（可調用所得／可運用所得／可花費所得／可花用所得／可調動所得）
+  today = datetime.date.today()
+  start='2010-01-01'
+  end=today
+  income=st.number_input('Input monthly income')
+  income_g=st.number_input('Input income growth')
+  income_bonus=st.number_input('Input bonus (month)')
+  expense=st.number_input('Input monthly expense')
+  inflation=st.number_input('Input inflation rate')
+  idir=st.number_input('Input ratio of income to invest')
+  # invest dispo income ratio
+  age=st.number_input('Input your age')
+  invest_p=st.number_input('Input investment periods (year)') # 複利投資期間
+  divid_live_p=st.number_input('Input live on dividends (year)') # 財富自由期間
+  redempt=st.number_input('Input whether redempt (1/0)')
+  #ticker
+  ID=st.text_input('Input Ticker','2330')
+  ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID)           
+  if ID_code=='':
+    stock_ticker=ID
+  else:
+    stock_ticker=ID_code+'.TW'
+  if ID_mkt=='上市 ':
+    stock_ticker=ID_code+'.TW'
+  if ID_mkt=='上櫃 ':
+    stock_ticker=ID_code+'.TWO'
+  st.write('Reading Stock:'+stock_ticker+': '+ID_name)
+# ------------------------------------------------------------------
+data = yf.Ticker(stock_ticker)
+divid=data.dividends
+divid=data.dividends
+splits=data.splits
+
+income_a=income*(12+income_bonus)
+expense_a=expense*12
+years=pd.Series(data.dividends.index.year)
+divid = pd.DataFrame({'divid':divid.values, 'year':years})
+divid_yr=divid.groupby('year').sum()
+divid_l=len(divid_yr)
+divid_yr=divid_yr[divid_yr.index<today.year]
+divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,5)]
+avg_divid=divid_yr['divid'].max()
+print(divid_yr)
+print(splits)
+last_close=data.history()['Close'].tail().mean() # 5日平均收盤價
+with col2:
+  tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
+  with tab1:
+    #create figure
+    title = alt.TitleParams('Historical Stock Price', anchor='middle')
+    a = alt.Chart(data.history()['Close'], title=title).mark_line(color="steelblue").encode(x='date', y='Close_x').interactive()
+    #c = alt.layer(a, b)
+    #c=alt.vconcat(a,b)
+    #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
+    st.altair_chart((a).resolve_scale(y='independent'), use_container_width=True)
+    #st.dataframe(df_all)
+    #fig=plt.figure()
+    #plt.plot(x,y,linestyle='-',color='b')
+    #plt.title('Stock '+ticker+' '+option)
+    #rotate x-axis tick labels
+    #plt.xticks(rotation=45, ha='right')
+    #st.pyplot(fig)
+    #fig_html = mpld3.fig_to_html(fig)
+    #components.html(fig_html, height=1000, width=1000)
+
 df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt)
 plt.bar(df['Age'],df['Shares'])
