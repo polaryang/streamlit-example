@@ -187,14 +187,20 @@ print(divid_yr)
 print(splits)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 with col2:
-  tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best", "Average", "Worst"])
+  tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best Scenario", "Average Scenario", "Worst Scenario"])
   with tab1:
-    st.write(ID_name+' : '+stock_ticker+' dividends in the past')
+    st.write(ID_name+' : '+stock_ticker+' Dividends ($ per share) in the past')
     st.bar_chart(divid_yr0)
-    st.write(ID_name+' : '+stock_ticker+' close price')
+    st.write('Max Dividends ($ per share):'+str(max_divid) )
+    st.write('Average Dividends ($ per share):'+str(avg_divid) )
+    st.write('Min Dividends ($ per share):'+str(min_divid) )
+    st.write(ID_name+' : '+stock_ticker+' Historical stock price')
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
+    st.write('Max Dividends ($ per share):'+str(max_divid) )
+    #st.write('Average Dividends ($ per share):'+str(avg_divid) )
+    #st.write('Min Dividends ($ per share):'+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
@@ -213,6 +219,9 @@ with col2:
     st.dataframe(df)
   with tab3:
     divid_rate=avg_divid
+    #st.write('Max Dividends ($ per share):'+str(max_divid) )
+    st.write('Average Dividends ($ per share):'+str(avg_divid) )
+    #st.write('Min Dividends ($ per share):'+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
@@ -231,6 +240,9 @@ with col2:
     st.dataframe(df)
   with tab4:
     divid_rate=min_divid
+    #st.write('Max Dividends ($ per share):'+str(max_divid) )
+    #st.write('Average Dividends ($ per share):'+str(avg_divid) )
+    st.write('Min Dividends ($ per share):'+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
