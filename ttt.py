@@ -8,10 +8,10 @@ import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
 def Checking_ID(ID):
-  ID_code=''
-  ID_name=''
-  ID_mkt=''
-  ID_type=''
+  ID_code='0'
+  ID_name='0'
+  ID_mkt='0'
+  ID_type='0'
   no_found=0
   #證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
   if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
@@ -31,10 +31,10 @@ def Checking_ID(ID):
       #頁面編號	國際證券編碼	有價證券代號	有價證券名稱	市場別	有價證券別	產業別	公開發行/上市(櫃)/發行日	CFICode	備註
       #1	TW00000632R5	00632R	元大台灣50反1	上市	ETF		2014/10/31	CEOGDU	
       #parsing all td=_FAFAD2 data and reorganization for return string
-      ID_code=''
-      ID_name=''
-      ID_mkt=''
-      ID_type=''
+      ID_code='0'
+      ID_name='0'
+      ID_mkt='0'
+      ID_type='0'
       no_found=0
       for i in range(0,len(stories),10) :   #((stories[i+5].text == '股票') or (stories[i+5].text == 'ETF'))
           if ((stories[i+5].text == '股票') ):
@@ -55,9 +55,9 @@ def Checking_ID(ID):
                   ID_type=stories[i+5].text #type
                   return ID_code, ID_name, ID_mkt, ID_type
                   break
-  except TypeError:
+  except:
     no_found=1
-    return '','','',''
+    return '0','0','0','0'
 # ------------------------------------------------------------------
 def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt):
