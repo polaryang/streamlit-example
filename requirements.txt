@@ -9,3 +9,7 @@ plotly
 datetime
 requests
 bs4
+streamlit
+selenium
+undetected-chromedriver
+seleniumbase
