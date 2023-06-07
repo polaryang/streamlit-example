@@ -126,18 +126,15 @@ with col1:
   today = datetime.date.today()
   start='2010-01-01'
   end=today
+  age = st.slider('How old are you?', 0, 100, 30)
   income=st.number_input('Input monthly income',value=60000)
   income_g=st.number_input('Input income growth',value=0.02)
   income_bonus=st.number_input('Input bonus (month)',value=2)
   expense=st.number_input('Input monthly expense',value=20000)
   inflation=st.number_input('Input inflation rate',value=0.03)
-  idir=st.number_input('Input ratio of income to invest (0~1)',value=0.8)
-  # invest dispo income ratio
-  #age=st.number_input('Input your age',value=30)
-  age = st.slider('How old are you?', 0, 100, 30)
-  st.write("I'm ", age, 'years old')
-  invest_p=st.number_input('Input investment periods (year)',value=20) # 複利投資期間
-  divid_live_p=st.number_input('Input live on dividends (year)',value=30) # 財富自由期間
+  idir = st.slider('Ratio to invest of income ', 0, 1, 0.8)  # invest dispo income ratio
+  invest_p = st.slider('Investment periods (years)', 0, 100, 20)  # 複利投資期間
+  divid_live_p = st.slider('Live on dividends periods (years)', 0, 100, 20)  # 財富自由期間
   #redempt=st.number_input('Input whether redempt (1/0)',value=1)
   redempt_yn = st.radio("Whether redempt stocks?", ('Yes', 'No'))
   if redempt_yn == 'Yes':
@@ -158,7 +155,7 @@ with col1:
     stock_ticker=ID_code+'.TW'
   if ID_mkt=='上櫃 ':
     stock_ticker=ID_code+'.TWO'
-  st.write('Reading Stock:'+stock_ticker+': '+ID_name)
+  st.write(ID_name+':'+stock_ticker)
 # ------------------------------------------------------------------
 data = yf.Ticker(stock_ticker)
 divid=data.dividends
