@@ -133,6 +133,7 @@ with col1:
   expense=st.number_input('Input monthly expense',value=20000,step=5000)
   inflation=st.number_input('Input inflation rate',value=0.03)
   idir = st.slider('Ratio to invest of income (%)', 0, 100, 80)  # invest dispo income ratio
+  idir = idir/100
   invest_p = st.slider('Investment periods (years)', 0, 100, 20)  # 複利投資期間
   divid_live_p = st.slider('Live on dividends periods (years)', 0, 100, 20)  # 財富自由期間
   #redempt=st.number_input('Input whether redempt (1/0)',value=1)
@@ -185,11 +186,11 @@ with col2:
   with tab2:
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt)
-    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color='b').encode(
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
     x='Age', y='Income')
-    e = alt.Chart(df).mark_line(color='g').encode(
+    e = alt.Chart(df).mark_line(color='green').encode(
     x='Age', y='Expense')
-    c = alt.Chart(df).mark_line(color='r').encode(
+    c = alt.Chart(df).mark_line(color="red").encode(
     x='Age', y='Cash_All')
     all = alt.layer(i, e)
     st.altair_chart((i+e), use_container_width=True)
