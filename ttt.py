@@ -185,7 +185,7 @@ with col2:
   with tab2:
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           avg_divid,last_close,invest_p,divid_live_p,redempt)
-    i = alt.Chart(df, title='Cash Flow Simulation).mark_line().encode(
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line().encode(
     x='Age', y='Income')
     e = alt.Chart(df).mark_line().encode(
     x='Age', y='Expense')
