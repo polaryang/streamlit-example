@@ -156,8 +156,8 @@ with col1:
   ID_name='0'
   ID_mkt='0'
   ID_type='0'
-  no_found=0
-  ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID)           
+  ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID) 
+  st.write(ID_code)
   if ID_code=='':
     stock_ticker=ID
   else:
