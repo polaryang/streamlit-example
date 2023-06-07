@@ -181,14 +181,20 @@ with col2:
   tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best", "Average", "Worst"])
   with tab1:
     st.write(ID_name+' : '+stock_ticker)
-    c = alt.Chart(df, title='Dividends over time').mark_line().encode(
-     x='Age', y='Shares')
-    st.altair_chart(c, use_container_width=True)
     #create figure
     st.bar_chart(divid_yr0)
     st.line_chart(data.history()['Close'])
   with tab2:
-    st.bar_chart(df['Age'],df['Shares'])
+    c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
+    x='Age', y='Shares')
+    st.altair_chart(c, use_container_width=True)
+    i = alt.Chart(df, title='Dividends holding over time').mark_line(point=True).encode(
+    x='Age', y='Income')
+    e = alt.Chart(df).mark_line(point=True).encode(
+    x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(point=True).encode(
+    x='Age', y='Cash_All')
+    st.altair_chart(c, use_container_width=True)
 
     
 plt.bar(df['Age'],df['Shares'])
