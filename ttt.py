@@ -188,11 +188,11 @@ with col2:
     c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
-    i = alt.Chart(df, title='Dividends holding over time').mark_line(point=True).encode(
+    i = alt.Chart(df, title='Dividends holding over time').mark_line().encode(
     x='Age', y='Income')
-    e = alt.Chart(df).mark_line(point=True).encode(
+    e = alt.Chart(df).mark_line().encode(
     x='Age', y='Expense')
-    c = alt.Chart(df).mark_line(point=True).encode(
+    c = alt.Chart(df).mark_line().encode(
     x='Age', y='Cash_All')
     st.altair_chart(c, use_container_width=True)
 
