@@ -35,8 +35,8 @@ def Checking_ID(ID):
               ID_name=stories[i+3].text #name
               ID_mkt=stories[i+4].text #market
               ID_type=stories[i+5].text #type
-              return ID_code, ID_name, ID_mkt, ID_type
-              break
+    return ID_code, ID_name, ID_mkt, ID_type
+    break
               #return ID_code,ID_name,ID_type    #return ID number
   except:
     no_found=1
