@@ -140,6 +140,10 @@ with col1:
     
   #ticker
   ID=st.text_input('Input Ticker','2330')
+  ID_code='0'
+  ID_name='0'
+  ID_mkt='0'
+  ID_type='0'
   ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID) 
   if ID_code=='0':
     stock_ticker=ID
