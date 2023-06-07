@@ -127,10 +127,10 @@ with col1:
   start='2010-01-01'
   end=today
   age = st.slider('How old are you?', 0, 120, 30)
-  income=st.number_input('Input monthly income',value=60000)
+  income=st.number_input('Input monthly income',value=60000,step=5000)
   income_g=st.number_input('Input income growth',value=0.02)
   income_bonus=st.number_input('Input bonus (month)',value=2)
-  expense=st.number_input('Input monthly expense',value=20000)
+  expense=st.number_input('Input monthly expense',value=20000,step=5000)
   inflation=st.number_input('Input inflation rate',value=0.03)
   idir = st.slider('Ratio to invest of income (%)', 0, 100, 80)  # invest dispo income ratio
   invest_p = st.slider('Investment periods (years)', 0, 100, 20)  # 複利投資期間
@@ -155,7 +155,7 @@ with col1:
     stock_ticker=ID_code+'.TW'
   if ID_mkt=='上櫃 ':
     stock_ticker=ID_code+'.TWO'
-  st.write(ID_name+':'+stock_ticker)
+  st.write(ID_name+' : '+stock_ticker)
 # ------------------------------------------------------------------
 data = yf.Ticker(stock_ticker)
 divid=data.dividends
@@ -175,27 +175,17 @@ print(divid_yr)
 print(splits)
 last_close=data.history()['Close'].tail().mean() # 5日平均收盤價
 with col2:
-  tab1, tab2, tab3 = st.tabs(["Plot", "Data", "Metrics"])
+  df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
+          avg_divid,last_close,invest_p,divid_live_p,redempt)
+  tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best", "Average", "Worst"])
   with tab1:
     #create figure
-    title = alt.TitleParams('Historical Stock Price', anchor='middle')
-    a = alt.Chart(data.history()['Close'], title=title).mark_line(color="steelblue").encode(x='date', y='Close_x').interactive()
-    #c = alt.layer(a, b)
-    #c=alt.vconcat(a,b)
-    #st.altair_chart(c.resolve_scale(y='independent'), use_container_width=True)
-    st.altair_chart((a).resolve_scale(y='independent'), use_container_width=True)
-    #st.dataframe(df_all)
-    #fig=plt.figure()
-    #plt.plot(x,y,linestyle='-',color='b')
-    #plt.title('Stock '+ticker+' '+option)
-    #rotate x-axis tick labels
-    #plt.xticks(rotation=45, ha='right')
-    #st.pyplot(fig)
-    #fig_html = mpld3.fig_to_html(fig)
-    #components.html(fig_html, height=1000, width=1000)
+    st.bar_chart(divid_yr)
+    st.line_chart(data.history()['Close'])
+  with tab2:
+    st.bar_chart(df['Age'],df['Shares'])
 
-df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
-          avg_divid,last_close,invest_p,divid_live_p,redempt)
+    
 plt.bar(df['Age'],df['Shares'])
 plt.xlabel('Age')
 plt.ylabel('Share(s)')
