@@ -181,8 +181,8 @@ with col2:
   tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best", "Average", "Worst"])
   with tab1:
     st.write(ID_name+' : '+stock_ticker)
-    c = alt.Chart(divid_yr0, title='Dividends over time').mark_line().encode(
-     x='date', y='dividends')
+    c = alt.Chart(df, title='Dividends over time').mark_line().encode(
+     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     #create figure
     st.bar_chart(divid_yr0)
