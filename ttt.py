@@ -8,10 +8,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
 def Checking_ID(ID):
-  ID_code='0'
-  ID_name='0'
-  ID_mkt='0'
-  ID_type='0'
   #證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
   if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
     r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
@@ -30,12 +26,7 @@ def Checking_ID(ID):
       #頁面編號	國際證券編碼	有價證券代號	有價證券名稱	市場別	有價證券別	產業別	公開發行/上市(櫃)/發行日	CFICode	備註
       #1	TW00000632R5	00632R	元大台灣50反1	上市	ETF		2014/10/31	CEOGDU	
       #parsing all td=_FAFAD2 data and reorganization for return string
-      ID_code='0'
-      ID_name='0'
-      ID_mkt='0'
-      ID_type='0'
       for i in range(0,len(stories),10) :   #((stories[i+5].text == '股票') or (stories[i+5].text == 'ETF'))
-          if ((stories[i+5].text == '股票') ):
               ID_code=stories[i+2].text #code
               ID_name=stories[i+3].text #name
               ID_mkt=stories[i+4].text #market
@@ -43,16 +34,6 @@ def Checking_ID(ID):
               return ID_code, ID_name, ID_mkt, ID_type
               break
               #return ID_code,ID_name,ID_type    #return ID number
-      if ID_code =='':
-          no_found=1
-          for i in range(0,len(stories),10) :
-              if ((stories[i+5].text == 'ETF')):
-                  ID_code=stories[i+2].text #code
-                  ID_name=stories[i+3].text #name
-                  ID_mkt=stories[i+4].text #market
-                  ID_type=stories[i+5].text #type
-                  return ID_code, ID_name, ID_mkt, ID_type
-                  break
   except:
     no_found=1
     ID_code='0'
@@ -156,7 +137,7 @@ with col1:
   #ticker
   ID=st.text_input('Input Ticker','2330')
   ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID) 
-  if ID_code=='':
+  if ID_code=='0':
     stock_ticker=ID
   else:
     stock_ticker=ID_code+'.TW'
@@ -189,18 +170,20 @@ last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 with col2:
   tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best Scenario", "Average Scenario", "Worst Scenario"])
   with tab1:
-    st.write(ID_name+' : '+stock_ticker+' Dividends ($ per share) in the past')
+    st.write(ID_name+' : '+stock_ticker)
+    st.write('Dividends Rate ($ per share) in the past.')
     st.bar_chart(divid_yr0)
-    st.write('Max Dividends ($ per share):'+str(max_divid) )
-    st.write('Average Dividends ($ per share):'+str(avg_divid) )
-    st.write('Min Dividends ($ per share):'+str(min_divid) )
-    st.write(ID_name+' : '+stock_ticker+' Historical stock price')
+    st.write('Scenarios from recent 4 years')
+    st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
+    st.write('Average Dividends ($ per share): '+str(avg_divid) )
+    st.write('Min Dividends ($ per share): '+str(min_divid) )
+    st.write('Historical stock price')
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
-    st.write('Max Dividends ($ per share):'+str(max_divid) )
-    #st.write('Average Dividends ($ per share):'+str(avg_divid) )
-    #st.write('Min Dividends ($ per share):'+str(min_divid) )
+    st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
+    #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
+    #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
@@ -219,9 +202,9 @@ with col2:
     st.dataframe(df)
   with tab3:
     divid_rate=avg_divid
-    #st.write('Max Dividends ($ per share):'+str(max_divid) )
-    st.write('Average Dividends ($ per share):'+str(avg_divid) )
-    #st.write('Min Dividends ($ per share):'+str(min_divid) )
+    #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
+    st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
+    #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
@@ -240,9 +223,9 @@ with col2:
     st.dataframe(df)
   with tab4:
     divid_rate=min_divid
-    #st.write('Max Dividends ($ per share):'+str(max_divid) )
-    #st.write('Average Dividends ($ per share):'+str(avg_divid) )
-    st.write('Min Dividends ($ per share):'+str(min_divid) )
+    #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
+    #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
+    st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
