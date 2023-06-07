@@ -7,6 +7,53 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
+def Checking_ID(ID)
+  #證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
+  if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
+    r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
+  elif ID.encode( 'UTF-8' ).isalnum ():  #input data (English and numbers)
+    r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
+  else:                                  #input data (Chinese)
+    ID= ID.encode('UTF-8').decode('UTF-8','strict')
+    r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode=&stockname="+ str(ID) +"&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
+  try:
+    # Whether the download is successful ?
+    if r.status_code == requests.codes.ok :
+      # using BeautifulSoup parsing HTML code
+      soup = BeautifulSoup(r.text, 'html.parser')
+      # using CSS td=_FAFAD2 get data 
+      stories = soup.find_all('td', bgcolor="#FAFAD2")
+      #頁面編號	國際證券編碼	有價證券代號	有價證券名稱	市場別	有價證券別	產業別	公開發行/上市(櫃)/發行日	CFICode	備註
+      #1	TW00000632R5	00632R	元大台灣50反1	上市	ETF		2014/10/31	CEOGDU	
+      #parsing all td=_FAFAD2 data and reorganization for return string
+      ID_code=''
+      ID_name=''
+      ID_mkt=''
+      ID_type=''
+      no_found=0
+      for i in range(0,len(stories),10) :   #((stories[i+5].text == '股票') or (stories[i+5].text == 'ETF'))
+          if ((stories[i+5].text == '股票') ):
+              ID_code=stories[i+2].text #code
+              ID_name=stories[i+3].text #name
+              ID_mkt=stories[i+4].text #market
+              ID_type=stories[i+5].text #type
+              return ID_code, ID_name, ID_mkt, ID_type
+              break
+              #return ID_code,ID_name,ID_type    #return ID number
+      if ID_code =='':
+          no_found=1
+          for i in range(0,len(stories),10) :
+              if ((stories[i+5].text == 'ETF')):
+                  ID_code=stories[i+2].text #code
+                  ID_name=stories[i+3].text #name
+                  ID_mkt=stories[i+4].text #market
+                  ID_type=stories[i+5].text #type
+                  return ID_code, ID_name, ID_mkt, ID_type
+                  break
+  except:
+    no_found=1
+    return 0,0,0,0
+  
 col1, col2 = st.columns([2,6])
 with col1:
   # Basic Parameters
@@ -24,65 +71,20 @@ with col1:
   age=st.number_input('Input your age')
   invest_p=st.number_input('Input investment periods (year)') # 複利投資期間
   divid_live_p=st.number_input('Input live on dividends (year)') # 財富自由期間
+  redempt=st.number_input('Input whether redempt (1/0)')
   #ticker
   ID=st.text_input('Input Ticker','2330')
-  redempt=st.number_input('Input whether redempt (1/0)')
-  #safety_valt=1
-  #print(ID)
+  ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID)           
+  if ID_code=='':
+    stock_ticker=ID
+  else:
+    stock_ticker=ID_code+'.TW'
+  if ID_mkt=='上市 ':
+    stock_ticker=ID_code+'.TW'
+  if ID_mkt=='上櫃 ':
+    stock_ticker=ID_code+'.TWO'
+  st.write('Reading Stock:'+stock_ticker+': '+ID_name)
 
-#證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
-if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
-  r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
-elif ID.encode( 'UTF-8' ).isalnum ():  #input data (English and numbers)
-  r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
-else:                                  #input data (Chinese)
-  ID= ID.encode('UTF-8').decode('UTF-8','strict')
-  r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode=&stockname="+ str(ID) +"&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
-try:
-  # Whether the download is successful ?
-  if r.status_code == requests.codes.ok :
-    # using BeautifulSoup parsing HTML code
-    soup = BeautifulSoup(r.text, 'html.parser')
-    # using CSS td=_FAFAD2 get data 
-    stories = soup.find_all('td', bgcolor="#FAFAD2")
-    #頁面編號	國際證券編碼	有價證券代號	有價證券名稱	市場別	有價證券別	產業別	公開發行/上市(櫃)/發行日	CFICode	備註
-    #1	TW00000632R5	00632R	元大台灣50反1	上市	ETF		2014/10/31	CEOGDU	
-    #parsing all td=_FAFAD2 data and reorganization for return string
-    ID_code=''
-    ID_name=''
-    ID_mkt=''
-    ID_type=''
-    no_found=0
-    for i in range(0,len(stories),10) :   #((stories[i+5].text == '股票') or (stories[i+5].text == 'ETF'))
-        if ((stories[i+5].text == '股票') ):
-            ID_code=stories[i+2].text #code
-            ID_name=stories[i+3].text #name
-            ID_mkt=stories[i+4].text #market
-            ID_type=stories[i+5].text #type
-            break
-            #return ID_code,ID_name,ID_type    #return ID number
-    if ID_code =='':
-        no_found=1
-        for i in range(0,len(stories),10) :
-            if ((stories[i+5].text == 'ETF')):
-                ID_code=stories[i+2].text #code
-                ID_name=stories[i+3].text #name
-                ID_mkt=stories[i+4].text #market
-                ID_type=stories[i+5].text #type
-                break
-except:
-  no_found=1
-              
-if ID_code=='':
-  stock_ticker=ID
-else:
-  stock_ticker=ID_code+'.TW'
-if ID_mkt=='上市 ':
-  stock_ticker=ID_code+'.TW'
-if ID_mkt=='上櫃 ':
-  stock_ticker=ID_code+'.TWO'
-
-print('Reading Stock:'+stock_ticker)
 data = yf.Ticker(stock_ticker)
 divid=data.dividends
 divid=data.dividends
