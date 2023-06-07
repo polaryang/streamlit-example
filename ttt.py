@@ -26,7 +26,7 @@ with col1:
   divid_live_p=st.text_input('Input live on dividends (year)','30') # 財富自由期間
   #ticker
   ID=st.text_input('Input Ticker','2330')
-  redempt=st.text_input('Input whether redempt (1/0)','0')1
+  redempt=st.text_input('Input whether redempt (1/0)','0')
   #safety_valt=1
   #print(ID)
 
