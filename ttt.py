@@ -192,11 +192,13 @@ with col2:
     c = alt.Chart(df).mark_line().encode(
     x='Age', y='Cash_All',color='r')
     all = alt.layer(i, e)
-    st.altair_chart(all, use_container_width=True)
+    st.altair_chart(i+e, use_container_width=True)
     
     c = alt.Chart(df, title='Dividends holding over time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
+    
+    st.dataframe(df)
 
     
 plt.bar(df['Age'],df['Shares'])
