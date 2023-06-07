@@ -14,19 +14,19 @@ with col1:
   today = datetime.date.today()
   start='2010-01-01'
   end=today
-  income=st.text_input('Input monthly income','60000')
-  income_g=st.text_input('Input income growth','0.03')
-  income_bonus=st.text_input('Input bonus (month)','2')
-  expense=st.text_input('Input monthly expense','25000')
-  inflation=st.text_input('Input inflation rate','0.05')
-  idir=st.text_input('Input ratio of income to invest','0.8')
+  income=st.number_input('Input monthly income','60000')
+  income_g=st.number_input('Input income growth','0.03')
+  income_bonus=st.number_input('Input bonus (month)','2')
+  expense=st.number_input('Input monthly expense','25000')
+  inflation=st.number_input('Input inflation rate','0.05')
+  idir=st.number_input('Input ratio of income to invest','0.8')
   # invest dispo income ratio
-  age=st.text_input('Input your age','30')
-  invest_p=st.text_input('Input investment periods (year)','20') # 複利投資期間
-  divid_live_p=st.text_input('Input live on dividends (year)','30') # 財富自由期間
+  age=st.number_input('Input your age','30')
+  invest_p=st.number_input('Input investment periods (year)','20') # 複利投資期間
+  divid_live_p=st.number_input('Input live on dividends (year)','30') # 財富自由期間
   #ticker
   ID=st.text_input('Input Ticker','2330')
-  redempt=st.text_input('Input whether redempt (1/0)','0')
+  redempt=st.number_input('Input whether redempt (1/0)','0')
   #safety_valt=1
   #print(ID)
 
