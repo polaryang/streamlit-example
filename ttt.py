@@ -169,10 +169,10 @@ divid_yr0=divid.groupby('year').sum()
 divid_yr=divid.groupby('year').sum()
 divid_l=len(divid_yr)
 divid_yr=divid_yr[divid_yr.index<today.year]
-divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,5)]
-avg_divid=divid_yr['divid'].mean()
-max_divid=divid_yr['divid'].max()
-min_divid=divid_yr['divid'].min()
+divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,6)]
+avg_divid=round(divid_yr['divid'].mean(),2)
+max_divid=round(divid_yr['divid'].max(),2)
+min_divid=round(divid_yr['divid'].min(),2)
 print(divid_yr)
 print(splits)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
@@ -182,10 +182,10 @@ with col2:
     st.subheader('Investment in '+ID_name+' : '+stock_ticker)
     st.subheader('Historical Dividends Rate ($ per share) : ')
     st.bar_chart(divid_yr0)
-    st.subheader(':vertical_traffic_light: Scenarios Based on Recent 4 Years')
-    st.write(':heart_eyes:    Max Dividends Rate ($ per share): '+str(max_divid) )
-    st.write(':neutral_face:    Average Dividends ($ per share): '+str(avg_divid) )
-    st.write(':sob:    Min Dividends ($ per share): '+str(min_divid) )
+    st.subheader(':vertical_traffic_light: Scenarios Based on Recent 5 Years')
+    st.write('   :heart_eyes: Max Dividends Rate ($ per share): '+str(max_divid) )
+    st.write('   :neutral_face: Average Dividends ($ per share): '+str(avg_divid) )
+    st.write('   :sob: Min Dividends ($ per share): '+str(min_divid) )
     st.subheader('Historical stock price')
     st.line_chart(data.history()['Close'])
   with tab2:
