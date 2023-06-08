@@ -246,9 +246,9 @@ with col2:
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
-    deficit=len(df[df[Net_Income]<0])
-    st.write(deficit)
-    st.dataframe(deficit)
+    deficit=len(df[df['Net_Income']<0])
+    #st.write(deficit)
+    #st.dataframe(deficit)
     if deficit>0:
       st.subheader(':face_with_symbols_on_mouth: 財富自由計畫 失敗')
     else:
