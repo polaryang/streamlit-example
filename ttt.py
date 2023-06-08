@@ -14,6 +14,7 @@ def Checking_ID(ID):
   ID_name='0'
   ID_mkt='0'
   ID_type='0'
+  ID_Inds='0'
   #證交所 checking ID search => https://isin.twse.com.tw/isin/class_main.jsp?owncode=00632R&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y
   if ID.encode( 'UTF-8' ).isdigit() :    #input data (all numbers)
     r = requests.get("https://isin.twse.com.tw/isin/class_main.jsp?owncode="+ str(ID) +"&stockname=&isincode=&market=&issuetype=&industry_code=&Page=1&chklike=Y")
@@ -38,7 +39,8 @@ def Checking_ID(ID):
       ID_name=stories[i+3].text #name
       ID_mkt=stories[i+4].text #market
       ID_type=stories[i+5].text #type
-    return ID_code, ID_name, ID_mkt, ID_type
+      ID_Inds=stories[i+6].text #type
+    return ID_code, ID_name, ID_mkt, ID_type, ID_Inds
               #return ID_code,ID_name,ID_type    #return ID number
   except:
     no_found=1
@@ -46,7 +48,8 @@ def Checking_ID(ID):
     ID_name='0'
     ID_mkt='0'
     ID_type='0'
-    return ID_code, ID_name, ID_mkt, ID_type
+    ID_Inds='0'
+    return ID_code, ID_name, ID_mkt, ID_type, ID_Inds
     #return '0','0','0','0'
 # ------------------------------------------------------------------
 def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
@@ -179,9 +182,9 @@ print(divid_yr)
 print(splits)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 with col2:
-  tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best Scenario", "Average Scenario", "Worst Scenario"])
+  tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", ":heart_eyes: Best Scenario", ":neutral_face: Average Scenario", ":sob: Worst Scenario"])
   with tab1:
-    st.subheader('Investment in '+ID_name+' : '+stock_ticker)
+    st.subheader('Investment in '+ID_name+' : '+stock_ticker+'  '+ID_Inds)
     st.subheader('Historical Dividends Rate ($ per share) : ')
     st.bar_chart(divid_yr0)
     st.subheader(':vertical_traffic_light: Scenarios Based on Recent 5 Years')
@@ -202,9 +205,9 @@ with col2:
     #st.write(deficit)
     #st.dataframe(deficit)
     if deficit>0:
-      st.subheader(':face_with_symbols_on_mouth: 財富自由計畫 失敗')
+      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
     else:
-      st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功') 
+      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
       
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
@@ -230,9 +233,9 @@ with col2:
     #st.write(deficit)
     #st.dataframe(deficit)
     if deficit>0:
-      st.subheader(':face_with_symbols_on_mouth: 財富自由計畫 失敗')
+      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
     else:
-      st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功') 
+      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
       
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
@@ -258,9 +261,9 @@ with col2:
     #st.write(deficit)
     #st.dataframe(deficit)
     if deficit>0:
-      st.subheader(':face_with_symbols_on_mouth: 財富自由計畫 失敗')
+      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
     else:
-      st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功') 
+      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
     
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
