@@ -136,7 +136,7 @@ with col1:
   invest_p = st.slider('Investment periods (years)', 0, 100, 20)  # 複利投資期間
   divid_live_p = st.slider('Live on dividends periods (years)', 0, 100, 20)  # 財富自由期間
   #redempt=st.number_input('Input whether redempt (1/0)',value=1)
-  redempt_yn = st.radio("Whether redempt stocks?", ('Yes', 'No'))
+  redempt_yn = st.radio("Whether redempt stocks?", ('No', 'Yes'))
   if redempt_yn == 'Yes':
     st.write('You selected Yes.')
     redempt=1
@@ -184,7 +184,7 @@ print(splits)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 
 with col2:
-  tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Case", ":neutral_face: Average Case", ":sob: Worst Case", ":person_in_tuxedo: Self-Defined Case"])
+  tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Case", ":neutral_face: Average Case", ":sob: Worst Case", ":person_in_tuxedo: Self-Defined"])
   with tab1:
     st.subheader('Investment in '+ID_name+' : '+stock_ticker+'  '+ID_Inds)
     st.subheader('Historical Dividends Rate ($ per share) : ')
