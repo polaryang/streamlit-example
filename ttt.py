@@ -249,7 +249,7 @@ with col2:
     deficit=len(df[df[Net_Income]<0])
     if deficit>0:
       st.subheader(':face_with_symbols_on_mouth: 財富自由計畫 失敗')
-     else:
+    else:
       st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功')  
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
     x='Age', y='Income')
