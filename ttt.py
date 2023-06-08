@@ -111,7 +111,8 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   df = pd.DataFrame(data)   
   return df
 # ------------------------------------------------------------------  
-st.title('銘傳大學 :blue[存股-財富自由-規劃] 實驗室:umbrella_with_rain_drops:')
+st.title('銘傳大學:dove_of_peace:')
+st.title(':blue[存股-財富自由-規劃] 實驗室:umbrella_with_rain_drops:')
 col1, col2 = st.columns([2,6])
 with col1:
   # Basic Parameters
@@ -211,7 +212,7 @@ with col2:
     st.dataframe(df)
   with tab3:
     divid_rate=avg_divid
-    st.header(':neutral_face:Average Dividends Rate ($ per share): '+str(avg_divid))
+    st.header(':neutral_face: 💯 Average Dividends Rate ($ per share): '+str(avg_divid))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -233,7 +234,7 @@ with col2:
     st.dataframe(df)
   with tab4:
     divid_rate=min_divid
-    st.header(':sob:Min Dividends Rate ($ per share): '+str(min_divid))
+    st.header(':sob:Min Dividends Rate ($ per share) '+str(min_divid))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
