@@ -186,7 +186,7 @@ with col2:
     st.write('   :heart_eyes: Max Dividends Rate ($ per share): '+str(max_divid) )
     st.write('   :neutral_face: Average Dividends ($ per share): '+str(avg_divid) )
     st.write('   :sob: Min Dividends ($ per share): '+str(min_divid) )
-    st.subheader('Historical stock price')
+    st.subheader('Historical Stock Price')
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
@@ -202,10 +202,13 @@ with col2:
     x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(
     x='Age', y='Cash_All')
-    all = alt.layer(i, e)
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Shares holded over time').mark_bar().encode(
+    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(
+    x='Age', y='Net_Income')
+    st.altair_chart(c, use_container_width=True)
+    
+    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
@@ -224,10 +227,13 @@ with col2:
     x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(
     x='Age', y='Cash_All')
-    all = alt.layer(i, e)
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Shares holded over time').mark_bar().encode(
+    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(
+    x='Age', y='Net_Income')
+    st.altair_chart(c, use_container_width=True)
+    
+    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
@@ -240,16 +246,24 @@ with col2:
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
+    deficit=len(df[df[Net_Income]<0])
+    if deficit>0
+      st.subheader(':face_with_symbols_on_mouth: 財富自由計畫 失敗')
+     else:
+      st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功')  
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
     x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(
     x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(
     x='Age', y='Cash_All')
-    all = alt.layer(i, e)
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Shares holded over time').mark_bar().encode(
+    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(
+    x='Age', y='Net_Income')
+    st.altair_chart(c, use_container_width=True)
+        
+    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(
     x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
