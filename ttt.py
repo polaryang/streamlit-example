@@ -169,9 +169,6 @@ data = yf.Ticker(stock_ticker)
 divid=data.dividends
 st.dataframe(divid)
 splits=data.splits
-last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
-#st.write('Avg Price : '+str(last_close))
-
 years=pd.Series(data.dividends.index.year)
 divid = pd.DataFrame({'divid':divid.values, 'year':years})
 divid_yr0=divid.groupby('year').sum()
@@ -184,6 +181,7 @@ max_divid=round(divid_yr['divid'].max(),2)
 min_divid=round(divid_yr['divid'].min(),2)
 print(divid_yr)
 print(splits)
+last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 
 with col2:
   tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Scenario", ":neutral_face: Average Scenario", ":sob: Worst Scenario", ":person_in_tuxedo: Self-Defined Scenario"])
