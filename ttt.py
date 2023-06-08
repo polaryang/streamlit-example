@@ -81,8 +81,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           shares_list.append(d_income*idir/last_close+shares_list[i-1]) # 年初存入股票+累進資產    
           divid_list.append(shares_all_list[-1]*divid_rate) # 通常6月配息 單位:股
       
-      if i <=invest_p: # 複利投資期間
-          
+      if i <=invest_p: # 複利投資期間      
           cash_divid_list.append(0)  # 現金領息為 0
           divid_share_list.append(divid_list[-1]/last_close) # 股息換算股票股數
           shares_all_list.append(shares_list[-1]+divid_share_list[-1])  # 股數轉入累進資產
