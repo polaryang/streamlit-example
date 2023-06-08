@@ -163,13 +163,15 @@ with col1:
   st.write(ID_name+' : '+stock_ticker)
 
 # ------------------------------------------------------------------
+income_a=income*(12+income_bonus)
+expense_a=expense*12
 data = yf.Ticker(stock_ticker)
 divid=data.dividends
+st.write(length(divid))
 splits=data.splits
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 #st.write('Avg Price : '+str(last_close))
-income_a=income*(12+income_bonus)
-expense_a=expense*12
+
 years=pd.Series(data.dividends.index.year)
 divid = pd.DataFrame({'divid':divid.values, 'year':years})
 divid_yr0=divid.groupby('year').sum()
