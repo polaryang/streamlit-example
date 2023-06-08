@@ -179,18 +179,18 @@ last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 with col2:
   tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best Scenario", "Average Scenario", "Worst Scenario"])
   with tab1:
-    st.write(ID_name+' : '+stock_ticker)
-    st.write('Historical Dividends Rate ($ per share) : ')
+    st.subheader('Investment in '+ID_name+' : '+stock_ticker)
+    st.subheader('Historical Dividends Rate ($ per share) : ')
     st.bar_chart(divid_yr0)
-    st.write('Scenarios Based on Recent 4 Years')
-    st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
-    st.write('Average Dividends ($ per share): '+str(avg_divid) )
-    st.write('Min Dividends ($ per share): '+str(min_divid) )
-    st.write('Historical stock price')
+    st.subheader(':vertical_traffic_light: Scenarios Based on Recent 4 Years')
+    st.write(':heart_eyes:    Max Dividends Rate ($ per share): '+str(max_divid) )
+    st.write(':neutral_face:    Average Dividends ($ per share): '+str(avg_divid) )
+    st.write(':sob:    Min Dividends ($ per share): '+str(min_divid) )
+    st.subheader('Historical stock price')
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
-    st.header(':heart_eyes: Max Dividends Rate ($ per share): '+str(max_divid))
+    st.subheader(':heart_eyes: Max Dividends Rate ($ per share): '+str(max_divid))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -212,7 +212,7 @@ with col2:
     st.dataframe(df)
   with tab3:
     divid_rate=avg_divid
-    st.header(':neutral_face: Average Dividends Rate ($ per share): '+str(avg_divid))
+    st.subheader(':neutral_face: Average Dividends Rate ($ per share): '+str(avg_divid))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -234,7 +234,7 @@ with col2:
     st.dataframe(df)
   with tab4:
     divid_rate=min_divid
-    st.header(':sob: Min Dividends Rate ($ per share): '+str(min_divid))
+    st.subheader(':sob: Min Dividends Rate ($ per share): '+str(min_divid))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
