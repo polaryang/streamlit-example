@@ -184,7 +184,7 @@ print(splits)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 
 with col2:
-  tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Scenario", ":neutral_face: Average Scenario", ":sob: Worst Scenario", ":person_in_tuxedo: Self-Defined Scenario"])
+  tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Case", ":neutral_face: Average Case", ":sob: Worst Case", ":person_in_tuxedo: Self-Defined Case"])
   with tab1:
     st.subheader('Investment in '+ID_name+' : '+stock_ticker+'  '+ID_Inds)
     st.subheader('Historical Dividends Rate ($ per share) : ')
@@ -281,8 +281,8 @@ with col2:
     st.dataframe(df)
   
   with tab5:
-    st.subheader(':person_in_tuxedo: Self-Defined Dividends Rate ($ per share)')
-    self_divid=st.number_input('Dividends Rate:',value=5)
+    st.subheader(':person_in_tuxedo: Self-Defined Dividends Rate')
+    self_divid=st.number_input('Dividends Rate  ($ per share):',value=5)
     divid_rate=self_divid
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
