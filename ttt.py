@@ -99,7 +99,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
               share_redempt=math.ceil(min((income_shortage*-1),shares_value_list[-1])/last_close) # 股票贖回的股數
               cash_redempt_list[-1]=share_redempt*last_close  # 股票贖回產生的現金
               shares_all_list[-1]=shares_all_list[-1]-share_redempt # 股數轉出 累進資產減少
-              cash_divid_list[-1]=shares_all_list[-1]*divid_rate # 開始現金領
+              #cash_divid_list[-1]=shares_all_list[-1]*divid_rate # 開始現金領
               
       cash_all_list.append(cash_divid_list[-1]+cash_redempt_list[-1])
       shares_value_list.append(shares_all_list[-1]*last_close)
