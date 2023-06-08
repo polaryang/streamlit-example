@@ -111,6 +111,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   df = pd.DataFrame(data)   
   return df
 # ------------------------------------------------------------------  
+st.title('銘傳大學 :blue[存股-財富自由-規劃] 實驗室:umbrella_with_rain_drops:')
 col1, col2 = st.columns([2,6])
 with col1:
   # Basic Parameters
@@ -122,7 +123,7 @@ with col1:
   income=st.number_input('Input monthly income',value=60000,step=5000)
   income_g=st.number_input('Input income growth',value=0.02)
   income_bonus=st.number_input('Input bonus (month)',value=2)
-  expense=st.number_input('Input monthly expense',value=20000,step=5000)
+  expense=st.number_input('Input monthly expenditure',value=20000,step=5000)
   inflation=st.number_input('Input inflation rate',value=0.03)
   idir = st.slider('Ratio to invest of income (%)', 0, 100, 80)  # invest dispo income ratio
   idir = idir/100
@@ -178,9 +179,9 @@ with col2:
   tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", "Best Scenario", "Average Scenario", "Worst Scenario"])
   with tab1:
     st.write(ID_name+' : '+stock_ticker)
-    st.write('Dividends Rate ($ per share) in the past.')
+    st.write('Historical Dividends Rate ($ per share) : ')
     st.bar_chart(divid_yr0)
-    st.write('Scenarios from recent 4 years')
+    st.write('Scenarios Based on Recent 4 Years')
     st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     st.write('Average Dividends ($ per share): '+str(avg_divid) )
     st.write('Min Dividends ($ per share): '+str(min_divid) )
@@ -188,7 +189,8 @@ with col2:
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
-    st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
+    st.header(':heart_eyes:Max Dividends Rate ($ per share): '+str(max_divid))
+    #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
@@ -209,8 +211,9 @@ with col2:
     st.dataframe(df)
   with tab3:
     divid_rate=avg_divid
+    st.header(':neutral_face:Average Dividends Rate ($ per share): '+str(avg_divid))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
-    st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
+    #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
@@ -230,9 +233,10 @@ with col2:
     st.dataframe(df)
   with tab4:
     divid_rate=min_divid
+    st.header(':sob:Min Dividends Rate ($ per share): '+str(min_divid))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
-    st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
+    #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           divid_rate,last_close,invest_p,divid_live_p,redempt)
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
