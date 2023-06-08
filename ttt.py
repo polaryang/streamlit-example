@@ -32,7 +32,7 @@ def Checking_ID(ID):
       #頁面編號	國際證券編碼	有價證券代號	有價證券名稱	市場別	有價證券別	產業別	公開發行/上市(櫃)/發行日	CFICode	備註
       #1	TW00000632R5	00632R	元大台灣50反1	上市	ETF		2014/10/31	CEOGDU	
       #parsing all td=_FAFAD2 data and reorganization for return string
-      for i in range(0,len(stories),10) :   #((stories[i+5].text == '股票') or (stories[i+5].text == 'ETF'))
+      for i in range(0): #,len(stories),10) :   #((stories[i+5].text == '股票') or (stories[i+5].text == 'ETF'))
               ID_code=stories[i+2].text #code
               ID_name=stories[i+3].text #name
               ID_mkt=stories[i+4].text #market
