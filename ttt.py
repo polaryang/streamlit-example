@@ -204,20 +204,15 @@ with col2:
     else:
       st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功') 
       
-      i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
-    x='Age', y='Income')
-    e = alt.Chart(df).mark_line(color='green').encode(
-    x='Age', y='Expense')
-    c = alt.Chart(df).mark_line(color="red").encode(
-    x='Age', y='Cash_All')
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
+    e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(
-    x='Age', y='Net_Income')
+    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
     
-    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(
-    x='Age', y='Shares')
+    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
     st.dataframe(df)
@@ -237,20 +232,15 @@ with col2:
     else:
       st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功') 
       
-    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
-    x='Age', y='Income')
-    e = alt.Chart(df).mark_line(color='green').encode(
-    x='Age', y='Expense')
-    c = alt.Chart(df).mark_line(color="red").encode(
-    x='Age', y='Cash_All')
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
+    e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(
-    x='Age', y='Net_Income')
+    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
     
-    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(
-    x='Age', y='Shares')
+    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
     st.dataframe(df)
@@ -270,20 +260,15 @@ with col2:
     else:
       st.subheader(':smiling_face_with_smiling_eyes_and_hand_covering_mouth: 財富自由計畫 成功') 
     
-    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(
-    x='Age', y='Income')
-    e = alt.Chart(df).mark_line(color='green').encode(
-    x='Age', y='Expense')
-    c = alt.Chart(df).mark_line(color="red").encode(
-    x='Age', y='Cash_All')
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
+    e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(
-    x='Age', y='Net_Income')
+    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
         
-    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(
-    x='Age', y='Shares')
+    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     
     st.dataframe(df)
