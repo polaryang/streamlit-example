@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
+import math
+
 def Checking_ID(ID):
   ID_code='0'
   ID_name='0'
@@ -95,7 +97,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
           if redempt==1:
             income_shortage=cash_divid_list[-1]-expense_list[-1]
             if income_shortage<0:
-              share_redempt=min((income_shortage*-1.01),shares_value_list[-1])/last_close # 股票贖回的股數
+              share_redempt=math.ceil(min((income_shortage*-1),shares_value_list[-1])/last_close) # 股票贖回的股數
               cash_redempt_list[-1]=share_redempt*last_close  # 股票贖回產生的現金
               shares_all_list[-1]=shares_all_list[-1]-share_redempt # 股數轉出 累進資產減少
               cash_divid_list[-1]=shares_all_list[-1]*divid_rate # 開始現金領
