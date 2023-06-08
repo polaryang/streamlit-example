@@ -150,7 +150,8 @@ with col1:
   ID_name='0'
   ID_mkt='0'
   ID_type='0'
-  ID_code, ID_name, ID_mkt, ID_type=Checking_ID(ID) 
+  ID_Inds='0'
+  ID_code, ID_name, ID_mkt, ID_type, ID_Inds=Checking_ID(ID) 
   if ID_code=='0':
     stock_ticker=ID
   else:
