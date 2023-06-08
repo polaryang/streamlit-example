@@ -161,11 +161,14 @@ with col1:
   if ID_mkt=='上櫃 ':
     stock_ticker=ID_code+'.TWO'
   st.write(ID_name+' : '+stock_ticker)
+  data = yf.Ticker(stock_ticker)
+  divid=data.dividends
+  divid=data.dividends
+  splits=data.splits
+  last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
+  st.write('Avg Price : '+str(last_close))
 # ------------------------------------------------------------------
-data = yf.Ticker(stock_ticker)
-divid=data.dividends
-divid=data.dividends
-splits=data.splits
+
 
 income_a=income*(12+income_bonus)
 expense_a=expense*12
@@ -181,9 +184,9 @@ max_divid=round(divid_yr['divid'].max(),2)
 min_divid=round(divid_yr['divid'].min(),2)
 print(divid_yr)
 print(splits)
-last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
+
 with col2:
-  tab1, tab2, tab3, tab4 = st.tabs(["Basic Information", ":heart_eyes: Best Scenario", ":neutral_face: Average Scenario", ":sob: Worst Scenario"])
+  tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Scenario", ":neutral_face: Average Scenario", ":sob: Worst Scenario", ":person_in_tuxedo: Self-Defined Scenario"])
   with tab1:
     st.subheader('Investment in '+ID_name+' : '+stock_ticker+'  '+ID_Inds)
     st.subheader('Historical Dividends Rate ($ per share) : ')
@@ -278,6 +281,37 @@ with col2:
     st.altair_chart(c, use_container_width=True)
     
     st.dataframe(df)
+  
+  with tab5:
+    st.subheader(':person_in_tuxedo: Self-Defined Dividends Rate ($ per share)')
+    self_divid=st.number_input('Dividends Rate:',value=5)
+    divid_rate=self_divid
+    #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
+    #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
+    #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
+    df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
+          divid_rate,last_close,invest_p,divid_live_p,redempt)
+    deficit=len(df[df['Net_Income']<0])
+    #st.write(deficit)
+    #st.dataframe(deficit)
+    if deficit>0:
+      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
+    else:
+      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
+    
+    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
+    e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
+    c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
+    st.altair_chart((i+e+c), use_container_width=True)
+    
+    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
+    st.altair_chart(c, use_container_width=True)
+        
+    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
+    st.altair_chart(c, use_container_width=True)
+    
+    st.dataframe(df)
+    
     
 plt.bar(df['Age'],df['Shares'])
 plt.xlabel('Age')
