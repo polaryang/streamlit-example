@@ -17,7 +17,7 @@ import streamlit.components.v1 as components
 import altair as alt
 import math
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+
 st.write('Testing')
 from webdriver_manager.chrome import ChromeDriverManager
 ChromeDriverManager(path = r".\\Drivers").install()
@@ -29,4 +29,4 @@ options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument('--disable-dev-shm-usage')
 #driver = webdriver.Chrome(ChromeDriverManager().install())
-driver = webdriver.Chrome(executable_path= r".\\Drivers", options=options)
+driver = webdriver.Chrome(executable_path= r".\\Drivers\chromedriver.exe", options=options)
