@@ -29,5 +29,5 @@ for i in range(8,3,-1):
     #print(i)
     divid_list.append(df1.iloc[0, i])
 df_etf=pd.DataFrame(divid_list, index = years, columns =['Dividends'])
-df_etf.dropna()
+df_etf=df_etf.dropna()
 st.dataframe(df_etf)
