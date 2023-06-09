@@ -1,30 +1,29 @@
+# import libraries
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
-ID='2330'
-url = "https://www.cmoney.tw/etf/tw/"+str(ID) #new moudle using pyppeteer
-url='https://www.cmoney.tw/etf/tw/'+str(ID)+'/intro'
-#title='追蹤指數 ETF類型 管理費(%) 保管費(%) 申購手續費(%) 買回手續費(%) 資料日期'
-opt = webdriver.ChromeOptions()
-opt.headless = True
-chromedriver="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe"
-# C:\Program Files (x86)\Google\Chrome\Application
-# https://github.com/polaryang/streamlit-example/blob/886d0c51c8668fbee9fa1a4a7efdceba7b764908/test1.py
-driver = webdriver.Chrome( options=opt)
-driver.get(url)
+from selenium.webdriver.common.by import By
+import streamlit as st
 
-#//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[3]/td[1]
-#//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[4]/td[1]
-#//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[6]/td[2]
-#//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[7]/td[1]
-#//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[3]/td[2]
-track_index=driver.find_element_by_xpath('//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[3]/td[1]').text
-etf_type=driver.find_element_by_xpath('//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[4]/td[1]').text
-manage_fee=driver.find_element_by_xpath('//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[6]/td[2]').text
-cust_fee=driver.find_element_by_xpath('//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[7]/td[1]').text
-tracking_method=driver.find_element_by_xpath('//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[3]/td[2]').text
-etf_type=etf_type+' '+tracking_method
-apply_fee=0
-redeem_fee=0
-date_price=0
+# create a screenshot of the webpage
+@st.cache
+def screenshot(URL):
+    options = webdriver.ChromeOptions()
+    options.headless = True
+    driver = webdriver.Chrome(options=options)
+    driver.get(URL)
+    # Screenshot as a .png file with  selenium
+    S = lambda X: driver.execute_script('return document.body.parentNode.scroll' +X)
+    driver.set_window_size(S('Width'), S('Height'))
+    page_screen = driver.save_screenshot('page_screen.jpg')
+    # visualize the screenshot with streamlit
+    driver.quit()
+    return page_screen]
+    return name_entities
+    elif sentiment_score < 0:
+        sentiment_label = "Negative"
+    else:
+        sentiment_label = "Neutral"
+    return sentiment_score, sentiment_label
+
+URL='tw.yahoo.com'
+sentiment_score, sentiment_label=screenshot(URL)
