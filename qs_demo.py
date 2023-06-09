@@ -17,7 +17,7 @@ import requests
 id='00779B' #https://github.com/polaryang/streamlit-example/blob/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/EFT_Dividend.xlsx
 url= 'https://github.com/polaryang/streamlit-example/blob/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/EFT_Dividend.xlsx'
 myfile = requests.get(url)
-
+st.write(myfile.info())
 df = pd.read_excel(myfile.content)
 df1=df[df['代碼']==id]
 print(df1)
