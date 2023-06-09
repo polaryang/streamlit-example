@@ -1,51 +1,14 @@
-# import libraries
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 import streamlit as st
-
-# create a screenshot of the webpage
-@st.cache
-
-def fetch_and_clean_data(url):
-    finalList='0'
-    item_count='0'
-    options = webdriver.ChromeOptions()
-    options.headless = True
-    options.add_argument('--no-sandbox')
-    options.add_argument('--window-size=1420,1080')
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(options=options)
-    driver.get(URL)
-    n = 5
-    item_count = 0
-    max_length = d_length
-    t_year=0
-    finalList=' 年度 '+' 股利 '+'殖利率(%)'+' 填息日數 '
-    # year 現金股利 股票股利 填息花費日數 年均	年均殖利率(%) 
-    while True:  
-        d_year=driver.find_element_by_xpath('//*[@id="divDetail"]/table/tbody/tr['+str(n)+']/td[1]').text
-        cash_dividend=driver.find_element_by_xpath('//*[@id="divDetail"]/table/tbody/tr['+str(n)+']/td[4]').text
-        stock_dividend=driver.find_element_by_xpath('//*[@id="divDetail"]/table/tbody/tr['+str(n)+']/td[7]').text
-        payback_days=driver.find_element_by_xpath('//*[@id="divDetail"]/table/tbody/tr['+str(n)+']/td[11]').text
-        #avg_price=driver.find_element_by_xpath('//*[@id="divDetail"]/table/tbody/tr['+str(n)+']/td[16]').text
-        dividend_yield=driver.find_element_by_xpath('//*[@id="divDetail"]/table/tbody/tr['+str(n)+']/td[19]').text
-        #print(d_year, cash_dividend,stock_dividend,dividend_yield,payback_days)
-        if d_year=='累計' or item_count>=max_length:
-            break
-        else:
-            n+=1
-            item_count+=1    
-            if str(d_year)!='∟':
-                t_year==d_year
-                len(cash_dividend)
-                finalList+='\n' + ' ' + d_year+' '+l_fit(cash_dividend)+' '+l_fit(dividend_yield)+' '+ r_fit(payback_days)
-    #print(d_year, cash_dividend,stock_dividend,payback_days,avg_price,dividend_yield) 
-    return finalList,item_count
-
-ID = '0050'
-url = "https://goodinfo.tw/StockInfo/StockDividendPolicy.asp?STOCK_ID="+str(ID) #new moudle using pyppeteer
-finalList,item_count=fetch_and_clean_data(url)
-st.write(finalList,item_count)
-
+import os
+import pathlib
+from os import listdir
+from os.path import isfile, join
+st.write("""
+# Demo
+""")
+parent_path = pathlib.Path(__file__).parent.parent.resolve()
+data_path = os.path.join(parent_path, "data")
+onlyfiles = [f for f in listdir(data_path) if isfile(join(data_path, f))]
+option = st.sidebar.selectbox('Pick a dataset', onlyfiles)
+file_location=os.path.join(data_path, option)
+# use `file_location` as a parameter to the main script
