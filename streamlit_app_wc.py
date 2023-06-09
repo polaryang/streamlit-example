@@ -18,12 +18,7 @@ def screenshot(URL):
     # visualize the screenshot with streamlit
     driver.quit()
     return page_screen
-    return name_entities
-    elif sentiment_score < 0:
-        sentiment_label = "Negative"
-    else:
-        sentiment_label = "Neutral"
-    return sentiment_score, sentiment_label
+
 
 URL='tw.yahoo.com'
-sentiment_score, sentiment_label=screenshot(URL)
+screenshot(URL)
