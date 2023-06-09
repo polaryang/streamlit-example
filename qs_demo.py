@@ -14,7 +14,7 @@ qs.plots.snapshot(df_ret, title='Facebook Performance')
 
 import pandas as pd
 id='00779B'
-df = pd.read_excel("https://github.com/polaryang/streamlit-example.git/EFT_Dividend.xlsx")
+df = pd.read_excel("/app/data/EFT_Dividend.xlsx")
 df1=df[df['代碼']==id]
 print(df1)
 years=['2018', '2019', '2020', '2021', '2022']
