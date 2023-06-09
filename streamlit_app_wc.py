@@ -19,7 +19,7 @@ import math
 
 st.write('Testing')
 from webdriver_manager.core.utils import read_version_from_cmd, PATTERN
-version = read_version_from_cmd("/usr/bin/firefox-bin --version", PATTERN["Chrome"])
+version = read_version_from_cmd("/usr/bin/chrome-bin --version", PATTERN["chrome"])
 driver_binary = ChromeDriverManager(version=version).install()
 
 from selenium import webdriver  #從library中引入webdriver
