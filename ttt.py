@@ -171,7 +171,7 @@ expense_a=expense*12
 if ID_type=='ETF':
   myfile='https://github.com/polaryang/streamlit-example/raw/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/EFT_Dividend.xlsx'
   df = pd.read_excel(myfile)
-  df1=df[df['代碼']==id]
+  df1=df[df['代碼']==ID]
   years=['2018', '2019', '2020', '2021', '2022']
   divid_list=[]
   for i in range(8,3,-1):
