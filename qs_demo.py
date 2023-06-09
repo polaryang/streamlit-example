@@ -13,8 +13,12 @@ qs.extend_pandas()
 qs.plots.snapshot(df_ret, title='Facebook Performance')
 
 import pandas as pd
-id='00779B'
-df = pd.read_excel("/app/data/EFT_Dividend.xlsx")
+import requests
+id='00779B' #https://github.com/polaryang/streamlit-example/blob/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/EFT_Dividend.xlsx
+url= 'https://github.com/polaryang/streamlit-example/blob/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/EFT_Dividend.xlsx'
+myfile = requests.get(url)
+
+df = pd.read_excel(myfile.content)
 df1=df[df['代碼']==id]
 print(df1)
 years=['2018', '2019', '2020', '2021', '2022']
@@ -24,3 +28,7 @@ for i in range(8,3,-1):
     divid_list.append(df1.iloc[0, i])
 df_etf=pd.DataFrame(divid_list, index = years, columns =['Dividends'])
 df_etf.dropna()
+
+
+
+print(df)
