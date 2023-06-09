@@ -173,7 +173,7 @@ if ID_type=='ETF':
   df = pd.read_excel(myfile)
   df1=df[df['代碼']==ID]
   if len(df1) ==0:
-    st.write('查無此ETF')
+    st.header(':red[查無此ETF]')
   years=['2018', '2019', '2020', '2021', '2022']
   divid_list=[]
   for i in range(8,3,-1):
@@ -187,7 +187,7 @@ else:
   divid=data.dividends
   splits=data.splits
   if len(divid) ==0:
-    st.write('查無此股票')
+    st.header(':red[查無此股票]')
   years=pd.Series(data.dividends.index.year)
   divid = pd.DataFrame({'divid':divid.values, 'year':years})
   divid_yr0=divid.groupby('year').sum()
