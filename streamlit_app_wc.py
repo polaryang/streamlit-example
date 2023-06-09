@@ -8,6 +8,8 @@ import streamlit as st
 @st.cache
 
 def fetch_and_clean_data(url):
+    finalList='0'
+    item_count='0'
     options = webdriver.ChromeOptions()
     options.headless = True
     driver = webdriver.Chrome(options=options)
