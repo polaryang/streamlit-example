@@ -167,7 +167,6 @@ income_a=income*(12+income_bonus)
 expense_a=expense*12
 data = yf.Ticker(stock_ticker)
 divid=data.dividends
-st.dataframe(divid)
 splits=data.splits
 years=pd.Series(data.dividends.index.year)
 divid = pd.DataFrame({'divid':divid.values, 'year':years})
@@ -207,9 +206,9 @@ with col2:
     #st.write(deficit)
     #st.dataframe(deficit)
     if deficit>0:
-      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
+      st.subheader(':fast_forward: 財富自由計畫 :red[失敗] :thumbsdown:')
     else:
-      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
+      st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
       
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
@@ -235,9 +234,9 @@ with col2:
     #st.write(deficit)
     #st.dataframe(deficit)
     if deficit>0:
-      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
+      st.subheader(':fast_forward: 財富自由計畫 :red[失敗] :thumbsdown:')
     else:
-      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
+      st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
       
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
@@ -263,9 +262,9 @@ with col2:
     #st.write(deficit)
     #st.dataframe(deficit)
     if deficit>0:
-      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
+      st.subheader(':fast_forward: 財富自由計畫 :red[失敗] :thumbsdown:')
     else:
-      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
+      st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
     
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
@@ -293,9 +292,9 @@ with col2:
     #st.write(deficit)
     #st.dataframe(deficit)
     if deficit>0:
-      st.subheader(':fast_forward: 財富自由計畫 失敗 :thumbsdown:')
+      st.subheader(':fast_forward: 財富自由計畫 :red[失敗] :thumbsdown:')
     else:
-      st.subheader(':fast_forward: 財富自由計畫 成功 :thumbsup:') 
+      st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
     
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
