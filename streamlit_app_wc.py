@@ -18,6 +18,10 @@ import altair as alt
 import math
 
 st.write('Testing')
+from webdriver_manager.core.utils import read_version_from_cmd, PATTERN
+version = read_version_from_cmd("/usr/bin/firefox-bin --version", PATTERN["firefox"])
+driver_binary = FirefoxDriverManager(version=version).install()
+
 from selenium import webdriver  #從library中引入webdriver
 #ChromeDriverManager(path = r".\\Drivers").install()
 #https://github.com/polaryang/streamlit-example/blob/886d0c51c8668fbee9fa1a4a7efdceba7b764908/test1.py
