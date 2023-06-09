@@ -11,7 +11,7 @@ opt.headless = True
 chromedriver="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe"
 # C:\Program Files (x86)\Google\Chrome\Application
 # https://github.com/polaryang/streamlit-example/blob/886d0c51c8668fbee9fa1a4a7efdceba7b764908/test1.py
-driver = webdriver.Chrome(executable_path=chromedriver, options=opt)
+driver = webdriver.Chrome(chromedriver, options=opt)
 driver.get(url)
 
 #//*[@id="__layout"]/div/div[3]/div/div[2]/main/div/div[3]/div/div/table/tbody/tr[3]/td[1]
