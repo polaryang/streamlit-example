@@ -140,10 +140,10 @@ with col1:
   #redempt=st.number_input('可動用存股嗎?',value=1)
   redempt_yn = st.radio("可動用存股嗎?", ('No', 'Yes'))
   if redempt_yn == 'Yes':
-    st.write('可動用存股')
+    st.write('[可動用存股]')
     redempt=1
   else:
-    st.write("不可動用存股")
+    st.write("[不可動用存股]")
     redempt=0
     
   #ticker
@@ -167,16 +167,29 @@ with col1:
 # ------------------------------------------------------------------
 income_a=income*(12+income_bonus)
 expense_a=expense*12
-data = yf.Ticker(stock_ticker)
-divid=data.dividends
-splits=data.splits
-years=pd.Series(data.dividends.index.year)
-divid = pd.DataFrame({'divid':divid.values, 'year':years})
-divid_yr0=divid.groupby('year').sum()
-divid_yr=divid.groupby('year').sum()
-divid_l=len(divid_yr)
-divid_yr=divid_yr[divid_yr.index<today.year]
-divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,6)]
+
+if ID_type=='ETF':
+  myfile='https://github.com/polaryang/streamlit-example/raw/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/EFT_Dividend.xlsx'
+  df = pd.read_excel(myfile)
+  df1=df[df['代碼']==id]
+  years=['2018', '2019', '2020', '2021', '2022']
+  divid_list=[]
+  for i in range(8,3,-1):
+    divid_list.append(df1.iloc[0, i])
+  df_etf=pd.DataFrame(divid_list, index = years, columns =['Dividends'])
+  df_yr=df_etf.dropna()
+else:
+  data = yf.Ticker(stock_ticker)
+  divid=data.dividends
+  splits=data.splits
+  years=pd.Series(data.dividends.index.year)
+  divid = pd.DataFrame({'divid':divid.values, 'year':years})
+  divid_yr0=divid.groupby('year').sum()
+  divid_yr=divid.groupby('year').sum()
+  divid_l=len(divid_yr)
+  divid_yr=divid_yr[divid_yr.index<today.year]
+  divid_yr=divid_yr[divid_yr.index>today.year-min(divid_l,6)]
+
 avg_divid=round(divid_yr['divid'].mean(),2)
 max_divid=round(divid_yr['divid'].max(),2)
 min_divid=round(divid_yr['divid'].min(),2)
