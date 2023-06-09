@@ -17,7 +17,7 @@ def screenshot(URL):
     page_screen = driver.save_screenshot('page_screen.jpg')
     # visualize the screenshot with streamlit
     driver.quit()
-    return page_screen]
+    return page_screen
     return name_entities
     elif sentiment_score < 0:
         sentiment_label = "Negative"
