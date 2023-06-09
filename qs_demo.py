@@ -3,6 +3,7 @@ import quantstats as qs
 #import webbrowser as web
 import yfinance as yf
 import pandas as pd
+import streamlit as st
 
 ticker='2330.TW'
 benchmark='0050.TW'
