@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 import streamlit as st
 
 # create a screenshot of the webpage
-@st.cache
+#@st.cache
 ID='0050'
 url = "https://goodinfo.tw/StockInfo/StockDividendPolicy.asp?STOCK_ID="+str(ID) #new moudle using pyppeteer
 def screenshot(url):
