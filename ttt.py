@@ -119,7 +119,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   return df
 # ------------------------------------------------------------------  
 st.title('銘傳大學:dove_of_peace:財務金融學系')
-st.title(':blue[存股-財富自由-規劃] 實驗室:umbrella_with_rain_drops:')
+st.header(':blue[存股-財富自由-規劃] 實驗室:umbrella_with_rain_drops:')
 col1, col2 = st.columns([2,6])
 with col1:
   # Basic Parameters
@@ -127,27 +127,27 @@ with col1:
   today = datetime.date.today()
   start='2010-01-01'
   end=today
-  age = st.slider('How old are you?', 0, 120, 30)
-  income=st.number_input('Input monthly income',value=60000,step=5000)
-  income_g=st.number_input('Input income growth',value=0.02)
-  income_bonus=st.number_input('Input bonus (month)',value=2)
-  expense=st.number_input('Input monthly expenditure',value=20000,step=5000)
-  inflation=st.number_input('Input inflation rate',value=0.03)
-  idir = st.slider('Ratio to invest of income (%)', 0, 100, 80)  # invest dispo income ratio
+  age = st.slider('開始存股年紀?', 0, 120, 30)
+  income=st.number_input('每月薪資',value=60000,step=5000)
+  income_g=st.number_input('每年薪資成長率',value=0.02)
+  income_bonus=st.number_input('年終獎金 (月)',value=2)
+  expense=st.number_input('每月生活開銷',value=20000,step=5000)
+  inflation=st.number_input('年通貨膨脹率',value=0.03)
+  idir = st.slider('投資佔可支配所得率 (%)', 0, 100, 80)  # invest dispo income ratio
   idir = idir/100
-  invest_p = st.slider('Investment periods (years)', 0, 100, 20)  # 複利投資期間
-  divid_live_p = st.slider('Live on dividends periods (years)', 0, 100, 20)  # 財富自由期間
-  #redempt=st.number_input('Input whether redempt (1/0)',value=1)
-  redempt_yn = st.radio("Whether redempt stocks?", ('No', 'Yes'))
+  invest_p = st.slider('投資期間 (年)', 0, 100, 20)  # 複利投資期間
+  divid_live_p = st.slider('財富自由期間 (年)', 0, 100, 20)  # 財富自由期間
+  #redempt=st.number_input('可動用存股嗎?',value=1)
+  redempt_yn = st.radio("可動用存股嗎?", ('No', 'Yes'))
   if redempt_yn == 'Yes':
-    st.write('You selected Yes.')
+    st.write('可動用存股')
     redempt=1
   else:
-    st.write("You select No.")
+    st.write("不可動用存股")
     redempt=0
     
   #ticker
-  ID=st.text_input('Input Ticker','2330')
+  ID=st.text_input('投資標的','2330')
   ID_code='0'
   ID_name='0'
   ID_mkt='0'
