@@ -8,7 +8,6 @@ import streamlit as st
 #@st.cache
 ID='0050'
 url = "https://goodinfo.tw/StockInfo/StockDividendPolicy.asp?STOCK_ID="+str(ID) #new moudle using pyppeteer
-def screenshot(url):
 options = webdriver.ChromeOptions()
 options.headless = True
 driver = webdriver.Chrome(options=options)
