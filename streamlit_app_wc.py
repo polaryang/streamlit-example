@@ -12,4 +12,4 @@ data_path = os.path.join(parent_path, "data")
 # option = st.sidebar.selectbox('Pick a dataset', onlyfiles)
 # file_location=os.path.join(data_path, option)
 # use `file_location` as a parameter to the main script
-st.write(file_location)
+st.write(data_path)
