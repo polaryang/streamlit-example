@@ -119,7 +119,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   return df
 # ------------------------------------------------------------------  
 st.title('銘傳大學:dove_of_peace:財務金融學系')
-st.header(':blue[存股-財富自由-規劃] 實驗室:umbrella_with_rain_drops:')
+st.header(':sparkles: :blue[存股-財富自由-規劃] 金融科技實驗室:umbrella_with_rain_drops:')
 col1, col2 = st.columns([2,6])
 with col1:
   # Basic Parameters
@@ -229,11 +229,12 @@ with col2:
       st.subheader(':fast_forward: 財富自由計畫 :red[失敗] :thumbsdown:')
     else:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
-      
+    
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
+    st.write(':large_blue_square: 薪資所得 :large_green_circle: 生活支出 :large_orange_square:股利所得')
     
     c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
