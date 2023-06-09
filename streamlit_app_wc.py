@@ -29,4 +29,5 @@ options.add_argument('--disable-gpu')
 options.add_argument('--disable-dev-shm-usage')
 chromedriver="//github.com/polaryang/streamlit-example/blob/886d0c51c8668fbee9fa1a4a7efdceba7b764908/chromedriver.exe"
 #driver = webdriver.Chrome(ChromeDriverManager().install())
-driver = webdriver.Chrome(executable_path=chromedriver, options=options)
+#driver = webdriver.Chrome(executable_path=chromedriver, options=options)
+driver = webdriver.Chrome()
