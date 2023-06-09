@@ -178,6 +178,7 @@ if ID_type=='ETF':
     divid_list.append(df1.iloc[0, i])
   df_etf=pd.DataFrame(divid_list, index = years, columns =['divid'])
   divid_yr=df_etf.dropna()
+  divid_yr0=df_etf.dropna()
   data = yf.Ticker(stock_ticker)
 else:
   data = yf.Ticker(stock_ticker)
