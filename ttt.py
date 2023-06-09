@@ -178,6 +178,7 @@ if ID_type=='ETF':
     divid_list.append(df1.iloc[0, i])
   df_etf=pd.DataFrame(divid_list, index = years, columns =['divid'])
   divid_yr=df_etf.dropna()
+  data = yf.Ticker(stock_ticker)
 else:
   data = yf.Ticker(stock_ticker)
   divid=data.dividends
@@ -193,8 +194,7 @@ else:
 avg_divid=round(divid_yr['divid'].mean(),2)
 max_divid=round(divid_yr['divid'].max(),2)
 min_divid=round(divid_yr['divid'].min(),2)
-print(divid_yr)
-print(splits)
+
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 
 with col2:
