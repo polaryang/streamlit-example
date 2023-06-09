@@ -13,3 +13,4 @@ streamlit
 selenium
 undetected-chromedriver
 seleniumbase
+webdriver-manager
