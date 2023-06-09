@@ -28,5 +28,6 @@ options.add_argument('--window-size=1420,1080')
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument('--disable-dev-shm-usage')
+chromedriver="//github.com/polaryang/streamlit-example/blob/886d0c51c8668fbee9fa1a4a7efdceba7b764908/chromedriver.exe"
 #driver = webdriver.Chrome(ChromeDriverManager().install())
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(executable_path=chromedriver, options=options)
