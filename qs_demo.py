@@ -13,18 +13,3 @@ benchmark=pd.Series(data=bmk, index=df_ret.index).fillna(0)
 qs.extend_pandas()
 qs.plots.snapshot(df_ret, title='Facebook Performance')
 
-import pandas as pd
-import requests
-id='00779B' 
-myfile='https://github.com/polaryang/streamlit-example/raw/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/EFT_Dividend.xlsx'
-df = pd.read_excel(myfile)
-df1=df[df['代碼']==id]
-print(df1)
-years=['2018', '2019', '2020', '2021', '2022']
-divid_list=[]
-for i in range(8,3,-1):
-    #print(i)
-    divid_list.append(df1.iloc[0, i])
-df_etf=pd.DataFrame(divid_list, index = years, columns =['Dividends'])
-df_etf=df_etf.dropna()
-st.dataframe(df_etf)
