@@ -118,7 +118,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   df = pd.DataFrame(data)   
   return df
 # ------------------------------------------------------------------  
-# 前25高股息的股票 all_list
+# 前25高現金殖利率股票 all_list
 # https://statementdog.com/screeners/dividend_yield_ranking
 # https://statementdog.com/blog/archives/10896
 # https://tw.stock.yahoo.com/tw-etf/yield
@@ -177,10 +177,10 @@ with col1:
     
   #ticker
   ID_input=st.text_input('投資標的','2330')
-  #判斷由使用者輸入，還是由前25高股息股票選入
-  check_yes=st.checkbox("Enable selectbox widget")
+  #判斷由使用者輸入，還是由前25高現金殖利率股票選入
+  check_yes=st.checkbox("是否參考前25高現金殖利率股票")
   ID_select = st.selectbox(
-  "How would you like to be contacted?",
+  "股票代號 股票名稱 現金殖利率",
   all_list, disabled=not check_yes, )
   [id_code,id_name,id_yield]=ID_select.split()
   if check_yes:
