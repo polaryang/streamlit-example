@@ -41,5 +41,5 @@ df_ranking=df_ranking.sort_values(by='rank3y',ascending=False)
 all_list=[]
 for i in range(len(df_ranking)):
     all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+'  '+str(df_ranking['rank3y'][i]))
-
+st.dataframe(df_ranking)
                
