@@ -127,7 +127,7 @@ with col1:
   today = datetime.date.today()
   start='2010-01-01'
   end=today
-  age = st.slider('開始存股年紀?', 0, 120, 30)
+  age = st.slider('開始存股年紀?', 15, 120, 30)
   income=st.number_input('每月薪資',value=60000,step=5000)
   income_g=st.number_input('每年薪資成長率',value=0.02)
   income_bonus=st.number_input('年終獎金 (月)',value=2)
@@ -216,8 +216,8 @@ with col2:
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
-    st.subheader(':heart_eyes: Max Dividends Rate ($ per share): '+str(max_divid))
-    #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
+    st.subheader(':heart_eyes: Best Case: Max Dividends Rate)
+    st.write('Dividends Rate ($ per share): '+str(max_divid)+ ' Dividend Yield (%): '+str(round(max_divid/last_close*100,2)))
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
@@ -245,7 +245,8 @@ with col2:
     st.dataframe(df)
   with tab3:
     divid_rate=avg_divid
-    st.subheader(':neutral_face: Average Dividends Rate ($ per share): '+str(avg_divid))
+    st.subheader(':neutral_face: Average Case: Average Dividends Rate')
+    st.write('Dividends Rate ($ per share): '+str(avg_divid)+ ' Dividend Yield: '+str(round(avg_divid/last_close*100,2)))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -274,7 +275,8 @@ with col2:
     st.dataframe(df)
   with tab4:
     divid_rate=min_divid
-    st.subheader(':sob: Min Dividends Rate ($ per share): '+str(min_divid))
+    st.subheader(':sob: Worst Case: Min Dividends Rate')
+    st.write('Dividends Rate ($ per share): '+str(min_divid)+ ' Dividend Yield (%): '+str(round(min_divid/last_close*100,2)))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
