@@ -216,7 +216,7 @@ with col2:
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
-    st.subheader(':heart_eyes: Best Case: Max Dividends Rate)
+    st.subheader(':heart_eyes: Best Case: Max Dividends Rate')
     st.write('Dividends Rate ($ per share): '+str(max_divid)+ ' Dividend Yield (%): '+str(round(max_divid/last_close*100,2)))
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
