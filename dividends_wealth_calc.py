@@ -217,7 +217,7 @@ with col2:
   with tab2:
     divid_rate=max_divid
     st.subheader(':heart_eyes: Best Case: Max Dividends Rate')
-    st.write('Dividends Rate ($ per share): '+str(max_divid)+ ' Dividend Yield (%): '+str(round(max_divid/last_close*100,2)))
+    st.markdown('Dividends Rate ($ per share): '+str(max_divid)+ '  Dividend Yield (%): '+str(round(max_divid/last_close*100,2)))
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
@@ -246,7 +246,7 @@ with col2:
   with tab3:
     divid_rate=avg_divid
     st.subheader(':neutral_face: Average Case: Average Dividends Rate')
-    st.write('Dividends Rate ($ per share): '+str(avg_divid)+ ' Dividend Yield: '+str(round(avg_divid/last_close*100,2)))
+    st.markdown('Dividends Rate ($ per share): '+str(avg_divid)+ '  Dividend Yield: '+str(round(avg_divid/last_close*100,2)))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -276,7 +276,7 @@ with col2:
   with tab4:
     divid_rate=min_divid
     st.subheader(':sob: Worst Case: Min Dividends Rate')
-    st.write('Dividends Rate ($ per share): '+str(min_divid)+ ' Dividend Yield (%): '+str(round(min_divid/last_close*100,2)))
+    st.markdown('Dividends Rate ($ per share): '+str(min_divid)+ '  Dividend Yield (%): '+str(round(min_divid/last_close*100,2)))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -306,8 +306,9 @@ with col2:
   
   with tab5:
     st.subheader(':person_in_tuxedo: Self-Defined Dividends Rate')
-    self_divid=st.number_input('Dividends Rate  ($ per share):',value=5)
+    self_divid=st.number_input('Input Dividends Rate  ($ per share):',value=5)
     divid_rate=self_divid
+    st.markdown('Dividends Rate ($ per share): '+str(self_divid)+ '  Dividend Yield (%): '+str(round(self_divid/last_close*100,2)))
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
