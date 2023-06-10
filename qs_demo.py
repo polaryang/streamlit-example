@@ -54,7 +54,12 @@ check_yes=st.checkbox("Enable selectbox widget")
 #key="visibility",
 #options=["visible", "hidden", "collapsed"],
 #)
-st.write(check_yes)
 
+option = st.selectbox(
+"How would you like to be contacted?",
+("Email", "Home phone", "Mobile phone"),
+label_visibility=st.session_state.visibility,
+disabled=not check_yes,
+)
 st.write(option)
 
