@@ -180,7 +180,7 @@ with col1:
   #判斷由使用者輸入，還是由前25高現金殖利率股票選入
   check_yes=st.checkbox("是否參考前25高現金殖利率股票")
   ID_select = st.selectbox(
-  "股票代號 股票名稱 現金殖利率",
+  "股票代號 股票 殖利率",
   all_list, disabled=not check_yes, )
   [id_code,id_name,id_yield]=ID_select.split()
   if check_yes:
@@ -242,9 +242,10 @@ min_divid=round(divid_yr['divid'].min(),2)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 
 with col2:
+  st.subheader(ID_name+' : '+stock_ticker+' : ['+ID_Inds+']')
   tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Case", ":neutral_face: Average Case", ":sob: Worst Case", ":person_in_tuxedo: Self-Defined"])
   with tab1:
-    st.subheader('Investment in '+ID_name+' : '+stock_ticker+'  '+ID_Inds)
+    
     st.subheader('Historical Dividends Rate ($ per share) : ')
     st.bar_chart(divid_yr0)
     st.subheader(':vertical_traffic_light: Scenarios Based on Recent 5 Years')
