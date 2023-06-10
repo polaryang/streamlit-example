@@ -217,7 +217,7 @@ with col2:
   with tab2:
     divid_rate=max_divid
     st.subheader(':heart_eyes: 最樂觀情境: Max Dividends Rate')
-    st.markdown('Dividends Rate ($ per share): **'+str(max_divid)+ '**.   Dividend Yield (%): **'+str(round(max_divid/last_close*100,2))+'**.')
+    st.write('Dividends Rate ($ per share): **'+str(max_divid)+ '**.   Dividend Yield (%): **'+str(round(max_divid/last_close*100,2))+'**.')
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
@@ -230,7 +230,7 @@ with col2:
     else:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
     
-    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_orange_square:股利所得')
+    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
     i = alt.Chart(df, title='Cash Flow Simulation :').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
@@ -246,7 +246,7 @@ with col2:
   with tab3:
     divid_rate=avg_divid
     st.subheader(':neutral_face: 最可能情境: Average Dividends Rate')
-    st.markdown('Dividends Rate ($ per share): **'+str(avg_divid)+ '**   Dividend Yield: **'+str(round(avg_divid/last_close*100,2))+'**')
+    st.write('Dividends Rate ($ per share): **'+str(avg_divid)+ '**   Dividend Yield: **'+str(round(avg_divid/last_close*100,2))+'**')
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -260,7 +260,7 @@ with col2:
     else:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
       
-    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_orange_square:股利所得')
+    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
@@ -276,7 +276,7 @@ with col2:
   with tab4:
     divid_rate=min_divid
     st.subheader(':sob: 最壞情境: Min Dividends Rate')
-    st.markdown('Dividends Rate ($ per share): **'+str(min_divid)+ '**   Dividend Yield (%): **'+str(round(min_divid/last_close*100,2))+'**')
+    st.write('Dividends Rate ($ per share): **'+str(min_divid)+ '**   Dividend Yield (%): **'+str(round(min_divid/last_close*100,2))+'**')
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -290,7 +290,7 @@ with col2:
     else:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
       
-    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_orange_square:股利所得')
+    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
@@ -308,7 +308,7 @@ with col2:
     st.subheader(':person_in_tuxedo: 自訂情境 Dividends Rate')
     self_divid=st.number_input('Input Dividends Rate  ($ per share):',value=5)
     divid_rate=self_divid
-    st.markdown('Dividends Rate ($ per share): **'+str(self_divid)+ '**   Dividend Yield (%): **'+str(round(self_divid/last_close*100,2))+'**')
+    st.write('Dividends Rate ($ per share): **'+str(self_divid)+ '**   Dividend Yield (%): **'+str(round(self_divid/last_close*100,2))+'**')
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
@@ -322,7 +322,7 @@ with col2:
     else:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
     
-    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_orange_square:股利所得')
+    st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
     i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
