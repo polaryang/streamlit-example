@@ -43,6 +43,7 @@ for i in range(len(df_ranking)):
     all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+'  '+str(df_ranking['rank3y'][i]))
 st.dataframe(df_ranking)
 
+st.input_text('stock?',option)
 if "visibility" not in st.session_state:
     st.session_state.visibility = "visible"
     st.session_state.disabled = True
@@ -53,12 +54,7 @@ st.checkbox("Enable selectbox widget", key="check_yes")
 #key="visibility",
 #options=["visible", "hidden", "collapsed"],
 #)
+st.write(check_yes)
 
-option = st.selectbox(
-"How would you like to be contacted?",
-("Email", "Home phone", "Mobile phone"),
-label_visibility=st.session_state.visibility,
-disabled=not check_yes,
-)
 st.write(option)
 
