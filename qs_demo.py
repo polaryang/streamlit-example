@@ -44,24 +44,11 @@ for i in range(len(df_ranking)):
 st.dataframe(df_ranking)
 
 option_input=st.text_input('stock?','2303')
-#if "visibility" not in st.session_state:
-#    st.session_state.visibility = "visible"
-#    st.session_state.disabled = True
 
 check_yes=st.checkbox("Enable selectbox widget")
-#st.radio(
-#"Set selectbox label visibility 👉",
-#key="visibility",
-#options=["visible", "hidden", "collapsed"],
-#)
-
 option_select = st.selectbox(
 "How would you like to be contacted?",
-#("Email", "Home phone", "Mobile phone"),
-df_ranking,        
-#label_visibility=st.session_state.visibility,
-disabled=not check_yes,
-)
+all_list, disabled=not check_yes, )
 if check_yes:
    option= option_select   
 else:
