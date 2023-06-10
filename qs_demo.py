@@ -43,7 +43,7 @@ for i in range(len(df_ranking)):
     all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+'  '+str(df_ranking['rank3y'][i]))
 st.dataframe(df_ranking)
 
-st.input_text('stock?',option)
+st.text_input('stock?',option)
 if "visibility" not in st.session_state:
     st.session_state.visibility = "visible"
     st.session_state.disabled = True
