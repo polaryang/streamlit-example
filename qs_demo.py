@@ -47,7 +47,7 @@ if "visibility" not in st.session_state:
     st.session_state.visibility = "visible"
     st.session_state.disabled = True
 
-st.checkbox("Disable selectbox widget", key="disabled")
+st.checkbox("Enable selectbox widget", key="disabled")
 #st.radio(
 #"Set selectbox label visibility 👉",
 #key="visibility",
@@ -60,4 +60,5 @@ option = st.selectbox(
 label_visibility=st.session_state.visibility,
 disabled=st.session_state.disabled,
 )
+st.write(option)
 
