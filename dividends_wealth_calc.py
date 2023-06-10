@@ -217,7 +217,7 @@ with col2:
   with tab2:
     divid_rate=max_divid
     st.subheader(':heart_eyes: Best Case: Max Dividends Rate')
-    st.markdown('Dividends Rate ($ per share): '+str(max_divid)+ '  Dividend Yield (%): '+str(round(max_divid/last_close*100,2)))
+    st.markdown('Dividends Rate ($ per share): **_'+str(max_divid)+ '**.  Dividend Yield (%): **_'+str(round(max_divid/last_close*100,2))+'**.')
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
     df=divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
