@@ -44,12 +44,13 @@ for i in range(len(df_ranking)):
     all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['rank3y'][i])+'%')
 st.dataframe(df_ranking)
 
-option_input=st.text_input('stock?','2303')
+option_input=st.text_input('stock?','2303',disabled=check_yes)
 
 check_yes=st.checkbox("Enable selectbox widget")
 option_select = st.selectbox(
 "How would you like to be contacted?",
 all_list, disabled=not check_yes, )
+option_select.split()
 if check_yes:
    option= option_select   
 else:
