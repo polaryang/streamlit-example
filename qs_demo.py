@@ -40,7 +40,8 @@ df_ranking=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'rank1y':rank1y, '
 df_ranking=df_ranking.sort_values(by='rank3y',ascending=False)
 all_list=[]
 for i in range(len(df_ranking)):
-    all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+'  '+str(df_ranking['rank3y'][i]))
+    spaces=' '*(7-len(id_name[i]))
+    all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['rank3y'][i])+'%')
 st.dataframe(df_ranking)
 
 option_input=st.text_input('stock?','2303')
