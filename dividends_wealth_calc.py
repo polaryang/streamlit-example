@@ -118,6 +118,35 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   df = pd.DataFrame(data)   
   return df
 # ------------------------------------------------------------------  
+# 前25高股息的股票 all_list
+# https://statementdog.com/screeners/dividend_yield_ranking
+# https://statementdog.com/blog/archives/10896
+# https://tw.stock.yahoo.com/tw-etf/yield
+r = requests.get("https://statementdog.com/screeners/dividend_yield_ranking")
+soup = BeautifulSoup(r.text, 'html.parser')
+id_code=[]
+id_name=[]
+stories1 = soup.find_all("li", {"class":"ranking-item-info ranking-item-ticker-name"})
+for i in range(1,len(stories1)):
+        [code,name]=stories1[i].text.split()
+        id_code.append(code)    
+        id_name.append(name)  
+stories2 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield is-sorted"})
+rank1y=[]
+for i in range(1,len(stories2)):
+       rank1y.append(float(stories2[i].text.replace('%','')))   
+stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
+rank3y=[]
+for i in range(1,len(stories3)):
+       rank3y.append(float(stories3[i].text.replace('%',''))) 
+df_ranking=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'rank1y':rank1y, 'rank3y':rank3y})
+df_ranking=df_ranking.sort_values(by='rank3y',ascending=False,ignore_index=True)
+all_list=[]
+for i in range(len(df_ranking)):
+    spaces='  '*(7-len(df_ranking['id_name'][i]))
+    all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['rank3y'][i])+'%')
+#st.dataframe(df_ranking)
+# ------------------------------------------------------------------  
 st.title('銘傳大學:dove_of_peace:財務金融學系')
 st.header(':sparkles: :blue[存股-財富自由-規劃] 金融科技實驗室:umbrella_with_rain_drops:')
 col1, col2 = st.columns([2,6])
@@ -147,7 +176,18 @@ with col1:
     redempt=0
     
   #ticker
-  ID=st.text_input('投資標的','2330')
+  ID_input=st.text_input('投資標的','2330')
+  #判斷由使用者輸入，還是由前25高股息股票選入
+  check_yes=st.checkbox("Enable selectbox widget")
+  ID_select = st.selectbox(
+  "How would you like to be contacted?",
+  all_list, disabled=not check_yes, )
+  [id_code,id_name,id_yield]=ID_select.split()
+  if check_yes:
+     ID= id_code   
+  else:
+     option= ID_input
+  st.write(option)
   ID_code='0'
   ID_name='0'
   ID_mkt='0'
