@@ -276,7 +276,7 @@ with col2:
   with tab4:
     divid_rate=min_divid
     st.subheader(':sob: 最壞情境: Min Dividends Rate')
-    st.markdown('Dividends Rate ($ per share): **'+str(min_divid)+ '**   Dividend Yield (%): **'+str(round(min_divid/last_close*100,2))+**)
+    st.markdown('Dividends Rate ($ per share): **'+str(min_divid)+ '**   Dividend Yield (%): **'+str(round(min_divid/last_close*100,2))+'**')
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
     #st.write('Average Dividends Rate ($ per share): '+str(avg_divid) )
     #st.write('Min Dividends Rate ($ per share): '+str(min_divid) )
