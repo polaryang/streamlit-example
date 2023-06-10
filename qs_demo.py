@@ -45,9 +45,9 @@ st.dataframe(df_ranking)
 
 if "visibility" not in st.session_state:
     st.session_state.visibility = "visible"
-    st.session_state.disabled = False
+    st.session_state.disabled = True
 
-st.checkbox("Disable selectbox widget", key="label_visibility")
+st.checkbox("Disable selectbox widget", key="disabled")
 #st.radio(
 #"Set selectbox label visibility 👉",
 #key="visibility",
