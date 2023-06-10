@@ -186,8 +186,7 @@ with col1:
   if check_yes:
      ID= id_code   
   else:
-     option= ID_input
-  st.write(option)
+     ID= ID_input
   ID_code='0'
   ID_name='0'
   ID_mkt='0'
