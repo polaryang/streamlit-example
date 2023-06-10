@@ -58,7 +58,7 @@ check_yes=st.checkbox("Enable selectbox widget")
 option_select = st.selectbox(
 "How would you like to be contacted?",
 ("Email", "Home phone", "Mobile phone"),
-label_visibility=st.session_state.visibility,
+#label_visibility=st.session_state.visibility,
 disabled=not check_yes,
 )
 if check_yes:
