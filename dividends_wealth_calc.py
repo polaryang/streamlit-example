@@ -158,7 +158,7 @@ for i in range(25): #len(stories0)):
     id_code.append(id_code0)
     ID_code, ID_name, ID_mkt, ID_type, ID_Inds=Checking_ID(id_code0)
     #print(id_code0,ID_name )
-    id_name.append(ID_name[0:10])
+    id_name.append(ID_name[0:9])
 stories2 = soup.find_all("span", {"class":"Jc(fe)"})
 for i in range(25*7): #len(stories2)):
     if (i+1)%7==0: 
@@ -168,7 +168,7 @@ df_ranking=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'id_yield':id_yiel
 df_ranking=df_ranking.sort_values(by='id_yield',ascending=False,ignore_index=True)
 all_list=[]
 for i in range(len(df_ranking)):
-    spaces='  '*(7-len(df_ranking['id_name'][i]))
+    spaces='  '*(11-len(df_ranking['id_name'][i]))
     all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['id_yield'][i])+'%')
 #st.dataframe(df_ranking)
 # ------------------------------------------------------------------  
