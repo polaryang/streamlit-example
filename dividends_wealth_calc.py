@@ -118,7 +118,7 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   df = pd.DataFrame(data)   
   return df
 # ------------------------------------------------------------------  
-# 前25高現金殖利率股票--> all_list
+# 前20-->15高現金殖利率股票--> all_list
 # https://statementdog.com/screeners/dividend_yield_ranking
 # https://statementdog.com/blog/archives/10896
 # https://tw.stock.yahoo.com/tw-etf/yield
@@ -127,14 +127,14 @@ soup = BeautifulSoup(r.text, 'html.parser')
 id_code=[]
 id_name=[]
 stories1 = soup.find_all("li", {"class":"ranking-item-info ranking-item-ticker-name"})
-for i in range(1,len(stories1)):
+for i in range(1,15): #len(stories1)):
         [code,name]=stories1[i].text.split()
         id_code.append(code)    
         id_name.append(name)  
 stories2 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield is-sorted"})
 # 當年現金殖利率
 rank1y=[]
-for i in range(1,len(stories2)):
+for i in range(1,15): #len(stories2)):
        rank1y.append(float(stories2[i].text.replace('%','')))   
 stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
 # 平均3年現金殖利率
@@ -145,7 +145,7 @@ for i in range(1,len(stories3)):
        id_yield.append(float(stories3[i].text.replace('%','')))
 
 # ------------------------------------------------------------------  
-# 前25高現金殖利率ETF--> all_list
+# 前25->15高現金殖利率ETF--> all_list
 # 整合一起--> all_list
 r = requests.get("https://tw.stock.yahoo.com/tw-etf/yield")
 soup = BeautifulSoup(r.text, 'html.parser')
@@ -153,14 +153,14 @@ soup = BeautifulSoup(r.text, 'html.parser')
 #id_name=[]
 #id_yield=[]
 stories0 = soup.find_all("span", {"class":"Fz(14px) C(#979ba7) Ell"})
-for i in range(25): #len(stories0)):
+for i in range(15): #len(stories0)):
     [id_code0, id_others]=stories0[i].text.split('.')
     id_code.append(id_code0)
     ID_code, ID_name, ID_mkt, ID_type, ID_Inds=Checking_ID(id_code0)
     #print(id_code0,ID_name )
     id_name.append(ID_name[0:9])
 stories2 = soup.find_all("span", {"class":"Jc(fe)"})
-for i in range(25*7): #len(stories2)):
+for i in range(15*7): #len(stories2)):
     if (i+1)%7==0: 
         id_yield.append(float(stories2[i].text.replace('%','')))
 #df_etf=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'id_yield':id_yield})        
