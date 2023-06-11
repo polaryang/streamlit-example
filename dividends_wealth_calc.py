@@ -131,13 +131,13 @@ for i in range(1,15): #len(stories1)):
         [code,name]=stories1[i].text.split()
         id_code.append(code)    
         id_name.append(name)  
-stories2 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield is-sorted"})
 # 當年現金殖利率
+#stories2 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield is-sorted"})
 #rank1y=[]
 #for i in range(1,15): #len(stories2)):
 #       rank1y.append(float(stories2[i].text.replace('%','')))   
-#stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
 # 平均3年現金殖利率
+stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
 #rank3y=[]
 id_yield=[]
 for i in range(1,15): #len(stories3)):
