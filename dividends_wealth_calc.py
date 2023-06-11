@@ -267,7 +267,7 @@ min_divid=round(divid_yr['divid'].min(),2)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 
 with col2:
-  ID_type=='ETF':
+  if ID_type=='ETF':
     st.subheader(ID_name+' : '+stock_ticker+' : [ETF]')
   else:
     st.subheader(ID_name+' : '+stock_ticker+' : ['+ID_Inds+']')
