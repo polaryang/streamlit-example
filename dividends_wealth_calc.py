@@ -139,6 +139,7 @@ for i in range(1,len(stories2)):
 stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
 # 平均3年現金殖利率
 rank3y=[]
+id_yield=[]
 for i in range(1,len(stories3)):
        rank3y.append(float(stories3[i].text.replace('%',''))) 
        id_yield.append(float(stories3[i].text.replace('%','')))
