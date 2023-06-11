@@ -169,7 +169,7 @@ df_ranking=df_ranking.sort_values(by='id_yield',ascending=False,ignore_index=Tru
 all_list=[]
 for i in range(len(df_ranking)):
     spaces='  '*(7-len(df_ranking['id_name'][i]))
-    all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['rank3y'][i])+'%')
+    all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['id_yield'][i])+'%')
 #st.dataframe(df_ranking)
 # ------------------------------------------------------------------  
 st.title('銘傳大學:dove_of_peace:財務金融學系')
