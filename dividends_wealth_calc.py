@@ -127,37 +127,37 @@ soup = BeautifulSoup(r.text, 'html.parser')
 id_code=[]
 id_name=[]
 stories1 = soup.find_all("li", {"class":"ranking-item-info ranking-item-ticker-name"})
-for i in range(1,15): #len(stories1)):
+for i in range(1,10): #len(stories1)):
         [code,name]=stories1[i].text.split()
         id_code.append(code)    
         id_name.append(name)  
 # 當年現金殖利率
 #stories2 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield is-sorted"})
 #rank1y=[]
-#for i in range(1,15): #len(stories2)):
+#for i in range(1,10): #len(stories2)):
 #       rank1y.append(float(stories2[i].text.replace('%','')))   
 # 平均3年現金殖利率
 stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
 #rank3y=[]
 id_yield=[]
-for i in range(1,15): #len(stories3)):
+for i in range(1,10): #len(stories3)):
        #rank3y.append(float(stories3[i].text.replace('%',''))) 
        id_yield.append(float(stories3[i].text.replace('%','')))
 
 # ------------------------------------------------------------------  
-# 前25->15高現金殖利率ETF--> all_list
+# 前25->15-->5高現金殖利率ETF--> all_list
 # https://tw.stock.yahoo.com/tw-etf/yield
 r = requests.get("https://tw.stock.yahoo.com/tw-etf/yield")
 soup = BeautifulSoup(r.text, 'html.parser')
 stories0 = soup.find_all("span", {"class":"Fz(14px) C(#979ba7) Ell"})
-for i in range(15): #len(stories0)):
+for i in range(5): #len(stories0)):
     [id_code0, id_others]=stories0[i].text.split('.')
     id_code.append(id_code0)
     ID_code, ID_name, ID_mkt, ID_type, ID_Inds=Checking_ID(id_code0)
     #print(id_code0,ID_name )
     id_name.append(ID_name[0:9])
 stories2 = soup.find_all("span", {"class":"Jc(fe)"})
-for i in range(15*7): #len(stories2)):
+for i in range(5*7): #len(stories2)):
     if (i+1)%7==0: 
         id_yield.append(float(stories2[i].text.replace('%','')))
 #df_etf=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'id_yield':id_yield})        
@@ -199,8 +199,8 @@ with col1:
     
   #ticker
   ID_input=st.text_input('投資標的','2330')
-  #判斷由使用者輸入，還是由前25高現金殖利率股票+ETF選入
-  check_yes=st.checkbox("參考前25高現金殖利率資產?")
+  #判斷由使用者輸入，還是由前15高現金殖利率股票+ETF選入
+  check_yes=st.checkbox("參考前15高現金殖利率資產?")
   ID_select = st.selectbox(
   "股票代號 股票 殖利率",
   all_list, disabled=not check_yes, )
