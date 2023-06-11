@@ -244,17 +244,17 @@ if ID_type=='ETF':
     divid_list.append(df1.iloc[0, i])
   df_etf=pd.DataFrame(divid_list, index = years, columns =['divid'])
   divid_yr=df_etf.dropna()
-  divid_yr0=df_etf.dropna()
+  #divid_yr0=df_etf.dropna()
   data = yf.Ticker(stock_ticker)
 else:
   data = yf.Ticker(stock_ticker)
   divid=data.dividends
-  splits=data.splits
+  #splits=data.splits
   if len(divid) ==0:
     st.header(':red[查無此股票]')
   years=pd.Series(data.dividends.index.year)
   divid = pd.DataFrame({'divid':divid.values, 'year':years})
-  divid_yr0=divid.groupby('year').sum()
+  #divid_yr0=divid.groupby('year').sum()
   divid_yr=divid.groupby('year').sum()
   divid_l=len(divid_yr)
   divid_yr=divid_yr[divid_yr.index<today.year]
@@ -267,7 +267,10 @@ min_divid=round(divid_yr['divid'].min(),2)
 last_close=data.history()['Close'].tail().mean() # 最近5日平均收盤價
 
 with col2:
-  st.subheader(ID_name+' : '+stock_ticker+' : ['+ID_Inds+']')
+  ID_type=='ETF':
+    st.subheader(ID_name+' : '+stock_ticker+' : [ETF]')
+  else:
+    st.subheader(ID_name+' : '+stock_ticker+' : ['+ID_Inds+']')
   tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Case", ":neutral_face: Average Case", ":sob: Worst Case", ":person_in_tuxedo: Self-Defined"])
   with tab1:
     
