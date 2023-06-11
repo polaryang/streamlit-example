@@ -275,7 +275,7 @@ with col2:
   with tab1:
     
     st.subheader('Historical Dividends Rate ($ per share) : ')
-    st.bar_chart(divid_yr0)
+    st.bar_chart(divid_yr)
     st.subheader(':vertical_traffic_light: Scenarios Based on Recent 5 Years')
     st.write('   :heart_eyes: Max Dividends Rate ($ per share): '+str(max_divid) )
     st.write('   :neutral_face: Average Dividends ($ per share): '+str(avg_divid) )
