@@ -205,7 +205,7 @@ with col1:
   #判斷由使用者輸入，還是由前15高現金殖利率股票+ETF選入
   check_yes=st.checkbox("參考前15高現金殖利率資產?")
   if check_yes:
-    top_dividend_list= get_top_rank_dividend(): #return top_dividend_list
+    top_dividend_list= get_top_rank_dividend() #return top_dividend_list
     ID_select = st.selectbox(  "股票代號 股票 殖利率",  top_dividend_list, disabled=not check_yes, )
     [id_code,id_name,id_yield]=ID_select.split()
   #if check_yes:
