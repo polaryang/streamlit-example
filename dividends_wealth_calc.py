@@ -374,7 +374,7 @@ with col2:
   
   with tab5:
     st.subheader(':person_in_tuxedo: 自訂情境 Dividends Rate')
-    self_divid=st.number_input('Input Dividends Rate  ($ per share):',value=5)
+    self_divid=st.number_input('Input Dividends Rate  ($ per share):',value=5,step=0.1)
     divid_rate=self_divid
     st.write('Dividends Rate ($ per share): **'+str(self_divid)+ '**   Dividend Yield (%): **'+str(round(self_divid/last_close*100,2))+'**')
     #st.write('Max Dividends Rate ($ per share): '+str(max_divid) )
