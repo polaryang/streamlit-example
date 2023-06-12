@@ -181,29 +181,29 @@ with col1:
   today = datetime.date.today()
   start='2010-01-01'
   end=today
+  st.write('**人生規劃**')
   age = st.slider('開始存股年紀?', 15, 120, 30)
+  invest_p = st.slider('投資期間 (年)', 0, 100, 20)  # 複利投資期間
+  divid_live_p = st.slider('收成期間 (年)', 0, 100, 20)  # 財富自由期間
+  st.write('**薪資收入與生活開銷**')
   income=st.number_input('每月薪資',value=60000,step=5000)
   income_g=st.number_input('每年薪資成長率',value=0.02)
   income_bonus=st.number_input('年終獎金 (月)',value=2)
   expense=st.number_input('每月生活開銷',value=20000,step=5000)
   inflation=st.number_input('年通貨膨脹率',value=0.03)
+  st.write('**投資規劃**')
   idir = st.slider('投資佔可支配所得率 (%)', 0, 100, 80)  # invest dispo income ratio
   idir = idir/100
-  invest_p = st.slider('投資期間 (年)', 0, 100, 20)  # 複利投資期間
-  divid_live_p = st.slider('財富自由期間 (年)', 0, 100, 20)  # 財富自由期間
   #redempt=st.number_input('可動用存股嗎?',value=1)
-  redempt_yn = st.radio("可動用存股嗎?", ('No', 'Yes'))
+  redempt_yn = st.radio("收成期可動用存股嗎?", ('No', 'Yes'))
   if redempt_yn == 'Yes':
-    st.write('[可動用存股]')
     redempt=1
   else:
-    st.write("[不可動用存股]")
-    redempt=0
-    
+    redempt=0    
   #ticker
   ID_input=st.text_input('投資標的','2330')
   #判斷由使用者輸入，還是由前15高現金殖利率股票+ETF選入
-  check_yes=st.checkbox("參考前15高現金殖利率資產?")
+  check_yes=st.checkbox("參考高現金殖利率資產?")
   if check_yes:
     top_dividend_list= get_top_rank_dividend() #return top_dividend_list
     ID_select = st.selectbox(  "股票代號 股票 殖利率",  top_dividend_list, disabled=not check_yes, )
