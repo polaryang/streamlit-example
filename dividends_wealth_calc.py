@@ -8,7 +8,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
 import math
-
+# ------------------------------------------------------------------
 def Checking_ID(ID):
   ID_code='0'
   ID_name='0'
@@ -119,56 +119,59 @@ def divid_cf_calc(age,income_a,income_g,expense_a,inflation,idir,
   return df
 # ------------------------------------------------------------------  
 # 前20-->15高現金殖利率股票--> all_list
-# https://statementdog.com/screeners/dividend_yield_ranking
-# https://statementdog.com/blog/archives/10896
-# https://tw.stock.yahoo.com/tw-etf/yield
-r = requests.get("https://statementdog.com/screeners/dividend_yield_ranking")
-soup = BeautifulSoup(r.text, 'html.parser')
-id_code=[]
-id_name=[]
-stories1 = soup.find_all("li", {"class":"ranking-item-info ranking-item-ticker-name"})
-for i in range(1,10): #len(stories1)):
-        [code,name]=stories1[i].text.split()
-        id_code.append(code)    
-        id_name.append(name)  
-# 當年現金殖利率
-#stories2 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield is-sorted"})
-#rank1y=[]
-#for i in range(1,10): #len(stories2)):
-#       rank1y.append(float(stories2[i].text.replace('%','')))   
-# 平均3年現金殖利率
-stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
-#rank3y=[]
-id_yield=[]
-for i in range(1,10): #len(stories3)):
-       #rank3y.append(float(stories3[i].text.replace('%',''))) 
-       id_yield.append(float(stories3[i].text.replace('%','')))
-
-# ------------------------------------------------------------------  
-# 前25->15-->5高現金殖利率ETF--> all_list
-# https://tw.stock.yahoo.com/tw-etf/yield
-r = requests.get("https://tw.stock.yahoo.com/tw-etf/yield")
-soup = BeautifulSoup(r.text, 'html.parser')
-stories0 = soup.find_all("span", {"class":"Fz(14px) C(#979ba7) Ell"})
-for i in range(5): #len(stories0)):
-    [id_code0, id_others]=stories0[i].text.split('.')
-    id_code.append(id_code0)
-    ID_code, ID_name, ID_mkt, ID_type, ID_Inds=Checking_ID(id_code0)
-    #print(id_code0,ID_name )
-    id_name.append(ID_name[0:9])
-stories2 = soup.find_all("span", {"class":"Jc(fe)"})
-for i in range(5*7): #len(stories2)):
-    if (i+1)%7==0: 
-        id_yield.append(float(stories2[i].text.replace('%','')))
-#df_etf=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'id_yield':id_yield})        
-df_ranking=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'id_yield':id_yield})    
-df_ranking=df_ranking.sort_values(by='id_yield',ascending=False,ignore_index=True)
-all_list=[]
-for i in range(len(df_ranking)):
-    spaces='  '*(11-len(df_ranking['id_name'][i]))
-    all_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['id_yield'][i])+'%')
+def get_top_rank_dividend(): #return top_dividend_list
+    # https://statementdog.com/screeners/dividend_yield_ranking
+    # https://statementdog.com/blog/archives/10896
+    # https://tw.stock.yahoo.com/tw-etf/yield
+    r = requests.get("https://statementdog.com/screeners/dividend_yield_ranking")
+    soup = BeautifulSoup(r.text, 'html.parser')
+    id_code=[]
+    id_name=[]
+    stories1 = soup.find_all("li", {"class":"ranking-item-info ranking-item-ticker-name"})
+    for i in range(1,10): #len(stories1)):
+            [code,name]=stories1[i].text.split()
+            id_code.append(code)    
+            id_name.append(name)  
+    # 當年現金殖利率
+    #stories2 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield is-sorted"})
+    #rank1y=[]
+    #for i in range(1,10): #len(stories2)):
+    #       rank1y.append(float(stories2[i].text.replace('%','')))   
+    # 平均3年現金殖利率
+    stories3 = soup.find_all("li", {"class":"ranking-item-info ranking-item-dividend-yield-3Y"})
+    #rank3y=[]
+    id_yield=[]
+    for i in range(1,10): #len(stories3)):
+           #rank3y.append(float(stories3[i].text.replace('%',''))) 
+           id_yield.append(float(stories3[i].text.replace('%','')))
+    # ------------------------------------------------------------------  
+    # 前25->15-->5高現金殖利率ETF--> all_list
+    # https://tw.stock.yahoo.com/tw-etf/yield
+    r = requests.get("https://tw.stock.yahoo.com/tw-etf/yield")
+    soup = BeautifulSoup(r.text, 'html.parser')
+    stories0 = soup.find_all("span", {"class":"Fz(14px) C(#979ba7) Ell"})
+    for i in range(5): #len(stories0)):
+        [id_code0, id_others]=stories0[i].text.split('.')
+        id_code.append(id_code0)
+        ID_code, ID_name, ID_mkt, ID_type, ID_Inds=Checking_ID(id_code0)
+        #print(id_code0,ID_name )
+        id_name.append(ID_name[0:9])
+    stories2 = soup.find_all("span", {"class":"Jc(fe)"})
+    for i in range(5*7): #len(stories2)):
+        if (i+1)%7==0: 
+            id_yield.append(float(stories2[i].text.replace('%','')))
+    #df_etf=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'id_yield':id_yield})        
+    df_ranking=pd.DataFrame({'id_code':id_code,'id_name':id_name, 'id_yield':id_yield})    
+    df_ranking=df_ranking.sort_values(by='id_yield',ascending=False,ignore_index=True)
+    top_dividend_list=[]
+    for i in range(len(df_ranking)):
+        spaces='  '*(11-len(df_ranking['id_name'][i]))
+        top_dividend_list.append(df_ranking['id_code'][i]+'  '+df_ranking['id_name'][i]+spaces+str(df_ranking['id_yield'][i])+'%')
+    return top_dividend_list
 #st.dataframe(df_ranking)
 # ------------------------------------------------------------------  
+# 主程式開始
+# ------------------------------------------------------------------
 st.title('銘傳大學:dove_of_peace:財務金融學系')
 st.header(':sparkles: :blue[存股-財富自由-規劃] 金融科技實驗室:umbrella_with_rain_drops:')
 col1, col2 = st.columns([2,6])
@@ -201,12 +204,12 @@ with col1:
   ID_input=st.text_input('投資標的','2330')
   #判斷由使用者輸入，還是由前15高現金殖利率股票+ETF選入
   check_yes=st.checkbox("參考前15高現金殖利率資產?")
-  ID_select = st.selectbox(
-  "股票代號 股票 殖利率",
-  all_list, disabled=not check_yes, )
-  [id_code,id_name,id_yield]=ID_select.split()
   if check_yes:
-     ID= id_code   
+    top_dividend_list= get_top_rank_dividend(): #return top_dividend_list
+    ID_select = st.selectbox(  "股票代號 股票 殖利率",  top_dividend_list, disabled=not check_yes, )
+    [id_code,id_name,id_yield]=ID_select.split()
+  #if check_yes:
+    ID= id_code   
   else:
      ID= ID_input
   ID_code='0'
