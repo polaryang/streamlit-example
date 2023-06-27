@@ -431,6 +431,14 @@ with col2:
     
     st.write('理財計畫底稿')
     st.dataframe(df)
+#def send_email('polaryang@gmail.com', 'it85391016', receiver, 'smtp.gmail.com', 
+#587, 'fsdfsdf', 'test', attachment=None):
+#def send_email(sender, password, receiver, smtp_server, 
+#smtp_port, email_message, subject, attachment=None): 
+email_receiver=st.text_input('您的信箱住址')
+email_message=st.text_area('留言備註')
+if st.button('Send Email'):
+  send_email('polaryang@gmail.com', 'it85391016', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
 st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
     
 plt.bar(df['Age'],df['Shares'])
