@@ -437,7 +437,7 @@ if st.button('Send Email'):
     df_avg.to_excel(writer, sheet_name='avg')
     df_min.to_excel(writer, sheet_name='min')
     df_self.to_excel(writer, sheet_name='self')
-  send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
+  send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
 st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
     
 plt.bar(df['Age'],df['Shares'])
