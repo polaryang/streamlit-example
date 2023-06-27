@@ -14,10 +14,10 @@ from email.mime.text import MIMEText
 from email.header import Header
 from email.mime.application import MIMEApplication
 # ------------------------------------------------------------------
-def send_email('polaryang@gmail.com', 'it85391016', receiver, 'smtp.gmail.com', 
-587, 'fsdfsdf', 'test', attachment=None):
-#def send_email(sender, password, receiver, smtp_server, 
-#smtp_port, email_message, subject, attachment=None):  
+#def send_email('polaryang@gmail.com', 'it85391016', receiver, 'smtp.gmail.com', 
+#587, 'fsdfsdf', 'test', attachment=None):
+def send_email(sender, password, receiver, smtp_server, 
+smtp_port, email_message, subject, attachment=None):  
   message = MIMEMultipart()
   message['To'] = Header(receiver)
   message['From']  = Header(sender)
