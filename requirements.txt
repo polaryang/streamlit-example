@@ -16,4 +16,3 @@ seleniumbase
 webdriver-manager
 tejapi
 openpyxl
-smtplib
