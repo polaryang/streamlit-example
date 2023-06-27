@@ -403,7 +403,7 @@ with col2:
     
     st.write('理財計畫底稿')
     st.dataframe(df)
-st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 指導老師: 楊重任副教授   / 團隊學生: 黃冠斌、姚岱均]')    
+st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
     
 plt.bar(df['Age'],df['Shares'])
 plt.xlabel('Age')
