@@ -432,7 +432,7 @@ email_message=st.text_area('留言備註')
 email_message=email_message+'\n客戶信箱:'+email_receiver+'\n年紀:'+str(age)+'\n投資期間:'+str(invest_p)+'\n收成期間:'+str(divid_live_p)+'\n每月薪資:'+str(income)+'\n薪資年成長率:'+str(income_g)+'\n年終獎金:'
 email_message=email_message+str(income_bonus)+'\n每月生活開銷:'+str(expense)+'\n年通貨膨脹率:'+str(inflation)+'\n投資佔可支配所得率:'+str(idir)+'\n可動用存股:'+str(redempt)+'\n投資標的:'+ID_name+':'+stock_ticker
 if st.button('Send Email'):
-  with pd.ExcelWriter('../output.xlsx') as writer:  
+  with pd.ExcelWriter('https://github.com/polaryang/streamlit-example/blob/49000899d7dbe069a34307f2d30f237cca0cc066/output.xlsx') as writer:  
     df_max.to_excel(writer, sheet_name='max')
     df_avg.to_excel(writer, sheet_name='avg')
     df_min.to_excel(writer, sheet_name='min')
