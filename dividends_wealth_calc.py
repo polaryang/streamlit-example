@@ -181,15 +181,17 @@ with col1:
   start='2010-01-01'
   end=today
   st.write('**人生規劃**')
-  age = st.slider('開始存股年紀?', 15, 120, 30)
-  invest_p = st.slider('投資期間 (年)', 0, 100, 20)  # 複利投資期間
-  divid_live_p = st.slider('收成期間 (年)', 0, 100, 20)  # 財富自由期間
+  age = st.slider('開始存股年紀?', 15, 120, 25)
+  invest_p = st.slider('投資期間 (年)', 0, 100, 30)  # 複利投資期間
+  divid_live_p = st.slider('收成期間 (年)', 0, 100, 30)  # 財富自由期間
   st.write('**薪資收入與生活開銷**')
-  income=st.number_input('每月薪資',value=60000,step=5000)
-  income_g=st.number_input('每年薪資成長率',value=0.02)
+  income=st.number_input('每月薪資',value=50000,step=5000)
+  income_g=st.number_input('薪資年成長率%',value=2,step=0.25)
+  income_g=income_g/100
   income_bonus=st.number_input('年終獎金 (月)',value=2)
   expense=st.number_input('每月生活開銷',value=20000,step=5000)
-  inflation=st.number_input('年通貨膨脹率',value=0.03)
+  inflation=st.number_input('年通貨膨脹率%',value=3,step=0.25)
+  inflation=inflation/100
   st.write('**投資規劃**')
   idir = st.slider('投資佔可支配所得率 (%)', 0, 100, 80)  # invest dispo income ratio
   idir = idir/100
