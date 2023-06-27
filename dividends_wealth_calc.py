@@ -172,7 +172,7 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------  
 # 主程式開始
 # ------------------------------------------------------------------
-st.header(':sparkles: :blue[財富自由-存股規劃]:umbrella_with_rain_drops: 理財計算機 :spiral_calendar_pad:')
+st.header(':sparkles: :blue[財富自由*存股規劃]:umbrella_with_rain_drops: :red[理財計算機] :pencil:')
 col1, col2 = st.columns([2,6])
 with col1:
   # Basic Parameters
@@ -225,7 +225,7 @@ with col1:
     stock_ticker=ID_code+'.TW'
   if ID_mkt=='上櫃 ':
     stock_ticker=ID_code+'.TWO'
-  st.write(ID_name+' : '+stock_ticker)
+  st.write('投資標的:'+ID_name+' : '+stock_ticker)
 
 # ------------------------------------------------------------------
 income_a=income*(12+income_bonus)
@@ -403,7 +403,8 @@ with col2:
     
     st.write('理財計畫底稿')
     st.dataframe(df)
-st.write('*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 學生: 黃冠斌、姚岱均]')    
+st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室]')    
+st.write('        :red[指導老師: 楊重任副教授 團隊學生: 黃冠斌、姚岱均]')    
     
 plt.bar(df['Age'],df['Shares'])
 plt.xlabel('Age')
