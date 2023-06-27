@@ -172,7 +172,7 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------  
 # 主程式開始
 # ------------------------------------------------------------------
-st.header(':sparkles: :blue[財富自由-存股規劃]:umbrella_with_rain_drops: 計算機 :spiral_calendar_pad:')
+st.header(':sparkles: :blue[財富自由-存股規劃]:umbrella_with_rain_drops: 理財計算機 :spiral_calendar_pad:')
 col1, col2 = st.columns([2,6])
 with col1:
   # Basic Parameters
@@ -200,7 +200,7 @@ with col1:
   else:
     redempt=0    
   #ticker
-  ID_input=st.text_input('投資標的 :','2330')
+  ID_input=st.text_input('選擇投資標的 :','2330')
   #判斷由使用者輸入，還是由前15高現金殖利率股票+ETF選入
   check_yes=st.checkbox("參考高現金殖利率資產?")
   if check_yes:
