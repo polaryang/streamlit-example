@@ -9,10 +9,10 @@ import streamlit.components.v1 as components
 import altair as alt
 import math
 import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.header import Header
-from email.mime.application import MIMEApplication
+#from email.mime.multipart import MIMEMultipart
+#from email.mime.text import MIMEText
+#from email.header import Header
+#from email.mime.application import MIMEApplication
 # ------------------------------------------------------------------
 def send_email('polaryang@gmail.com', 'it85391016', receiver, 'smtp.gmail.com', 
 587, 'fsdfsdf', 'test', attachment=None):
