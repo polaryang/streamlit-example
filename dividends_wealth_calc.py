@@ -423,8 +423,8 @@ with col2:
 
 email_receiver=st.text_input('您的信箱住址')
 email_message=st.text_area('留言備註')
-email_message=email_message+'/n客戶信箱:'+email_receiver+'/n年紀:'+str(age)+'/n投資期間:'+str(invest_p)+'/n收成期間:'+str(divid_live_p)+'/n每月薪資:'+str(income)+'/n薪資年成長率:'+str(income_g)+'/n年終獎金:'
-email_message=email_message+str(income_bonus)+'/n每月生活開銷:'+str(expense)+'/n年通貨膨脹率:'+str(inflation)+'/n投資佔可支配所得率:'+str(idir)+'/n可動用存股:'+str(redempt)+'/n投資標的:'+ID_name+':'+stock_ticker
+email_message=email_message+'\n客戶信箱:'+email_receiver+'\n年紀:'+str(age)+'\n投資期間:'+str(invest_p)+'\n收成期間:'+str(divid_live_p)+'\n每月薪資:'+str(income)+'\n薪資年成長率:'+str(income_g)+'\n年終獎金:'
+email_message=email_message+str(income_bonus)+'\n每月生活開銷:'+str(expense)+'\n年通貨膨脹率:'+str(inflation)+'\n投資佔可支配所得率:'+str(idir)+'\n可動用存股:'+str(redempt)+'\n投資標的:'+ID_name+':'+stock_ticker
 if st.button('Send Email'):
   send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
 st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
