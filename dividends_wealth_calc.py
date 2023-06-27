@@ -13,6 +13,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.header import Header
 from email.mime.application import MIMEApplication
+import os
 # ------------------------------------------------------------------
 def send_email(sender, password, receiver, smtp_server, 
 smtp_port, email_message, subject, attachment=None):  
@@ -196,6 +197,7 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------  
 # 主程式開始
 # ------------------------------------------------------------------
+print(os.environ['GITHUB_OUTPUT'])
 st.header(':sparkles: :blue[財富自由*存股規劃]:umbrella_with_rain_drops: :red[理財計算機] :pencil:')
 col1, col2 = st.columns([2,6])
 with col1:
