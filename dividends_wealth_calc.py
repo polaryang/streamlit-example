@@ -24,7 +24,7 @@ smtp_port, email_message, subject, attachment=None):  #attachment=None
   message['Subject'] = Header(subject)
   message.attach(MIMEText(email_message,'plain', 'utf-8'))
   if attachment:
-    att= MIMEApplication(open(attachment, 'rb').read()) #, name=os.path.basename(attachment)
+    att= MIMEApplication(open(attachment, 'rb').read(), name=os.path.basename(attachment)) #
     #att = MIMEApplication(attachment.read(), _subtype="txt")
     att["Content-Type"] = 'application/octet-stream'
     att.add_header('Content-Disposition', 'attachment', filename=attachment.name)
