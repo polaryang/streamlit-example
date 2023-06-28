@@ -231,7 +231,7 @@ with col1:
   #ticker
   ID_input=st.text_input('選擇投資標的 :','2330')
   #判斷由使用者輸入，還是由前15高現金殖利率股票+ETF選入
-  check_yes=st.checkbox("參考高現金殖利率資產?")
+  check_yes=st.checkbox("參考高現金殖利率標的")
   if check_yes:
     top_dividend_list= get_top_rank_dividend() #return top_dividend_list
     ID_select = st.selectbox(  "代號 名稱 殖利率 %",  top_dividend_list, disabled=not check_yes, )
@@ -299,15 +299,15 @@ with col2:
     st.subheader(ID_name+' : '+stock_ticker+' : [ETF]')
   else:
     st.subheader(ID_name+' : '+stock_ticker+' : ['+ID_Inds+']')
-  tab1, tab2, tab3, tab4, tab5 = st.tabs(["Basic Information", ":heart_eyes: Best Case", ":neutral_face: Average Case", ":sob: Worst Case", ":person_in_tuxedo: Self-Defined"])
+  tab1, tab2, tab3, tab4, tab5 = st.tabs(["基本資料", ":heart_eyes: 最樂觀", ":neutral_face: 最可能", ":sob: 最悲觀", ":person_in_tuxedo: 自已定義"])
   with tab1:
     st.subheader('歷史配息金額 ($ per share) : ')
     st.bar_chart(divid_yr)
     st.subheader(':vertical_traffic_light: Scenarios Based on Recent 5 Years')
-    st.write('   :heart_eyes: Max Dividends Rate ($ per share): '+str(max_divid) )
-    st.write('   :neutral_face: Average Dividends ($ per share): '+str(avg_divid) )
-    st.write('   :sob: Min Dividends ($ per share): '+str(min_divid) )
-    st.subheader('Historical Stock Price')
+    st.write('   :heart_eyes: 最樂觀 Max Dividends Rate ($ per share): '+str(max_divid) )
+    st.write('   :neutral_face: 最可能 Average Dividends ($ per share): '+str(avg_divid) )
+    st.write('   :sob: 最悲觀 Min Dividends ($ per share): '+str(min_divid) )
+    st.subheader('歷史股價走勢')
     st.line_chart(data.history()['Close'])
   with tab2:
     divid_rate=max_divid
@@ -325,15 +325,15 @@ with col2:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
     
     st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
-    i = alt.Chart(df, title='Cash Flow Simulation :').mark_line(color="steelblue").encode(x='Age', y='Income')
+    i = alt.Chart(df, title='未來現金流量模擬分析 :').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
+    c = alt.Chart(df, title='未來淨現金流量 :').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
     
-    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
+    c = alt.Chart(df, title='未來持有股數 :').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     #st.write('理財計畫底稿')
     #st.dataframe(df)
@@ -353,15 +353,15 @@ with col2:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
       
     st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
-    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
+    i = alt.Chart(df, title='未來現金流量模擬分析 :').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
+    c = alt.Chart(df, title='未來淨現金流量 :').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
     
-    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
+    c = alt.Chart(df, title='未來持有股數 :').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     #st.write('理財計畫底稿')
     #st.dataframe(df)
@@ -381,15 +381,15 @@ with col2:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
       
     st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
-    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
+    i = alt.Chart(df, title='未來現金流量模擬分析 :').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
+    c = alt.Chart(df, title='未來淨現金流量 :').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
         
-    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
+    c = alt.Chart(df, title='未來持有股數 :').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     #st.write('理財計畫底稿')
     #st.dataframe(df)
@@ -414,22 +414,22 @@ with col2:
       st.subheader(':fast_forward: 財富自由計畫 :violet[成功] :thumbsup:') 
     
     st.write(':large_blue_square: 薪資所得 :large_green_square: 生活支出 :large_red_square:股利所得')
-    i = alt.Chart(df, title='Cash Flow Simulation').mark_line(color="steelblue").encode(x='Age', y='Income')
+    i = alt.Chart(df, title='未來現金流量模擬分析 :').mark_line(color="steelblue").encode(x='Age', y='Income')
     e = alt.Chart(df).mark_line(color='green').encode(x='Age', y='Expense')
     c = alt.Chart(df).mark_line(color="red").encode(x='Age', y='Cash_All')
     st.altair_chart((i+e+c), use_container_width=True)
     
-    c = alt.Chart(df, title='Net Income over Time').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
+    c = alt.Chart(df, title='未來淨現金流量 :').mark_line(color="steelblue").encode(x='Age', y='Net_Income')
     st.altair_chart(c, use_container_width=True)
         
-    c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
+    c = alt.Chart(df, title='未來持有股數 :').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
     #st.write('理財計畫底稿')
     #st.dataframe(df)
 
 with st.form("request_form"):
-   email_receiver=st.text_input('需要此財富自由-存股-理財計畫，請輸入您的信箱住址，有專業理財顧問分析後會盡速跟您聯繫並協助您完成!')
-   email_request=st.text_area('留言備註',value='請理財顧問跟我聯絡')
+   email_receiver=st.text_input('**需要此財富自由-存股-理財計畫，請輸入您的信箱住址，有專業理財顧問分析後會盡速跟您聯繫!**')
+   email_request=st.text_area('留言備註',value='請理財顧問跟我聯絡。')
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
    if submitted:
