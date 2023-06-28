@@ -26,7 +26,7 @@ smtp_port, email_message, subject, attachment=None):
   if attachment:
     att= MIMEApplication(open(attachment, 'rb').read())
     #att = MIMEApplication(attachment.read(), _subtype="txt")
-    #att["Content-Type"] = 'application/octet-stream'
+    att["Content-Type"] = 'application/octet-stream'
     att.add_header('Content-Disposition', 'attachment', filename=attachment.name)
     message.attach(att)
   server = smtplib.SMTP(smtp_server, smtp_port)
