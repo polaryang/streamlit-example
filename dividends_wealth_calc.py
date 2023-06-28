@@ -446,7 +446,7 @@ with st.form("request_form"):
         send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
         #send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
       except:
-        st.write(':[信箱住址輸入錯誤!]')
+        st.write(':red[信箱住址輸入錯誤!]')
 # ------------------------------------------------------------------
 st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
 # ------------------------------------------------------------------    
