@@ -442,12 +442,12 @@ with st.form("request_form"):
         url='https://raw.githubusercontent.com/polaryang/streamlit-example/raw/master/EFT_Dividend.xlsx'
         url='https://raw.githubusercontent.com/polaryang/streamlit-example/raw/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/output.xlsx'
         file_out = requests.get(url)
-        with pd.ExcelWriter(file_out) as writer:  
-            df_max.to_excel(writer, sheet_name='max')
-            df_avg.to_excel(writer, sheet_name='avg')
-            df_min.to_excel(writer, sheet_name='min')
-            df_self.to_excel(writer, sheet_name='self')      
-        send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
+        #with pd.ExcelWriter(file_out) as writer:  
+        #    df_max.to_excel(writer, sheet_name='max')
+        #    df_avg.to_excel(writer, sheet_name='avg')
+        #    df_min.to_excel(writer, sheet_name='min')
+        #    df_self.to_excel(writer, sheet_name='self')      
+        #send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
         send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
         st.write(':green[資料已寄出!]')
       #except:
