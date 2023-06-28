@@ -335,8 +335,8 @@ with col2:
     
     c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
-    st.write('理財計畫底稿')
-    st.dataframe(df)
+    #st.write('理財計畫底稿')
+    #st.dataframe(df)
   with tab3:
     divid_rate=avg_divid
     st.subheader(':neutral_face: 最可能情境: Average Dividends Rate')
@@ -363,8 +363,8 @@ with col2:
     
     c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
-    st.write('理財計畫底稿')
-    st.dataframe(df)
+    #st.write('理財計畫底稿')
+    #st.dataframe(df)
   with tab4:
     divid_rate=min_divid
     st.subheader(':sob: 最壞情境: Min Dividends Rate')
@@ -391,8 +391,8 @@ with col2:
         
     c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
-    st.write('理財計畫底稿')
-    st.dataframe(df)
+    #st.write('理財計畫底稿')
+    #st.dataframe(df)
   
   with tab5:
     st.subheader(':person_in_tuxedo: 自訂情境 Dividends Rate')
@@ -424,9 +424,8 @@ with col2:
         
     c = alt.Chart(df, title='Number of Shares Holded over Time').mark_bar().encode(x='Age', y='Shares')
     st.altair_chart(c, use_container_width=True)
-    
-    st.write('理財計畫底稿')
-    st.dataframe(df)
+    #st.write('理財計畫底稿')
+    #st.dataframe(df)
 
 with st.form("request_form"):
    email_receiver=st.text_input('需要此財富自由-存股-理財計畫，請輸入您的信箱住址，有專業理財顧問分析後會盡速跟您聯繫並協助您完成!')
