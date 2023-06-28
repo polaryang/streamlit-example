@@ -434,7 +434,7 @@ with st.form("request_form"):
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
    if submitted:
-      try:
+      #try:
         email_message='感謝您對我們 財富自由-存股-理財計畫 的支持，以下是您的基本資料。我們會依據您的需求盡速提供解決方案給您!'+'\n客戶信箱:'+email_receiver+'\n年紀:'+str(age)+'\n投資期間:'+str(invest_p)+'\n收成期間:'+str(divid_live_p)+'\n每月薪資:'+str(income)+'\n薪資年成長率:'+str(income_g)+'\n年終獎金:'
         email_message=email_message+str(income_bonus)+'\n每月生活開銷:'+str(expense)+'\n年通貨膨脹率:'+str(inflation)+'\n投資佔可支配所得率:'+str(idir)+'\n可動用存股:'+str(redempt)+'\n投資標的:'+ID_name+':'+stock_ticker+'\n您的需求:'+email_request
         #file_out='https://github.com/polaryang/streamlit-example/raw/master/output.xlsx'
@@ -447,8 +447,8 @@ with st.form("request_form"):
         send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
         #send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
         st.write(':green[資料已寄出!]')
-      except:
-        st.write(':red[信箱住址輸入錯誤!]')
+      #except:
+        #st.write(':red[信箱住址輸入錯誤!]')
 # ------------------------------------------------------------------
 st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
 # ------------------------------------------------------------------    
