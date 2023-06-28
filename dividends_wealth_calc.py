@@ -26,7 +26,7 @@ smtp_port, email_message, subject, attachment=None):
   if attachment:
     att= MIMEApplication(open(attachment, 'rb').read())
     #att = MIMEApplication(attachment.read(), _subtype="txt")
-    att["Content-Type"] = 'application/octet-stream'
+    #att["Content-Type"] = 'application/octet-stream'
     att.add_header('Content-Disposition', 'attachment', filename=attachment.name)
     message.attach(att)
   server = smtplib.SMTP(smtp_server, smtp_port)
@@ -444,8 +444,8 @@ with st.form("request_form"):
             df_avg.to_excel(writer, sheet_name='avg')
             df_min.to_excel(writer, sheet_name='min')
             df_self.to_excel(writer, sheet_name='self')      
-        #send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
-        send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
+        send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
+        #send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
         st.write(':green[資料已寄出!]')
       except:
         st.write(':red[信箱住址輸入錯誤!]')
