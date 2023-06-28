@@ -26,6 +26,7 @@ smtp_port, email_message, subject, attachment=None):
   if attachment:
     att= MIMEApplication(open(attachment, 'rb').read())
     #att = MIMEApplication(attachment.read(), _subtype="txt")
+    att["Content-Type"] = 'application/octet-stream'
     att.add_header('Content-Disposition', 'attachment', filename=attachment.name)
     message.attach(att)
   server = smtplib.SMTP(smtp_server, smtp_port)
@@ -219,7 +220,7 @@ with col1:
   expense=st.number_input('每月生活開銷',value=20000,step=5000)
   inflation=st.number_input('年通貨膨脹率%',value=3.0,step=0.25)
   inflation=inflation/100
-  st.write('**投資規劃**')
+  st.write('**存股規劃**')
   idir = st.slider('投資佔可支配所得率 (%)', 0, 100, 80)  # invest dispo income ratio
   idir = idir/100
   #redempt=st.number_input('可動用存股嗎?',value=1)
@@ -229,7 +230,7 @@ with col1:
   else:
     redempt=0    
   #ticker
-  ID_input=st.text_input('選擇投資標的 :','2330')
+  ID_input=st.text_input('輸入存股標的 :','2330')
   #判斷由使用者輸入，還是由前15高現金殖利率股票+ETF選入
   check_yes=st.checkbox("參考高現金殖利率標的")
   if check_yes:
@@ -254,7 +255,7 @@ with col1:
     stock_ticker=ID_code+'.TW'
   if ID_mkt=='上櫃 ':
     stock_ticker=ID_code+'.TWO'
-  st.write('**存股標的:**')
+  st.write('**您選擇的存股標的:**')
   st.write(ID_name+' : '+stock_ticker)
 # ------------------------------------------------------------------
 income_a=income*(12+income_bonus)
@@ -443,8 +444,8 @@ with st.form("request_form"):
             df_avg.to_excel(writer, sheet_name='avg')
             df_min.to_excel(writer, sheet_name='min')
             df_self.to_excel(writer, sheet_name='self')      
-        send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
-        #send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
+        #send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=None)
+        send_email('polaryang@gmail.com', 'ryxbncdvmgncqepk', email_receiver, 'smtp.gmail.com', 587, email_message, '財富自由客戶需求', attachment=file_out)
         st.write(':green[資料已寄出!]')
       except:
         st.write(':red[信箱住址輸入錯誤!]')
