@@ -440,7 +440,7 @@ with st.form("request_form"):
         email_message=email_message+str(income_bonus)+'\n每月生活開銷:'+str(expense)+'\n年通貨膨脹率:'+str(inflation)+'\n投資佔可支配所得率:'+str(idir)+'\n可動用存股:'+str(redempt)+'\n投資標的:'+ID_name+':'+stock_ticker+'\n您的需求:'+email_request
         #file_out='https:\\github.com\polaryang\streamlit-example\raw\master\output.xlsx'
         #file_out='ttt.xlsx'
-        file_out=r'https:\\github.com\\polaryang\\streamlit-example\\raw\\master\\EFT_Dividend.xlsx'
+        file_out=r'https:\github.com\polaryang\streamlit-example\raw\master\EFT_Dividend.xlsx'
         #file_out='https://github.com/polaryang/streamlit-example/raw/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/output.xlsx' 
         #with pd.ExcelWriter(file_out) as writer:  
         #    df_max.to_excel(writer, sheet_name='max')
