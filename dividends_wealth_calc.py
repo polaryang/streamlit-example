@@ -427,7 +427,7 @@ with col2:
     st.dataframe(df)
 
 with st.form("request_form"):
-   email_receiver=st.text_input('需要此理財計畫，請輸入您的信箱住址，有專業理財顧問會跟您聯繫',value='example@example.com')
+   email_receiver=st.text_input('需要此財富自由-存股-理財計畫，請輸入您的信箱住址，有專業理財顧問會盡速跟您聯繫並協助您完成!')
    email_request=st.text_area('留言備註',value='請跟我聯絡')
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
