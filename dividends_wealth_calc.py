@@ -254,7 +254,7 @@ with col1:
     stock_ticker=ID_code+'.TW'
   if ID_mkt=='上櫃 ':
     stock_ticker=ID_code+'.TWO'
-  st.write('投資標的:')
+  st.write('**存股標的:**')
   st.write(ID_name+' : '+stock_ticker)
 # ------------------------------------------------------------------
 income_a=income*(12+income_bonus)
@@ -303,7 +303,7 @@ with col2:
   with tab1:
     st.subheader('歷史配息金額 ($ per share) : ')
     st.bar_chart(divid_yr)
-    st.subheader(':vertical_traffic_light: Scenarios Based on Recent 5 Years')
+    st.subheader(':vertical_traffic_light: 現金股利情境分析(近五年)')
     st.write('   :heart_eyes: 最樂觀 Max Dividends Rate ($ per share): '+str(max_divid) )
     st.write('   :neutral_face: 最可能 Average Dividends ($ per share): '+str(avg_divid) )
     st.write('   :sob: 最悲觀 Min Dividends ($ per share): '+str(min_divid) )
@@ -428,8 +428,8 @@ with col2:
     #st.dataframe(df)
 
 with st.form("request_form"):
-   email_receiver=st.text_input('**需要此財富自由-存股-理財計畫，請輸入您的信箱住址，有專業理財顧問分析後會盡速跟您聯繫!**')
-   email_request=st.text_area('留言備註',value='請理財顧問跟我聯絡。')
+   email_receiver=st.text_input('**需要此財富自由-存股-理財計畫，請留下您的信箱住址，有專業理財顧問分析後會盡速跟您聯繫!**')
+   email_request=st.text_area('**留言備註:**',value='請理財顧問跟我聯絡。')
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
    if submitted:
