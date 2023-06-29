@@ -202,7 +202,8 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------
 st.set_page_config(page_title='財富自由*存股規劃*理財計算機', page_icon=':sparkles:', layout='wide')
 st.header(':sparkles: :blue[財富自由*存股規劃]:umbrella_with_rain_drops: :red[理財計算機] :pencil:')
-col1, col2 = st.columns([2,6], gap='large')
+st.info('**財富自由 = 被動收入 > 生活支出**')
+col1, col2 = st.columns([12,30], gap='large')
 with col1:
   # Basic Parameters
   # 「Discretionary Income」（可調用所得／可運用所得／可花費所得／可花用所得／可調動所得）
@@ -429,9 +430,9 @@ with col2:
     st.altair_chart(c, use_container_width=True)
     #st.write('理財計畫底稿')
     #st.dataframe(df)
-st.info('**需要此財富自由-存股-理財計畫，請留下您的信箱住址，有專業理財顧問分析後會盡速跟您聯繫!**')
+st.info('**需要此財富自由-存股-理財計畫，請留下您的電子信箱及需求，有專業理財顧問分析後會盡速跟您聯繫!**')
 with st.form("request_form"):
-   email_receiver=st.text_input('**需要此財富自由-存股-理財計畫，請留下您的信箱住址，有專業理財顧問分析後會盡速跟您聯繫!**')
+   email_receiver=st.text_input('**請輸入您的電子信箱住址:**')
    email_request=st.text_area('**留言備註:**',value='請理財顧問跟我聯絡。')
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
