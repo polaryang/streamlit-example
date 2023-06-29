@@ -202,7 +202,7 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------
 st.set_page_config(page_title='財富自由*存股規劃*理財計算機', page_icon=':sparkles:', layout='wide')
 st.header(':sparkles: :blue[財富自由*存股規劃]:umbrella_with_rain_drops: :red[理財計算機] :pencil:')
-st.info('**財富自由 = 被動收入 > 生活支出；藉由存股的穩定配息，增加被動收入，達成財富自由；財富自由的核心不是錢，是人生價值；**')
+st.info('**財富自由 = 被動收入 > 生活支出；  藉由存股的穩定配息，增加被動收入，達成財富自由；  財富自由的核心不是錢，是人的生命價值**')
 col1, col2 = st.columns([12,30], gap='large')
 with col1:
   # Basic Parameters
@@ -311,6 +311,7 @@ with col2:
     st.write('   :heart_eyes: 最樂觀 Max Dividends Rate ($ per share): '+str(max_divid) )
     st.write('   :neutral_face: 最可能 Average Dividends ($ per share): '+str(avg_divid) )
     st.write('   :sob: 最悲觀 Min Dividends ($ per share): '+str(min_divid) )
+    st.write(' ')
     st.subheader('歷史股價走勢')
     st.line_chart(data.history()['Close'])
   with tab2:
