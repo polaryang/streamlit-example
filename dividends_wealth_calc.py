@@ -200,8 +200,9 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------  
 # 主程式開始
 # ------------------------------------------------------------------
+st.set_page_config(layout='wide')
 st.header(':sparkles: :blue[財富自由*存股規劃]:umbrella_with_rain_drops: :red[理財計算機] :pencil:')
-col1, col2 = st.columns([2,6])
+col1, col2 = st.columns([2,6], gap='large')
 with col1:
   # Basic Parameters
   # 「Discretionary Income」（可調用所得／可運用所得／可花費所得／可花用所得／可調動所得）
