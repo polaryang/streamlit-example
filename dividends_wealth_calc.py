@@ -202,7 +202,7 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------
 st.set_page_config(page_title='財富自由*存股規劃*理財計算機', page_icon=':sparkles:', layout='wide')
 st.header(':sparkles: :blue[財富自由*存股規劃]:umbrella_with_rain_drops: :red[理財計算機] :pencil:')
-st.subheader('**財富自由 = 被動收入 > 生活支出**')
+st.caption('**財富自由 = 被動收入 > 生活支出**')
 st.info('**_The highest use of capital is not to make more money, but to make money do more for the betterment of life.  ~ Henry Ford_**')
 #st.info('**財富自由 = 被動收入 > 生活支出；  藉由存股的穩定配息，增加被動收入，達成財富自由；  財富自由不是提早退休，而是活出人生命的價值**')
 col1, col2 = st.columns([12,30], gap='large')
