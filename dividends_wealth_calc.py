@@ -200,7 +200,7 @@ def get_top_rank_dividend(): #return top_dividend_list
 # ------------------------------------------------------------------  
 # 主程式開始
 # ------------------------------------------------------------------
-st.set_page_config(layout='medium')
+st.set_page_config(page_title='財富自由*存股規劃*理財計算機', page_icon=':sparkles:', layout='wide')
 st.header(':sparkles: :blue[財富自由*存股規劃]:umbrella_with_rain_drops: :red[理財計算機] :pencil:')
 col1, col2 = st.columns([2,6], gap='large')
 with col1:
