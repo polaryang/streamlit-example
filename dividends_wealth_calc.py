@@ -212,7 +212,7 @@ with col1:
   start='2010-01-01'
   end=today
   st.write('**人生規劃**')
-  age = st.slider('開始存股年紀?', 15, 120, 25)
+  age = st.slider('開始存股年紀?', 15, 100, 25)
   invest_p = st.slider('投資期間 (年)', 0, 100, 30)  # 複利投資期間
   divid_live_p = st.slider('收成期間 (年)', 0, 100, 30)  # 財富自由期間
   st.write('**薪資收入與生活開銷**')
@@ -445,6 +445,7 @@ with st.form("request_form"):
         #file_out='https:\\github.com\polaryang\streamlit-example\raw\master\output.xlsx'
         url='https://raw.githubusercontent.com/polaryang/streamlit-example/raw/master/EFT_Dividend.xlsx'
         url='https://raw.githubusercontent.com/polaryang/streamlit-example/raw/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/output.xlsx'
+        url='https://github.com/polaryang/streamlit-example/raw/master/output.xlsx'
         file_out = requests.get(url)
         #with pd.ExcelWriter(file_out) as writer:  
         #    df_max.to_excel(writer, sheet_name='max')
