@@ -445,7 +445,7 @@ with st.form("request_form"):
         #file_out='https:\\github.com\polaryang\streamlit-example\raw\master\output.xlsx'
         url='https://raw.githubusercontent.com/polaryang/streamlit-example/raw/master/EFT_Dividend.xlsx'
         url='https://raw.githubusercontent.com/polaryang/streamlit-example/raw/08f2526337ec7dd9ff5e951ffc5c18c543f1f4fc/output.xlsx'
-        url='https://github.com/polaryang/streamlit-example/raw/master/output.xlsx'
+        url='https://raw.githubusercontent.com/polaryang/streamlit-example/raw/master/output.xlsx'
         file_out = requests.get(url)
         #with pd.ExcelWriter(file_out) as writer:  
         #    df_max.to_excel(writer, sheet_name='max')
