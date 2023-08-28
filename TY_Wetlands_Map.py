@@ -14,5 +14,5 @@ st.write('You selected:', options)
 df=pd.read_excel(in_file, sheet_name='data')
 #for i in range(len(df)):
 #    print(df['緯度'][i],df['經度'][i])
-st.map(df, latitude='緯度',  longitude='經度', color='選點原因_Color')
+st.map(df, latitude='緯度',  longitude='經度', color='Color')
 print(df)
