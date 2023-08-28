@@ -16,3 +16,4 @@ df=pd.read_excel(in_file, sheet_name='data')
 #    print(df['緯度'][i],df['經度'][i])
 st.map(df, latitude='緯度',  longitude='經度', color='Color')
 print(df)
+ 
