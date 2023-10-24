@@ -460,7 +460,7 @@ with st.form("request_form"):
       #except:
         #st.write(':red[信箱住址輸入錯誤!]')
 # ------------------------------------------------------------------
-#st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
+st.write(':gem:*POWERED by* :blue[銘傳大學:dove_of_peace:財務金融學系 金融科技實驗室 楊重任副教授 / 團隊學生: 黃冠斌、姚岱均]')    
 # ------------------------------------------------------------------    
 plt.bar(df['Age'],df['Shares'])
 plt.xlabel('Age')
